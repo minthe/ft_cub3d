@@ -1,0 +1,15 @@
+{
+	"folders": [
+		{
+			"path": "../../.."
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"*.excalidraw": "json",
+			"*.excalidrawlib": "json",
+			"gl.h": "c",
+			"gl3.h": "c"
+		}
+	}
+}
