@@ -6,7 +6,7 @@ NAME =	fdf
 OBJECTS = $(subst .c,.o,$(SOURCES))
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g
 MINILIBX_DIR	= ./mlx-linux
 LIBFT_DIR		= ./libft
 X11_INC			= /usr/X11/include
