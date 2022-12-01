@@ -6,7 +6,14 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 14:28:02 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2022/12/01 14:28:03 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2022/12/01 15:02:31 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "inc/cub3d.h"
+
+int	main(void)
+{
+	ft_printf("Hello World!\n");
+	return (0);
+}

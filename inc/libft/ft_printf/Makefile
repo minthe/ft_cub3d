@@ -5,49 +5,33 @@
 #                                                     +:+ +:+         +:+      #
 #    By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/12/01 14:46:38 by vfuhlenb          #+#    #+#              #
-#    Updated: 2022/12/01 15:01:29 by vfuhlenb         ###   ########.fr        #
+#    Created: 2021/12/18 15:11:30 by vfuhlenb          #+#    #+#              #
+#    Updated: 2021/12/20 14:41:32 by vfuhlenb         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = Cub3D
-
-CC = gcc
-CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g
-
-RM = rm -f
-AF = ar rcs
-
-SRCS = \
-cub3d.c\
-
-OBJS = $(SRCS:.c=.o)
-
-$(NAME): $(OBJS)
-	make -C inc/libft
-	make bonus -C inc/libft
-	make -C inc/libft/ft_printf
-	$(CC) $(OBJS) $(CFLAGS) $(LIBFT) $(FT_PRINTF) -o $(NAME)
-
-LIBFT_DIR = inc/libft
-LIBFT = $(LIBFT_DIR)/libft.a
-
-PRINTF_DIR = inc/libft/ft_printf
-FT_PRINTF = $(PRINTF_DIR)/libftprintf.a
+NAME=libftprintf.a
+CC=gcc
+CFLAGS=-Wall -Werror -Wextra
+SRCS= ft_printf.c conversions.c
+OBJS=${SRCS:.c=.o}
+RM = rm -rf
+OPTION = -c
 
 all: $(NAME)
 
+$(NAME):
+	gcc $(FLAG) $(OPTION) $(SRCS)
+	ar -rc $(NAME) $(OBJS)
+
 clean:
-	$(RM) $(OBJS)
-	make clean -C inc/libft
-	make clean -C inc/libft/ft_printf
+	${RM} ${OBJS} $(BONUS_OBJS)
+	${RM} */*.o
 
 fclean: clean
-	$(RM) $(NAME)
-	make fclean -C inc/libft
-	make fclean -C inc/libft/ft_printf
+	${RM} $(NAME)
+	${RM} libft/libft.a
 
 re: fclean all
 
-norminette:
-	norminette $(SRCS)
+.PHONY:	all clean fclean re
