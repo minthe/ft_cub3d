@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 14:27:58 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2022/12/04 10:57:54 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2022/12/04 19:06:20 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,12 @@
 
 typedef struct s_map
 {
-	char	*tex[3]; // N,E,S,W char *path_to_file.xmp
-	int		*color[1]; // F,C (int *)(unsigned char [4]){r, g, b, a})
+	char	*tex_n; // N,E,S,W char *path_to_file.xmp
+	char	*tex_e;
+	char	*tex_s;
+	char	*tex_w;
+	int		*color_f; // F,C (int *)(unsigned char [4]){r, g, b, a})
+	int		*color_c; // F,C (int *)(unsigned char [4]){r, g, b, a})
 	char	**data;
 }t_map;
 
