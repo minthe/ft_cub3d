@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lorfanu <lorfanu@student.42wolfsburg.de>   +#+  +:+       +#+         #
+#    By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/23 19:30:15 by aionescu          #+#    #+#              #
-#    Updated: 2022/11/17 19:08:15 by lorfanu          ###   ########.fr        #
+#    Updated: 2022/12/03 14:48:46 by dimbrea          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
