@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 14:28:02 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2022/12/05 11:28:50 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2022/12/05 16:07:28 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,10 @@ int	main(int argc, char **argv)
 	(void)var;
 	if (argc == 2)
 	{
-		import_map(&var, argv[1], "O_RDONLY", ".cub");
+		import_map(&var, argv[1], ".cub");
 		// mlx_s.ptr = mlx_init();
 		// mlx_s.window = mlx_new_window(mlx_s.ptr, S_WIDTH, S_HEIGTH, "cub3d");
 		// mlx_s.img = mlx_new_image(mlx_s.ptr, S_WIDTH, S_HEIGTH);
-		
 		// mlx_loop(mlx_s.ptr);
 	}
 	else
