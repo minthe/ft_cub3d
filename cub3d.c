@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
+/*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 14:28:02 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2022/12/03 18:05:02 by dimbrea          ###   ########.fr       */
+/*   Updated: 2022/12/05 11:28:50 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "inc/cub3d.h"
-
 
 void	keypress(int key, t_var *var)
 {
@@ -61,9 +60,10 @@ int	main(int argc, char **argv)
 	(void)var;
 	if (argc == 2)
 	{
-		mlx_s.ptr = mlx_init();
+		import_map(&var, argv[1], "O_RDONLY", ".cub");
+		// mlx_s.ptr = mlx_init();
 		// mlx_s.window = mlx_new_window(mlx_s.ptr, S_WIDTH, S_HEIGTH, "cub3d");
-		mlx_s.img = mlx_new_image(mlx_s.ptr, S_WIDTH, S_HEIGTH);
+		// mlx_s.img = mlx_new_image(mlx_s.ptr, S_WIDTH, S_HEIGTH);
 		
 		// mlx_loop(mlx_s.ptr);
 	}

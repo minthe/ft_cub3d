@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 14:27:58 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2022/12/05 09:13:22 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2022/12/05 11:29:11 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,14 @@
 # define R_ARROW 113
 # define L_ARROW 114
 # define ESC 9
-# include "mlx/mlx.h"
+// # include "mlx/mlx.h"
 # include "math.h"
 # include "libft/libft.h"
+# include "get_next_line/get_next_line.h"
 
 # include <math.h>
 # include <stdio.h>
+# include <fcntl.h>
 
 typedef struct s_map
 {
@@ -51,11 +53,17 @@ typedef struct s_var
 	int			posx;
 	int			posy;
 	int			player_pos[2];
-	s_struct	*s_map;
+	t_map		*map;
 	t_mlx		*mlx;
 }t_var;
 
+// SRC
+void	import_map(t_var *var, char *path, char *opt, char *type);
+
+// INC
 // returns hex decoded rgba values as int pointer
-int	*ft_itox_rgba(int r, int g, int b, int a);
+int		*ft_itox_rgba(int r, int g, int b, int a);
+// skip whitespace
+// open_file
 
 #endif
