@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 14:27:58 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2022/12/06 11:29:22 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2022/12/06 21:19:35 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ typedef struct s_map
 	char	*tex_e;
 	char	*tex_s;
 	char	*tex_w;
+	char	**infos; // alloziiere 6 pointer für alle infos und setze sie auf -1 und iteriere sie durch. beginnend bei den texturen, die übrigen 2 sind dann die farben
 	int		*color_f; // F,C (int *)(unsigned char [4]){r, g, b, a})
 	int		*color_c;
 	char	**data; // valid map data

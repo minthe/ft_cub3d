@@ -3,15 +3,22 @@ SO /path_to_south_texture
 WE /path_to_west_texture
 EA /path_to_east_texture
 
-RGBs
-Floor color
+
 F 200,100,0
+C       255,30,0
 
-Ceiling color
-C 255,30,0
 
-111111
-100101
+
+
+
+
+
+1        10011
+10010111111111
 101001
 1100N1
 111111
+
+
+
+

@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 14:28:02 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2022/12/06 11:35:07 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2022/12/06 19:05:22 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ int	main(int argc, char **argv)
 	if (argc == 2)
 	{
 		init_struct(&var);
+		printf("access: %d\n", access(argv[1], R_OK));
 		import_map(&var, argv[1], ".cub");
 		// mlx_s.ptr = mlx_init();
 		// mlx_s.window = mlx_new_window(mlx_s.ptr, S_WIDTH, S_HEIGTH, "cub3d");
