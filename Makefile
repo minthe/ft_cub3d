@@ -6,11 +6,11 @@
 #    By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/01 14:46:38 by vfuhlenb          #+#    #+#              #
-#    Updated: 2022/12/03 18:05:48 by dimbrea          ###   ########.fr        #
+#    Updated: 2022/12/05 15:27:09 by dimbrea          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = cub3D
+NAME = cub3d
 
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -g
@@ -20,6 +20,7 @@ RM = rm -f
 AF = ar rcs
 
 SRCS = \
+keys.c\
 cub3d.c\
 
 OBJS = $(SRCS:.c=.o)
