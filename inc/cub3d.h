@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 14:27:58 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2022/12/05 16:16:49 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2022/12/05 22:38:07 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,13 @@
 # include "libft/libft.h"
 # include "get_next_line/get_next_line.h"
 
-# include <math.h>
 # include <stdio.h>
-# include <fcntl.h>
+# include <stdlib.h>
 # include <unistd.h>
+# include <fcntl.h>
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <math.h>
 
 typedef struct s_map
 {
@@ -63,7 +66,6 @@ void	import_map(t_var *var, char *path, char *type);
 
 // UTILS
 int		*ft_itox_rgba(int r, int g, int b, int a);
-int		ft_open_file(char *path, int opt);
 // skip whitespace
 
 #endif

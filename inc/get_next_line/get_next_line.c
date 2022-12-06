@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 19:08:43 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2022/01/11 14:14:31 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2022/12/05 23:36:16 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,9 @@ char	*get_next_line(int fd)
 {
 	char		*line;
 	char		*buffer;
-	static char	*buffer_static;
+	static char	*buffer_static[OPEN_MAX];
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || fd > OPEN_MAX)
 		return (NULL);
 	buffer = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!buffer || read(fd, buffer, 0) < 0)
@@ -68,9 +68,9 @@ char	*get_next_line(int fd)
 		free(buffer);
 		return (NULL);
 	}
-	if (!buffer_static)
-		buffer_static = ft_strdup("");
-	if (read_file(fd, &buffer, &buffer_static, &line) == 0 && *line == '\0')
+	if (!buffer_static[fd])
+		buffer_static[fd] = ft_strdup("");
+	if (read_file(fd, &buffer, &buffer_static[fd], &line) == 0 && *line == '\0')
 	{
 		free(line);
 		return (NULL);

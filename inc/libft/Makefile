@@ -63,7 +63,7 @@ clean:
 cleanb:
 				$(RM) $(OBJS) $(OBJS_B)
 
-fclean:			clean
+fclean:			cleanb
 				$(RM) $(NAME)
 
 re:				fclean all
