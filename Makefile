@@ -6,7 +6,7 @@
 #    By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/01 14:46:38 by vfuhlenb          #+#    #+#              #
-#    Updated: 2022/12/05 17:45:59 by vfuhlenb         ###   ########.fr        #
+#    Updated: 2022/12/06 11:29:36 by vfuhlenb         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ SRCS = \
 inc/get_next_line/get_next_line.c\
 inc/get_next_line/get_next_line_utils.c\
 src/import_map.c\
+src/init_struct.c\
 cub3d.c\
 
 OBJS = $(SRCS:.c=.o)

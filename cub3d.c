@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 14:28:02 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2022/12/05 23:56:08 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2022/12/06 11:35:07 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,15 @@ int	main(int argc, char **argv)
 {
 	t_var	var;
 	t_mlx	mlx_s;
+	t_map	map_s;
 
 	var.mlx = &mlx_s;
+	var.map = &map_s;
 	(void)argv;
 	(void)var;
 	if (argc == 2)
 	{
+		init_struct(&var);
 		import_map(&var, argv[1], ".cub");
 		// mlx_s.ptr = mlx_init();
 		// mlx_s.window = mlx_new_window(mlx_s.ptr, S_WIDTH, S_HEIGTH, "cub3d");

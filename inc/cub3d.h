@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 14:27:58 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2022/12/05 22:38:07 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2022/12/06 11:29:22 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void	import_map(t_var *var, char *path, char *type);
 
 // UTILS
 int		*ft_itox_rgba(int r, int g, int b, int a);
+void	init_struct(t_var *var);
 // skip whitespace
 
 #endif
