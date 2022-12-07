@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 09:49:29 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2022/12/05 23:32:31 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2022/12/07 10:04:32 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	import_map(t_var *var, char *path, char *type)
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
 	{
-		perror("map");
+		perror(path);
 		return ;
 	}
 	line = get_next_line(fd);
