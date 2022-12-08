@@ -6,77 +6,11 @@
 /*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 14:28:02 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2022/12/06 16:21:35 by dimbrea          ###   ########.fr       */
+/*   Updated: 2022/12/07 19:03:36 by dimbrea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "inc/cub3d.h"
-
-// int	keypress(int key, t_var *var)
-// {
-// 	if (key == ESC)
-// 		x_window(var->mlx);
-// 	if (key == W)
-// 		ft_w(var);
-// 	if (key == A)
-// 		var->posx -= 5;
-// 	if (key == S)
-// 		var->posy -= 5;
-// 	if (key == D)
-// 		var->posy += 5;
-// 	return 0;
-// }
-
-// int	render(t_var *var)
-// {
-// 	// if (var->mlx->ptr == NULL)
-// 	// 	return (1);
-// 	mlx_put_image_to_window(var->mlx->ptr, var->mlx->window, var->mlx->img->img_xpm, var->posx, var->posy);
-// 	// mlx_pixl_put(var, posx, var->posy, var->color);
-	
-// 	return (0);
-// }
-
-// void	start(t_mlx *mlx)
-// {
-// 	(void)mlx;
-// 	// mlx_hook(var->mlx->window, 17, 0L, x_window, var->mlx);
-// 	// mlx_new_image(var->mlx->ptr, var->posx, var->posy);
-	
-// }
-
-// int	main(int argc, char **argv)
-// {
-// 	t_var	var;
-// 	t_mlx	data_m;
-// 	t_img	s_img;
-	
-// 	char 	*turd;
-
-// 	turd = "turd.xpm";
-// 	var.mlx = &data_m;
-// 	var.mlx->img = &s_img;
-// 	(void)argv;
-// 	var.posx = 300;// need to get position of the player;
-// 	var.posy = 300;
-// 	if (argc == 2)
-// 	{
-// 		var.mlx->ptr = mlx_init();
-// 		var.mlx->window = mlx_new_window(var.mlx->ptr, S_WIDTH, S_HEIGTH, "cub3d");
-// 		var.mlx->img->img_xpm = mlx_xpm_file_to_image(var.mlx->ptr, turd, &var.mlx->img->width, &var.mlx->img->height);
-// 		mlx_put_image_to_window(var.mlx->ptr, var.mlx->window, var.mlx->img->img_xpm, var.posx, var.posy);
-// 		s_img.img_ptr = mlx_new_image(var.mlx->ptr, S_WIDTH, S_HEIGTH);
-// 		// s_img.addr = mlx_get_data_addr(s_img.img_ptr, &s_img.bits_per_pixel, &s_img.line_len, &s_img.endian);
-// 		// mlx_put_image_to_window(var.mlx->ptr, var.mlx->window, var.mlx->img, 0, 0);
-// 		mlx_loop_hook(var.mlx->ptr, &render, &var.mlx);
-// 		mlx_hook(var.mlx->window, 2, (1L << 0), &keypress, &var.mlx);
-// 		// start(var.mlx);
-// 		mlx_loop(var.mlx->ptr);
-// 	}
-// 	else
-// 		write(2, "Error 2 arguments needed\n", 25);
-// 	return (0);
-// }
 
 void	ft_assign(t_var *var)
 {
@@ -97,12 +31,39 @@ void	ft_assign(t_var *var)
 	var->ray->pv_time = 0;
 
 }
+void	img_pix_put(t_img *img, int x, int y, int color)
+{
+	char	*pixel;
 
+	pixel = img->addr + (y * img->line_len + x * (img->bits_per_pixel / 8));
+	*(int *)pixel = color;
+}
+
+void draw_line(t_var *var, int x, int color)
+{
+	int i;
+	// int color;	
+	i = -1;
+	while (++i < var->ray->drawStart)
+		img_pix_put(&var->img, x, i, color);
+	//here suppose to be sky color later
+	i = -1;
+	while (++i < var->ray->drawEnd - var->ray->drawStart)
+	{
+		/// I'l put somewhere here texture later
+		my_mlx_pixel_put(&var->img, x, var->ray->drawStart + i, color);
+	}
+	i = -1;
+	while (++i < MAP_HEIGTH - var->ray->drawEnd)
+		my_mlx_pixel_put(&var->img, x, var->ray->drawEnd, color);
+		//here suppose to be floor color later
+}
 void	ft_calc_ray_dir(t_var *var, char **map)
 {
 	int	x;
 	int	w;
 	int	h;
+	int color;
 
 
 	w = MAP_WIDTH;
@@ -178,6 +139,30 @@ void	ft_calc_ray_dir(t_var *var, char **map)
 		if (var->ray->drawEnd >= h)
 			var->ray->drawEnd = h - 1;
 		//choose wall color
+		if (map[var->ray->map_x][var->ray->map_y])
+		{
+			if (color == 0xFF0000)//red
+				break ;
+			if (color == 0x00FF00)//green
+				break ;
+			if (color == 0x0000FF)//blue
+				break ;
+			if (color == 0xFFFF00)//yellow
+				break ;
+			if (color == 0xFFFFFF)//white
+				break ;
+		}
+		//give x and y sides different brightness
+		if (var->ray->side == 1)
+			color = color / 2;
+		//draw the pixels of the stripe as a vertical line
+		draw_line(var, x, color);
+		//timing for input and fps counter
+		var->ray->pv_time = var->ray->time;
+		var->ray->time = time();// notgood
+		var->ray->frametime = (var->ray->time - var->ray->pv_time) / 1000.0;
+		print(1.0/var->ray->frametime);
+		redra
 		x++;
 	}
 }

@@ -6,14 +6,14 @@
 #    By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/01 14:46:38 by vfuhlenb          #+#    #+#              #
-#    Updated: 2022/12/05 15:27:09 by dimbrea          ###   ########.fr        #
+#    Updated: 2022/12/08 14:41:43 by dimbrea          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3d
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g
 MLX_FLAGS = -lXext -lX11 -lm -lz
 
 RM = rm -f
@@ -21,7 +21,8 @@ AF = ar rcs
 
 SRCS = \
 keys.c\
-cub3d.c\
+mytake.c\
+
 
 OBJS = $(SRCS:.c=.o)
 
