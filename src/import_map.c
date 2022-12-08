@@ -6,32 +6,23 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 09:49:29 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2022/12/07 10:04:32 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2022/12/08 09:41:30 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
-// Returns 
-void	import_map(t_var *var, char *path, char *type)
+int	import_cub(t_var *var, char *argv, char *type)
 {
 	char	*line;
-	int		fd;
 
-	(void)var;
-	(void)type;
-	fd = open(path, O_RDONLY);
-	if (fd < 0)
-	{
-		perror(path);
-		return ;
-	}
-	line = get_next_line(fd);
-	while (line)
-	{
-		printf("%s", line);
-		free(line);
-		line = get_next_line(fd);
-	}
-	close(fd);
+	(void)line;
+	if (!ft_open_file(&var->fd1, argv, O_RDONLY) \
+		|| !ft_check_fileext(argv, type))
+		return (0);
+	line = get_next_line(var->fd1);
+	free(line);
+	close(var->fd1);
+	return (1);
+	// printf("access: %d\n", access(argv[1], R_OK));
 }

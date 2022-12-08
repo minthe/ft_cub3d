@@ -6,7 +6,7 @@
 #    By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/01 14:46:38 by vfuhlenb          #+#    #+#              #
-#    Updated: 2022/12/06 11:29:36 by vfuhlenb         ###   ########.fr        #
+#    Updated: 2022/12/08 09:15:20 by vfuhlenb         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,8 +22,11 @@ AF = ar rcs
 SRCS = \
 inc/get_next_line/get_next_line.c\
 inc/get_next_line/get_next_line_utils.c\
+src/err_cub.c\
 src/import_map.c\
 src/init_struct.c\
+utils/ft_open_file.c\
+utils/ft_check_fileext.c\
 cub3d.c\
 
 OBJS = $(SRCS:.c=.o)

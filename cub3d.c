@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 14:28:02 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2022/12/06 19:05:22 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2022/12/07 19:23:37 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,23 +54,16 @@ int	main(int argc, char **argv)
 {
 	t_var	var;
 	t_mlx	mlx_s;
-	t_map	map_s;
+	t_cub	cub_s;
 
 	var.mlx = &mlx_s;
-	var.map = &map_s;
-	(void)argv;
-	(void)var;
-	if (argc == 2)
+	var.cub = &cub_s;
+	if (argc > 1 && init_struct(&var) && import_cub(&var, argv[1], ".cub"))
 	{
-		init_struct(&var);
-		printf("access: %d\n", access(argv[1], R_OK));
-		import_map(&var, argv[1], ".cub");
 		// mlx_s.ptr = mlx_init();
 		// mlx_s.window = mlx_new_window(mlx_s.ptr, S_WIDTH, S_HEIGTH, "cub3d");
 		// mlx_s.img = mlx_new_image(mlx_s.ptr, S_WIDTH, S_HEIGTH);
 		// mlx_loop(mlx_s.ptr);
 	}
-	else
-		write(2, "Error\n", 6);
 	return (0);
 }

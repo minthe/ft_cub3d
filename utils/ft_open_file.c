@@ -1,41 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_struct.c                                      :+:      :+:    :+:   */
+/*   ft_open_file.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/06 11:18:44 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2022/12/07 19:06:26 by vfuhlenb         ###   ########.fr       */
+/*   Created: 2022/12/07 18:31:48 by vfuhlenb          #+#    #+#             */
+/*   Updated: 2022/12/07 18:59:05 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cub3d.h"
+#include <fcntl.h>
+#include <stdio.h>
 
-static void	init_cub(t_cub *cub)
+int	ft_open_file(int *fd, char *path, int opt)
 {
-	cub->c = NULL;
-	cub->f = NULL;
-	cub->map = NULL;
-	cub->no = NULL;
-	cub->so = NULL;
-	cub->we = NULL;
-	cub->ea = NULL;
-}
-
-static void	init_mlx(t_mlx *mlx)
-{
-	mlx->img = NULL;
-	mlx->ptr = NULL;
-	mlx->window = NULL;
-}
-
-int	init_struct(t_var *var)
-{
-	var->fd1 = 0;
-	init_cub(var->cub);
-	init_mlx(var->mlx);
-	var->posx = -1;
-	var->posy = -1;
+	*fd = open(path, opt);
+	if (*fd < 0)
+	{
+		perror(path);
+		return (0);
+	}
 	return (1);
 }
