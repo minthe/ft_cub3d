@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 11:18:44 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2022/12/07 19:06:26 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2022/12/08 12:42:44 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 static void	init_cub(t_cub *cub)
 {
-	cub->c = NULL;
-	cub->f = NULL;
-	cub->map = NULL;
 	cub->no = NULL;
 	cub->so = NULL;
 	cub->we = NULL;
 	cub->ea = NULL;
+	cub->f = NULL;
+	cub->c = NULL;
+	cub->map = NULL;
 }
 
 static void	init_mlx(t_mlx *mlx)
@@ -33,6 +33,7 @@ static void	init_mlx(t_mlx *mlx)
 int	init_struct(t_var *var)
 {
 	var->fd1 = 0;
+	var->line = NULL;
 	init_cub(var->cub);
 	init_mlx(var->mlx);
 	var->posx = -1;

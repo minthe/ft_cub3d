@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 14:27:58 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2022/12/08 09:15:29 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2022/12/08 15:51:23 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,14 @@ typedef struct s_var
 	int			player_pos[2];
 	t_cub		*cub;
 	t_mlx		*mlx;
+	char		*line;
 	int			fd1;
 }t_var;
 
 // SRC
 int		import_cub(t_var *var, char *argv, char *type);
+int		check_cub(t_cub *cub);
+void	err_elements(t_cub *cub);
 
 // UTILS
 int		ft_open_file(int *fd, char *path, int opt);
