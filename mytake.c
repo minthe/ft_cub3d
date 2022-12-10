@@ -6,7 +6,7 @@
 /*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 19:03:45 by dimbrea           #+#    #+#             */
-/*   Updated: 2022/12/08 14:51:42 by dimbrea          ###   ########.fr       */
+/*   Updated: 2022/12/10 18:44:50 by dimbrea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int	keypress(int key, t_var *var)
 {
+	
 	if (key == ESC)
 		x_window(var);
 	if (key == W)
@@ -26,33 +27,54 @@ int	keypress(int key, t_var *var)
 		ft_d(var);
 	return 0;
 }
-
-// int	render(t_var *var)
-// {
-// 	// if (var->mlx->ptr == NULL)
-// 	// 	return (1);
-// 	// mlx_put_image_to_window(var->mlx->ptr, var->mlx->window, var->img->img_xpm, var->plr->pos_x, var->plr->pos_y);
-// 	return (0);
-// }
-
-void	start(t_mlx *mlx)
+int	render(t_var *var)
 {
-	(void)mlx;
-	// mlx_hook(var->mlx->window, 17, 0L, x_window, var->mlx);
-	// mlx_new_image(var->mlx->ptr, var->posx, var->posy);
-	
+	if (var->mlx->window == NULL)
+		return (1);
+	render_background(var, 0xFFFFFF);
+	// ft_player(var);
+	// render_rect(&data->img, (t_rect){WINDOW_WIDTH - 100, WINDOW_HEIGHT - 100, 100, 100, GREEN_PIXEL});
+	// render_rect(&data->img, (t_rect){0, 0, 100, 100, RED_PIXEL});
+
+	mlx_put_image_to_window(var->mlx->ptr, var->mlx->window, var->img->structure, 0, 0);
+
+	return (0);
 }
 
+void ft_player(t_var *var)
+{
+	int i;
+	int j;
+	int x;
+	int y;
+
+	i = -1;
+	x = var->plr->pos_x;
+	y = var->plr->pos_y;
+	while (++i < 5)
+	{
+		j = -1;
+		while (++j < 5)
+		{
+			img_pix_put(var, var->plr->pos_x, var->plr->pos_y,0xFF0000);
+			var->plr->pos_x += 1;
+		}
+		var->plr->pos_x = x;
+		var->plr->pos_y += 1;
+	}
+	var->plr->pos_x = x;
+	var->plr->pos_y = y;
+}
 int	main(int argc, char **argv)
 {
 	t_var	var;
 	t_mlx	data_m;
 	t_img	s_img;
 	t_player	player;
-	char	*map[MAP_HEIGTH];
+	char	*map[MAP_HEIGHT];
 
 	map[0] = "11111111";
-	map[1] = "10000001";
+	map[1] = "11100001";
 	map[2] = "10000001";
 	map[3] = "11111111";
 	map[4] = NULL;
@@ -64,16 +86,17 @@ int	main(int argc, char **argv)
 	(void)argv;
 	var.plr->pos_x = 300;// need to get position of the player;
 	var.plr->pos_y = 300;
+	// var.img->width=10;
+	// var.img->height=10;
 	if (argc == 2)
 	{
 		var.mlx->ptr = mlx_init();
 		var.mlx->window = mlx_new_window(var.mlx->ptr,SCREEN_WIDTH, SCREEN_HEIGHT, "cub3d");
-		var.img->img_ptr = mlx_new_image(var.mlx->ptr, SCREEN_WIDTH, SCREEN_HEIGHT);
-		var.img->addr = mlx_get_data_addr(var.img->img_ptr, &var.img->bpp, &var.img->line_len, &var.img->endian);
+		var.img->structure = mlx_new_image(var.mlx->ptr, SCREEN_WIDTH, SCREEN_HEIGHT);
+		var.img->addr = mlx_get_data_addr(var.img->structure, &var.img->bpp, &var.img->size_line, &var.img->endian);
+		mlx_loop_hook(var.mlx->ptr, &render, &var);
 		mlx_hook(var.mlx->window, 17, 0L, x_window, &var);
 		mlx_hook(var.mlx->window,2, (1l << 0),keypress, &var);
-		mlx_pixel_put(var.mlx->ptr, var.mlx->window, var.plr->pos_x, var.plr->pos_y, 0xFF0000);
-		// ft_pixl_put(&var, var.plr->pos_x, var.plr->pos_y, 0xFF0000);
 		mlx_loop(var.mlx->ptr);
 	}
 	else

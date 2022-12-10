@@ -6,16 +6,16 @@
 /*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 14:27:58 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2022/12/08 14:47:56 by dimbrea          ###   ########.fr       */
+/*   Updated: 2022/12/10 18:39:50 by dimbrea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
-# define MAP_HEIGTH 5
+# define MAP_HEIGHT 5
 # define MAP_WIDTH 8
-# define SCREEN_WIDTH 1024
-# define SCREEN_HEIGHT 720
+# define SCREEN_WIDTH 800
+# define SCREEN_HEIGHT 600
 # define W 119
 # define A 97
 # define S 115
@@ -31,21 +31,24 @@
 typedef struct s_img
 {
 	void	*img_ptr;
+	void	*structure;
 	char	*addr;
 	void	*img_xpm;
 	int		width;
 	int		height;
 	int		bpp;
-	int		line_len;
+	int		size_line;
 	int		endian;
 	int		color;
+	int		begin_x;
+	int		begin_y;
 }t_img;
 
 typedef struct s_mlx
 {
 	void	*ptr;
 	void	*window;
-	int 	cur_img;
+	int		cur_img;
 }t_mlx;
 
 typedef struct s_player
@@ -99,6 +102,10 @@ void	ft_s(t_var *var);
 void	ft_d(t_var *var);
 
 //mytake.c
-void	ft_pixl_put(t_var *var, int x, int y, int color);
+int		ft_draw_line(t_var *var, int start_x, int start_y, int end_x, int end_y, int color);
+void	img_pix_put(t_var *var, int x, int y, int color);
+void	render_background(t_var *var, int color);
+void ft_player(t_var *var);
+int	render(t_var *var);
 
 #endif
