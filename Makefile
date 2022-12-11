@@ -6,7 +6,7 @@
 #    By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/01 14:46:38 by vfuhlenb          #+#    #+#              #
-#    Updated: 2022/12/08 14:41:43 by dimbrea          ###   ########.fr        #
+#    Updated: 2022/12/11 16:23:38 by dimbrea          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ AF = ar rcs
 
 SRCS = \
 keys.c\
-mytake.c\
+main.c\
 
 
 OBJS = $(SRCS:.c=.o)

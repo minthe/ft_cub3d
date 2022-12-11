@@ -6,14 +6,12 @@
 /*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 14:27:58 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2022/12/10 18:39:50 by dimbrea          ###   ########.fr       */
+/*   Updated: 2022/12/11 19:28:55 by dimbrea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
-# define MAP_HEIGHT 5
-# define MAP_WIDTH 8
 # define SCREEN_WIDTH 800
 # define SCREEN_HEIGHT 600
 # define W 119
@@ -53,6 +51,8 @@ typedef struct s_mlx
 
 typedef struct s_player
 {
+	
+	char	nsew[3];
 	double	pos_x;
 	double	pos_y;
 	
@@ -86,12 +86,22 @@ typedef struct s_ray
 	int		drawEnd;
 }t_ray;
 
+typedef struct s_map
+{
+	char	*d_map[100];
+	int		map_w;
+	int		map_h;
+	int		modul_w;
+	int		modul_h;
+}t_map;
+
 typedef struct s_var
 {
-	t_img	*img;
-	t_ray	*ray;
-	t_mlx	*mlx;
+	t_img		*img;
+	t_ray		*ray;
+	t_mlx		*mlx;
 	t_player	*plr;
+	t_map		*map;
 }t_var;
 
 // keys.c
@@ -102,10 +112,10 @@ void	ft_s(t_var *var);
 void	ft_d(t_var *var);
 
 //mytake.c
-int		ft_draw_line(t_var *var, int start_x, int start_y, int end_x, int end_y, int color);
+void	ft_set_walls(t_var *var);
 void	img_pix_put(t_var *var, int x, int y, int color);
-void	render_background(t_var *var, int color);
-void ft_player(t_var *var);
-int	render(t_var *var);
+void	render_background(t_var *var);
+void	ft_player(t_var *var);
+int		render(t_var *var);
 
 #endif
