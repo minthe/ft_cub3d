@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 12:45:08 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2022/12/08 12:53:56 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2022/12/09 17:24:23 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 int	check_cub(t_cub *cub)
 {
 	if (cub->no && cub->so && cub->we && cub->ea \
-		&& !cub->f && !cub->c && !cub->map)
+	&& !cub->f && !cub->c && !cub->map)
 		return (1);
 	if (cub->no && cub->so && cub->we && cub->ea \
 		&& cub->f && cub->c && !cub->map)
