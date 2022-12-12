@@ -6,7 +6,7 @@
 /*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 17:09:03 by dimbrea           #+#    #+#             */
-/*   Updated: 2022/12/11 19:53:57 by dimbrea          ###   ########.fr       */
+/*   Updated: 2022/12/12 10:06:21 by dimbrea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,15 +66,13 @@ void	render_background(t_var *var)
 	int color;
 
 	color = 0xFFFFFF;
-	var->map->modul_w = SCREEN_WIDTH / var->map->map_w;
-	var->map->modul_h = SCREEN_HEIGHT / var->map->map_h;
 	i = 0;
 	j = 0;
 	while (i <= SCREEN_HEIGHT)
 	{
 		if (j > SCREEN_WIDTH)
 			break;
-		img_pix_put(var->img->structure, j, i, color);
+		img_pix_put(var, j, i, color);
 		if (i == SCREEN_HEIGHT)
 		{
 			i = 0;
@@ -82,25 +80,32 @@ void	render_background(t_var *var)
 		}
 		i++;
 	}
-	// i = 0;
-	// j = 0;
-	// while (i <= SCREEN_WIDTH)
-	// {
-	// 	if (j > SCREEN_HEIGHT)
-	// 		break;
-	// 	img_pix_put(var->img->structure, i, j, color);
-	// 	if (i == SCREEN_WIDTH)
-	// 	{
-	// 		i = 0;
-	// 		j += var->map->modul_h;
-	// 	}
-	// 	i++;
-	// }
-	// i = SCREEN_HEIGHT - 1;
-	// j = 0;
-	// while (j <= SCREEN_WIDTH)
-	// {
-	// 	img_pix_put(var->img->structure, j, i, color);
-	// 	j++;
-	// }
+	i = 0;
+	j = SCREEN_WIDTH - 1; 
+	while (i <= SCREEN_HEIGHT)
+	{
+		img_pix_put(var, j, i, color);
+		i++;
+	}
+	i = 0;
+	j = 0;
+	while (i <= SCREEN_WIDTH)
+	{
+		if (j > SCREEN_HEIGHT)
+			break;
+		img_pix_put(var, i, j, color);
+		if (i == SCREEN_WIDTH)
+		{
+			i = 0;
+			j += var->map->modul_h;
+		}
+		i++;
+	}
+	i = SCREEN_HEIGHT - 1;
+	j = 0;
+	while (j <= SCREEN_WIDTH)
+	{
+		img_pix_put(var, j, i, color);
+		j++;
+	}
 }

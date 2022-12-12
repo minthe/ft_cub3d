@@ -6,7 +6,7 @@
 /*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 14:27:58 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2022/12/11 19:28:55 by dimbrea          ###   ########.fr       */
+/*   Updated: 2022/12/12 10:05:50 by dimbrea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ typedef struct s_mlx
 
 typedef struct s_player
 {
-	
 	char	nsew[3];
 	double	pos_x;
 	double	pos_y;

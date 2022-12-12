@@ -6,7 +6,7 @@
 /*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 19:03:45 by dimbrea           #+#    #+#             */
-/*   Updated: 2022/12/11 19:51:05 by dimbrea          ###   ########.fr       */
+/*   Updated: 2022/12/12 10:08:30 by dimbrea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ int	render(t_var *var)
 {
 	if (var->mlx->window == NULL)
 		return (1);
+	ft_set_walls(var);
 	render_background(var);
-	// ft_set_walls(var);
 	ft_player(var);
 	mlx_put_image_to_window(var->mlx->ptr, var->mlx->window, var->img->structure, 0, 0);
 	return (0);
@@ -81,6 +81,8 @@ void	ft_map_size(t_var *var)
 		i++;
 	}
 	var->map->map_h = i;
+	var->map->modul_w = SCREEN_WIDTH / var->map->map_w;
+	var->map->modul_h = SCREEN_HEIGHT / var->map->map_h;
 }
 
 void ft_color(t_var *var, int height, int width)
@@ -89,10 +91,10 @@ void ft_color(t_var *var, int height, int width)
 	int j;
 
 	i = height;
-	while (i < (height + var->map->modul_h - 1))
+	while (i < (height + var->map->modul_h + 1))
 	{
 		j = width;
-		while(j < (width + var->map->modul_w - 1))
+		while(j < (width + var->map->modul_w + 1))
 		{
 			img_pix_put(var, j, i, 0x808080);
 			j++;
@@ -118,9 +120,9 @@ void	ft_set_walls(t_var *var)
 		{
 			if (var->map->d_map[i][j] == '1')
 				ft_color(var, height, width);
-			width += var->map->modul_w - 1;
+			width += var->map->modul_w;
 		}
-		height += var->map->modul_h - 1;
+		height += var->map->modul_h;
 	}
 }
 
@@ -137,7 +139,7 @@ int	main(int argc, char **argv)
 	var.plr = &player;
 
 	var.map->d_map[0] = "11111";
-	var.map->d_map[1] = "11111";
+	var.map->d_map[1] = "11011";
 	var.map->d_map[2] = "11111";
 	var.map->d_map[3] = NULL;
 	(void)argv;
