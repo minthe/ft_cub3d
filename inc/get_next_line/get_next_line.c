@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 19:08:43 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2022/12/05 23:36:16 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2022/12/12 17:58:05 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,14 @@ char	*get_line(char **line, char **buffer_static)
 	xline = 0;
 	while ((*buffer_static)[xline] != '\n' && (*buffer_static)[xline] != '\0')
 		xline++;
-	if (ft_strchr(*buffer_static, '\n'))
+	if (ft_strchr_gnl(*buffer_static, '\n'))
 	{
-		*line = ft_substr(*buffer_static, 0, xline + 1);
-		*buffer_static = ft_strdup(*buffer_static + xline + 1);
+		*line = ft_substr_gnl(*buffer_static, 0, xline + 1);
+		*buffer_static = ft_strdup_gnl(*buffer_static + xline + 1);
 	}
 	else
 	{
-		*line = ft_strdup(buffer_temp);
+		*line = ft_strdup_gnl(buffer_temp);
 		*buffer_static = NULL;
 	}
 	free(buffer_temp);
@@ -41,12 +41,12 @@ int	read_file(int fd, char **buffer, char **buffer_static, char **line)
 	char	*temp;
 
 	i = 1;
-	while (!ft_strchr(*buffer_static, '\n') && i)
+	while (!ft_strchr_gnl(*buffer_static, '\n') && i)
 	{
 		i = read(fd, *buffer, BUFFER_SIZE);
 		(*buffer)[i] = '\0';
 		temp = *buffer_static;
-		*buffer_static = ft_strjoin(*buffer_static, *buffer);
+		*buffer_static = ft_strjoin_gnl(*buffer_static, *buffer);
 		free(temp);
 	}
 	free(*buffer);
@@ -69,7 +69,7 @@ char	*get_next_line(int fd)
 		return (NULL);
 	}
 	if (!buffer_static[fd])
-		buffer_static[fd] = ft_strdup("");
+		buffer_static[fd] = ft_strdup_gnl("");
 	if (read_file(fd, &buffer, &buffer_static[fd], &line) == 0 && *line == '\0')
 	{
 		free(line);

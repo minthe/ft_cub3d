@@ -6,61 +6,43 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 09:49:29 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2022/12/12 14:27:33 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2022/12/12 20:50:23 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
-static	count_len(char *line)
+static void	write_to_struct(t_var *var, int i, char c, char *nswe)
 {
-	int	i;
-
-	i = 0;
-	while (line[i] && !ft_is_whitespace_char(line[i]))
+	i++;
+	if (var->line[i] == c)
+	{
 		i++;
-	return (i);
+		i += ft_skip_whitespace(&var->line[i]);
+		if (ft_strncmp(nswe, "no", 2) == 0)
+			var->data->no = ft_strdup_cub(&var->line[i]);
+		else if (ft_strncmp(nswe, "so", 2) == 0)
+			var->data->so = ft_strdup_cub(&var->line[i]);
+		else if (ft_strncmp(nswe, "we", 2) == 0)
+			var->data->we = ft_strdup_cub(&var->line[i]);
+		else if (ft_strncmp(nswe, "ea", 2) == 0)
+			var->data->ea = ft_strdup_cub(&var->line[i]);
+	}
 }
 
-static copy_str()
-
-void	copy_element(t_var *var)
+static void	copy_element(t_var *var)
 {
 	int	i;
 
 	i = ft_skip_whitespace(var->line);
 	if (var->line[i] == 'N')
-	{
-		i++;
-		if (var->line[i] == 'O')
-		{
-			i++;
-			i += ft_skip_whitespace(&var->line[i]);
-			var->data->no = ft_strdup(&var->line[i]);
-		}
-	}
+		write_to_struct(var, i, 'O', "no");
 	else if (var->line[i] == 'S')
-	{
-		i++;
-		if (var->line[i] == 'O')
-		{
-			i++;
-			i += ft_skip_whitespace(&var->line[i]);
-			var->data->so = ft_strdup(&var->line[i]);
-		}
-	}
+		write_to_struct(var, i, 'O', "so");
 	else if (var->line[i] == 'W')
-	{
-		i++;
-		if (var->line[i] == 'E')
-			var->data->we = ft_strdup(&var->line[++i]);
-	}
+		write_to_struct(var, i, 'E', "we");
 	else if (var->line[i] == 'E')
-	{
-		i++;
-		if (var->line[i] == 'A')
-			var->data->ea = ft_strdup(&var->line[++i]);
-	}
+		write_to_struct(var, i, 'A', "ea");
 	else if (var->line[i] == 'F')
 		var->data->f = ft_calloc(1, sizeof(int));
 	else if (var->line[i] == 'C')
@@ -81,14 +63,8 @@ int	import_cub(t_var *var, char *argv, char *type)
 		var->line = get_next_line(var->fd1);
 	}
 	close(var->fd1);
-	printf("$%s$", var->data->no);
-	printf("$%s$", var->data->so);
-	printf("access: %d\n", access(var->data->no, R_OK));
-	printf("access: %d\n", access(var->data->so, R_OK));
-	if (check_cub(var->data) != 3)
-	{
-		err_elements(var->data);
+	err_elements(var->data);
+	if (var->data->err != 0)
 		return (0);
-	}
 	return (1);
 }

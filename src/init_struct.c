@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 11:18:44 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2022/12/12 11:41:45 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2022/12/12 20:48:27 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ static void	init_cub(t_data *data)
 	data->f = NULL;
 	data->c = NULL;
 	data->map = NULL;
+	data->err = 0;
 }
 
 static void	init_mlx(t_mlx *mlx)

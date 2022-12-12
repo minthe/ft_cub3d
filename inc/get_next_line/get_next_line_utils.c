@@ -6,13 +6,13 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 19:08:50 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2021/11/23 21:10:57 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2022/12/12 17:57:32 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-size_t	ft_strlen(const char *s)
+size_t	ft_strlen_gnl(const char *s)
 {
 	size_t	counter;
 
@@ -24,14 +24,14 @@ size_t	ft_strlen(const char *s)
 	return (counter);
 }
 
-char	*ft_strdup(const char *s1)
+char	*ft_strdup_gnl(const char *s1)
 {
 	size_t	i;
 	size_t	len;
 	char	*ptr;
 
 	i = 0;
-	len = ft_strlen(s1);
+	len = ft_strlen_gnl(s1);
 	ptr = (char *)malloc(sizeof(const char) * (len + 1));
 	if (!ptr)
 		return (NULL);
@@ -44,7 +44,7 @@ char	*ft_strdup(const char *s1)
 	return (ptr);
 }
 
-char	*ft_strchr(const char *s, int c)
+char	*ft_strchr_gnl(const char *s, int c)
 {
 	while (*s != '\0')
 	{
@@ -57,7 +57,7 @@ char	*ft_strchr(const char *s, int c)
 	return (NULL);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin_gnl(char const *s1, char const *s2)
 {
 	char	*ptr;
 	size_t	i;
@@ -66,7 +66,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 
 	if (!s1 || !s2)
 		return (0);
-	total_len = ft_strlen(s1) + ft_strlen(s2);
+	total_len = ft_strlen_gnl(s1) + ft_strlen_gnl(s2);
 	ptr = (char *)malloc(sizeof(char) * (total_len + 1));
 	if (ptr == NULL)
 		return (NULL);
@@ -86,7 +86,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (ptr);
 }
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_substr_gnl(char const *s, unsigned int start, size_t len)
 {
 	size_t	i;
 	char	*ptr;
@@ -97,7 +97,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	if (ptr == NULL)
 		return (NULL);
 	i = 0;
-	while (*s && i < len && start < ft_strlen(s))
+	while (*s && i < len && start < ft_strlen_gnl(s))
 	{
 		ptr[i] = s[start + i];
 		i++;

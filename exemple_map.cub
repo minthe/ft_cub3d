@@ -1,7 +1,23 @@
-NO      test.xmp
-SO    test.xmp
-WE /path_to_west_texture
-EA /path_to_east_texture
+NO    test.xmp
+
+
+
+
+
+
+
+
+
+
+WE   test.xmp
+
+
+
+
+
+
+EAte s		t.xmp
+SO						   test.xmp
 
 
 F 200,100,0
