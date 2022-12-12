@@ -6,7 +6,7 @@
 /*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 14:27:58 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2022/12/12 10:05:50 by dimbrea          ###   ########.fr       */
+/*   Updated: 2022/12/12 17:14:21 by dimbrea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,11 +110,12 @@ void	ft_a(t_var *var);
 void	ft_s(t_var *var);
 void	ft_d(t_var *var);
 
-//mytake.c
+//main.c
 void	ft_set_walls(t_var *var);
 void	img_pix_put(t_var *var, int x, int y, int color);
 void	render_background(t_var *var);
 void	ft_player(t_var *var);
 int		render(t_var *var);
+int		search_player(t_var *var, int x, int y);
 
 #endif

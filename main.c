@@ -6,7 +6,7 @@
 /*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 19:03:45 by dimbrea           #+#    #+#             */
-/*   Updated: 2022/12/12 10:08:30 by dimbrea          ###   ########.fr       */
+/*   Updated: 2022/12/12 17:17:58 by dimbrea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,68 @@ void	ft_set_walls(t_var *var)
 	}
 }
 
+int ft_is_player(t_var *var, int height, int width, int x, int y)
+{
+	int i;
+	int j;
+
+	i = height;
+	while (i < (height + var->map->modul_h + 1))
+	{
+		j = width;
+		while(j < (width + var->map->modul_w + 1))
+		{
+			if (i == y && j == x )
+				return (1);
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}
+
+int	search_player(t_var *var, int x, int y)
+{
+	int	i;
+	int	j;
+	int	width;
+	int	height;
+
+	i = -1;
+	height = 0;
+	while (var->map->d_map[++i])
+	{
+		j = -1;
+		width = 0;
+		while (var->map->d_map[i][++j])
+		{
+			if (var->map->d_map[i][j] == '1')
+				if (ft_is_player(var, height, width, x, y) == 1)
+					return (1);
+			width += var->map->modul_w;
+		}
+		height += var->map->modul_h;
+	}
+	return (0);
+}
+
+// int	ft_check_move(t_var *var, int x, int y)
+// {
+// 	int	i;
+// 	int	j;
+
+// 	i = 0;
+// }
+
+// int	ft_can_move(t_var *var, int x, int y)
+// {
+// 	if ((x + 10) % var->map->modul_w == 0 || (y + 10) % var->map->modul_h == 0)
+// 	{
+// 		ft_check_move(var, x + 10, y + 10);
+		
+// 	}
+// }
+
 int	main(int argc, char **argv)
 {
 	t_var	var;
@@ -137,10 +199,9 @@ int	main(int argc, char **argv)
 	var.map = &map_m;
 	var.img = &s_img;
 	var.plr = &player;
-
-	var.map->d_map[0] = "11111";
-	var.map->d_map[1] = "11011";
-	var.map->d_map[2] = "11111";
+	var.map->d_map[0] = "10111";
+	var.map->d_map[1] = "10001";
+	var.map->d_map[2] = "11001";
 	var.map->d_map[3] = NULL;
 	(void)argv;
 	var.plr->pos_x = 300;// need to get position of the player;
@@ -157,7 +218,7 @@ int	main(int argc, char **argv)
 		mlx_loop_hook(var.mlx->ptr, &render, &var);
 		mlx_hook(var.mlx->window, 17, 0L, x_window, &var);
 		mlx_hook(var.mlx->window,2, (1l << 0),keypress, &var);
-		mlx_loop(var.mlx->ptr);
+			mlx_loop(var.mlx->ptr);
 	}
 	else
 		write(2, "Error 2 arguments needed\n", 25);
