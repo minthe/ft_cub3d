@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   err_cub.c                                          :+:      :+:    :+:   */
+/*   err_elements.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 09:28:34 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2022/12/08 15:51:16 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2022/12/12 11:42:46 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
-void	err_elements(t_cub *cub)
+void	err_elements(t_data *cub)
 {
 	if (!cub->c)
 		write(2, "missing element: C\n", 19);

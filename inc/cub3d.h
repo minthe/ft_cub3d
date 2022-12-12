@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 14:27:58 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2022/12/08 15:51:23 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2022/12/12 11:39:22 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@
 # include <sys/stat.h>
 # include <math.h>
 
-typedef struct s_cub
+typedef struct s_data
 {
 	char	*no; // N,E,S,W char *path_to_file.xmp
 	char	*so;
@@ -45,7 +45,7 @@ typedef struct s_cub
 	int		*f; // F,C (int *)(unsigned char [4]){r, g, b, a})
 	int		*c;
 	char	**map; // valid map data
-}t_cub;
+}t_data;
 
 typedef struct s_mlx
 {
@@ -59,7 +59,7 @@ typedef struct s_var
 	int			posx;
 	int			posy;
 	int			player_pos[2];
-	t_cub		*cub;
+	t_data		*data;
 	t_mlx		*mlx;
 	char		*line;
 	int			fd1;
@@ -67,14 +67,16 @@ typedef struct s_var
 
 // SRC
 int		import_cub(t_var *var, char *argv, char *type);
-int		check_cub(t_cub *cub);
-void	err_elements(t_cub *cub);
+int		check_cub(t_data *data);
+void	err_elements(t_data *data);
 
 // UTILS
 int		ft_open_file(int *fd, char *path, int opt);
 int		*ft_itox_rgba(int r, int g, int b, int a);
 int		init_struct(t_var *var);
 int		ft_check_fileext(char *path, char *ext);
+int		ft_is_whitespace(char *line);
+char	ft_skip_whitespace(char *line);
 // skip whitespace
 
 #endif

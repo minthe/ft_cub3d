@@ -6,7 +6,7 @@
 #    By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/01 14:46:38 by vfuhlenb          #+#    #+#              #
-#    Updated: 2022/12/09 17:35:36 by vfuhlenb         ###   ########.fr        #
+#    Updated: 2022/12/12 11:43:10 by vfuhlenb         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = cub3D
 
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g
-MLX_FLAGS = -lXext -lX11 -lm -lz
+MLX_FLAGS = -L/usr/X11/include -L/usr/X11/lib -lXext -lX11 -lm -lz
 
 RM = rm -f
 AF = ar rcs
@@ -28,6 +28,7 @@ src/check_cub.c\
 src/err_elements.c\
 utils/ft_open_file.c\
 utils/ft_check_fileext.c\
+utils/ft_whitespace.c\
 cub3d.c\
 
 OBJS = $(SRCS:.c=.o)
@@ -47,6 +48,7 @@ all: $(NAME)
 clean:
 	$(RM) $(OBJS)
 	make clean -C inc/libft
+	make clean -C inc/mlx
 
 fclean: clean
 	$(RM) $(NAME)

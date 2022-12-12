@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 14:28:02 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2022/12/07 19:23:37 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2022/12/12 11:43:23 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,40 +24,14 @@ void	keypress(int key, t_var *var)
 		var->posy += 5;
 }
 
-
-// int	x_window(t_var *var)// need to free other stuff here later
-// {
-// 	write(1, "Exited the game\n", 16);
-// 	mlx_destroy_window(var->mlx->ptr, var->mlx->window);
-// 	free(var->mlx->ptr);
-// 	exit(0);
-// }
-
-// void mlx_pixel_put()
-// {
-// }
-
-// int	ft_loop(t_var *var)
-// {
-// 	var->player_pos[0] = var->posx;
-// 	var->player_pos[1] = var->posy;
-	
-// }
-
-// void	start(t_var *var)
-// {
-// 	mlx_hook(var->mlx->ptr, 17, 0L, x_window(var), var->mlx);
-// 	mlx_loop_hook(var->mlx, ft_loop(var), var->mlx);
-// }
-
 int	main(int argc, char **argv)
 {
-	t_var	var;
 	t_mlx	mlx_s;
-	t_cub	cub_s;
+	t_data	cub_s;
+	t_var	var;
 
+	var.data = &cub_s;
 	var.mlx = &mlx_s;
-	var.cub = &cub_s;
 	if (argc > 1 && init_struct(&var) && import_cub(&var, argv[1], ".cub"))
 	{
 		// mlx_s.ptr = mlx_init();
