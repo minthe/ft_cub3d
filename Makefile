@@ -6,7 +6,7 @@
 #    By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/01 14:46:38 by vfuhlenb          #+#    #+#              #
-#    Updated: 2022/12/12 11:34:16 by vfuhlenb         ###   ########.fr        #
+#    Updated: 2022/12/12 11:52:52 by vfuhlenb         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,6 @@ src/err_elements.c\
 utils/ft_open_file.c\
 utils/ft_check_fileext.c\
 utils/ft_whitespace.c\
-utils/ft_strdub_cub.c\
 cub3d.c\
 
 OBJS = $(SRCS:.c=.o)
