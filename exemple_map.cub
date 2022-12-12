@@ -1,5 +1,5 @@
-NO /path_to_north_texture
-SO /path_to_south_texture
+NO      test.xmp
+SO    test.xmp
 WE /path_to_west_texture
 EA /path_to_east_texture
 

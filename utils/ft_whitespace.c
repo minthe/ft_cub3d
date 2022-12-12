@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 11:15:10 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2022/12/12 11:29:34 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2022/12/12 14:22:08 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,14 @@ int	ft_is_whitespace(char *line)
 			return (0);
 		line++;
 	}
+	return (1);
+}
+
+//function that checks for whitespace character
+int	ft_is_whitespace_char(char c)
+{
+	if (c != 32 && !(c >= 9 && c <= 13))
+		return (0);
 	return (1);
 }
 

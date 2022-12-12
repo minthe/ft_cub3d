@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 14:27:58 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2022/12/12 11:53:44 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2022/12/12 14:22:37 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ int		init_struct(t_var *var);
 int		ft_check_fileext(char *path, char *ext);
 int		ft_is_whitespace(char *line);
 char	ft_skip_whitespace(char *line);
+int		ft_is_whitespace_char(char c);
 // skip whitespace
 
 #endif
