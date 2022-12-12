@@ -6,7 +6,7 @@
 /*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 19:03:45 by dimbrea           #+#    #+#             */
-/*   Updated: 2022/12/12 17:17:58 by dimbrea          ###   ########.fr       */
+/*   Updated: 2022/12/12 19:26:35 by dimbrea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ void	ft_set_walls(t_var *var)
 	}
 }
 
-int ft_is_player(t_var *var, int height, int width, int x, int y)
+int ft_is_in_wall(t_var *var, int height, int width, int x, int y)
 {
 	int i;
 	int j;
@@ -146,7 +146,7 @@ int ft_is_player(t_var *var, int height, int width, int x, int y)
 	return (0);
 }
 
-int	search_player(t_var *var, int x, int y)
+int	ft_is_wall(t_var *var, int x, int y)
 {
 	int	i;
 	int	j;
@@ -162,7 +162,7 @@ int	search_player(t_var *var, int x, int y)
 		while (var->map->d_map[i][++j])
 		{
 			if (var->map->d_map[i][j] == '1')
-				if (ft_is_player(var, height, width, x, y) == 1)
+				if (ft_is_in_wall(var, height, width, x, y) == 1)
 					return (1);
 			width += var->map->modul_w;
 		}
@@ -171,22 +171,31 @@ int	search_player(t_var *var, int x, int y)
 	return (0);
 }
 
-// int	ft_check_move(t_var *var, int x, int y)
-// {
-// 	int	i;
-// 	int	j;
+void	ft_put_player(t_var *var)
+{
+	int	i;
+	int	j;
+	int	width;
+	int	height;
 
-// 	i = 0;
-// }
-
-// int	ft_can_move(t_var *var, int x, int y)
-// {
-// 	if ((x + 10) % var->map->modul_w == 0 || (y + 10) % var->map->modul_h == 0)
-// 	{
-// 		ft_check_move(var, x + 10, y + 10);
-		
-// 	}
-// }
+	i = -1;
+	height = 0;
+	while (var->map->d_map[++i])
+	{
+		j = -1;
+		width = 0;
+		while (var->map->d_map[i][++j])
+		{
+			if (ft_strchr("NSEW", var->map->d_map[i][j]) != NULL)
+			{
+				var->plr->pos_x = width + var->map->modul_w / 2;
+				var->plr->pos_y = height + var->map->modul_h / 2;
+			}
+			width += var->map->modul_w;
+		}
+		height += var->map->modul_h;
+	}
+}
 
 int	main(int argc, char **argv)
 {
@@ -199,18 +208,26 @@ int	main(int argc, char **argv)
 	var.map = &map_m;
 	var.img = &s_img;
 	var.plr = &player;
-	var.map->d_map[0] = "10111";
-	var.map->d_map[1] = "10001";
-	var.map->d_map[2] = "11001";
-	var.map->d_map[3] = NULL;
+	var.map->d_map[0] = "        1111111111111111111111111";
+	var.map->d_map[1] = "        1000000000110000000000001";
+	var.map->d_map[2] = "        1011000001110000000000001";
+	var.map->d_map[3] = "        1001000000000000000E00001";
+	var.map->d_map[4] = "111111111011000001110000000000001";
+	var.map->d_map[5] = "100000000011000001110111111111111";
+	var.map->d_map[6] = "11110111111111011100000010001";
+	var.map->d_map[7] = "11110111111111011101010010001";
+	var.map->d_map[8] = "11000000110101011100000010001";
+	var.map->d_map[9] = "10000000000000001100000010001";
+	var.map->d_map[10] = "10000000000000001101010010001";
+	var.map->d_map[11] = "110000011101010111110111100111";
+	var.map->d_map[12] = "11110111 1110101 101111010001";
+	var.map->d_map[13] = "11111111 1111111 111111111111";
+	var.map->d_map[14] = NULL;
 	(void)argv;
-	var.plr->pos_x = 300;// need to get position of the player;
-	var.plr->pos_y = 300;
-	// var.img->width=10;
-	// var.img->height=10;
 	if (argc == 2)
 	{
 		ft_map_size(&var);
+		ft_put_player(&var);
 		var.mlx->ptr = mlx_init();
 		var.mlx->window = mlx_new_window(var.mlx->ptr,SCREEN_WIDTH, SCREEN_HEIGHT, "cub3d");
 		var.img->structure = mlx_new_image(var.mlx->ptr, SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -218,7 +235,7 @@ int	main(int argc, char **argv)
 		mlx_loop_hook(var.mlx->ptr, &render, &var);
 		mlx_hook(var.mlx->window, 17, 0L, x_window, &var);
 		mlx_hook(var.mlx->window,2, (1l << 0),keypress, &var);
-			mlx_loop(var.mlx->ptr);
+		mlx_loop(var.mlx->ptr);
 	}
 	else
 		write(2, "Error 2 arguments needed\n", 25);

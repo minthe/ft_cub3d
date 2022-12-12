@@ -6,7 +6,7 @@
 /*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 17:09:03 by dimbrea           #+#    #+#             */
-/*   Updated: 2022/12/12 17:21:14 by dimbrea          ###   ########.fr       */
+/*   Updated: 2022/12/12 17:56:20 by dimbrea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,32 +32,32 @@ int	x_window(t_var *var)// need to free other stuff here later
 
 void	ft_w(t_var *var)
 {
-	if (search_player(var, var->plr->pos_x, var->plr->pos_y - 5) == 0)
-		var->plr->pos_y -=5;
+	if (!ft_is_wall(var, var->plr->pos_x, var->plr->pos_y - 5))
+		var->plr->pos_y -= 5;
 	mlx_destroy_image(var->mlx->ptr, var->img->structure);
 	var->img->structure = mlx_new_image(var->mlx->ptr, SCREEN_WIDTH, SCREEN_HEIGHT);
 }
 
 void	ft_a(t_var *var)
 {
-	if (search_player(var, var->plr->pos_x - 5, var->plr->pos_y) == 0)
-		var->plr->pos_x -=5;
+	if (!ft_is_wall(var, var->plr->pos_x - 5, var->plr->pos_y))
+		var->plr->pos_x -= 5;
 	mlx_destroy_image(var->mlx->ptr, var->img->structure);
 	var->img->structure = mlx_new_image(var->mlx->ptr, SCREEN_WIDTH, SCREEN_HEIGHT);
 }
 
 void	ft_s(t_var *var)
 {
-	if (search_player(var, var->plr->pos_x, var->plr->pos_y + 5) == 0)
-		var->plr->pos_y +=5;
+	if (!ft_is_wall(var, var->plr->pos_x, var->plr->pos_y + 5))
+		var->plr->pos_y += 5;
 	mlx_destroy_image(var->mlx->ptr, var->img->structure);
 	var->img->structure = mlx_new_image(var->mlx->ptr, SCREEN_WIDTH, SCREEN_HEIGHT);
 }
 
 void	ft_d(t_var *var)
 {
-	if (search_player(var, var->plr->pos_x + 5, var->plr->pos_y) == 0)
-		var->plr->pos_x +=5;
+	if (!ft_is_wall(var, var->plr->pos_x + 5, var->plr->pos_y))
+		var->plr->pos_x += 5;
 	mlx_destroy_image(var->mlx->ptr, var->img->structure);
 	var->img->structure = mlx_new_image(var->mlx->ptr, SCREEN_WIDTH, SCREEN_HEIGHT);
 }
