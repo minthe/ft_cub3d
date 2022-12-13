@@ -6,7 +6,7 @@
 #    By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/01 14:46:38 by vfuhlenb          #+#    #+#              #
-#    Updated: 2022/12/11 20:12:33 by dimbrea          ###   ########.fr        #
+#    Updated: 2022/12/13 10:15:31 by dimbrea          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ AF = ar rcs
 
 SRCS = \
 keys.c\
+ray.c\
 main.c\
 
 

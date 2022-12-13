@@ -6,7 +6,7 @@
 /*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 14:27:58 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2022/12/12 19:10:50 by dimbrea          ###   ########.fr       */
+/*   Updated: 2022/12/13 10:38:15 by dimbrea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ typedef struct s_mlx
 
 typedef struct s_player
 {
-	char	nsew[3];
+	char	orient;
 	double	pos_x;
 	double	pos_y;
 	
@@ -118,5 +118,6 @@ void	ft_player(t_var *var);
 int		render(t_var *var);
 int		ft_is_wall(t_var *var, int x, int y);
 void	ft_put_player(t_var *var);
+void	ft_ray(t_var *var, char nswe);
 
 #endif

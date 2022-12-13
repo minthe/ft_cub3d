@@ -6,7 +6,7 @@
 /*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 19:03:45 by dimbrea           #+#    #+#             */
-/*   Updated: 2022/12/12 19:26:35 by dimbrea          ###   ########.fr       */
+/*   Updated: 2022/12/13 11:15:06 by dimbrea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,21 +46,22 @@ void ft_player(t_var *var)
 	int y;
 
 	i = -1;
-	x = var->plr->pos_x;
-	y = var->plr->pos_y;
+	x = var->plr->pos_x - 2;
+	y = var->plr->pos_y - 2;
 	while (++i < 5)
 	{
 		j = -1;
 		while (++j < 5)
 		{
-			img_pix_put(var, var->plr->pos_x, var->plr->pos_y,0xFF0000);
-			var->plr->pos_x += 1;
+			img_pix_put(var, x, y,0xFF0000);
+			x += 1;
 		}
-		var->plr->pos_x = x;
-		var->plr->pos_y += 1;
+		x = var->plr->pos_x - 2;
+		y += 1;
 	}
-	var->plr->pos_x = x;
-	var->plr->pos_y = y;
+	// var->plr->pos_x = x;
+	// var->plr->pos_y = y;
+	ft_ray(var, var->plr->orient);
 }
 
 void	ft_map_size(t_var *var)
@@ -190,6 +191,7 @@ void	ft_put_player(t_var *var)
 			{
 				var->plr->pos_x = width + var->map->modul_w / 2;
 				var->plr->pos_y = height + var->map->modul_h / 2;
+				var->plr->orient = var->map->d_map[i][j];
 			}
 			width += var->map->modul_w;
 		}
@@ -211,13 +213,13 @@ int	main(int argc, char **argv)
 	var.map->d_map[0] = "        1111111111111111111111111";
 	var.map->d_map[1] = "        1000000000110000000000001";
 	var.map->d_map[2] = "        1011000001110000000000001";
-	var.map->d_map[3] = "        1001000000000000000E00001";
+	var.map->d_map[3] = "        1001000000000000000000001";
 	var.map->d_map[4] = "111111111011000001110000000000001";
 	var.map->d_map[5] = "100000000011000001110111111111111";
-	var.map->d_map[6] = "11110111111111011100000010001";
+	var.map->d_map[6] = "11110111111011011100000010001";
 	var.map->d_map[7] = "11110111111111011101010010001";
 	var.map->d_map[8] = "11000000110101011100000010001";
-	var.map->d_map[9] = "10000000000000001100000010001";
+	var.map->d_map[9] = "100000000N0000001100000010001";
 	var.map->d_map[10] = "10000000000000001101010010001";
 	var.map->d_map[11] = "110000011101010111110111100111";
 	var.map->d_map[12] = "11110111 1110101 101111010001";
@@ -228,6 +230,7 @@ int	main(int argc, char **argv)
 	{
 		ft_map_size(&var);
 		ft_put_player(&var);
+		// printf("x-%f y-%f\n", var.plr->pos_x, var.plr->pos_y);
 		var.mlx->ptr = mlx_init();
 		var.mlx->window = mlx_new_window(var.mlx->ptr,SCREEN_WIDTH, SCREEN_HEIGHT, "cub3d");
 		var.img->structure = mlx_new_image(var.mlx->ptr, SCREEN_WIDTH, SCREEN_HEIGHT);
