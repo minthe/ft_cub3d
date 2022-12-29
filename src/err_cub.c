@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 09:28:34 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2022/12/29 16:14:05 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2022/12/29 16:40:40 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	err_map(t_data *data)
 {
 	if (data->err_map == 12)
 		write(2, "map error: empty lines\n", 23);
+	
 }
 
 static void	err_elements3(t_data *data)

@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 09:49:29 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2022/12/29 16:14:32 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2022/12/29 16:48:30 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,19 +51,8 @@ static void	copy_element(t_var *var)
 		add_tail(var->data->map_lst, ft_strdup_map(var->line));
 }
 
-int	import_cub(t_var *var, char *argv, char *type)
+static void	import_cub2(t_var *var)
 {
-	if (!ft_open_file(&var->fd1, argv, O_RDONLY) \
-		|| !ft_check_fileext(argv, type))
-		return (0);
-	var->line = get_next_line(var->fd1);
-	while (var->line && (check_cub(var->data) != 2))
-	{
-		if (var->line && !ft_is_whitespace(var->line))
-			copy_element(var);
-		free(var->line);
-		var->line = get_next_line(var->fd1);
-	}
 	if (var->line && ft_is_whitespace(var->line))
 	{
 		while (var->line && ft_is_whitespace(var->line))
@@ -86,6 +75,22 @@ int	import_cub(t_var *var, char *argv, char *type)
 		if (var->line && !ft_is_whitespace(var->line))
 			var->data->err_map = 12;
 	}
+}
+
+int	import_cub(t_var *var, char *argv, char *type)
+{
+	if (!ft_open_file(&var->fd1, argv, O_RDONLY) \
+		|| !ft_check_fileext(argv, type))
+		return (0);
+	var->line = get_next_line(var->fd1);
+	while (var->line && (check_cub(var->data) != 2))
+	{
+		if (var->line && !ft_is_whitespace(var->line))
+			copy_element(var);
+		free(var->line);
+		var->line = get_next_line(var->fd1);
+	}
+	import_cub2(var);
 	close(var->fd1);
 	display_linked_list(var->data->map_lst);
 	err_elements(var->data);
