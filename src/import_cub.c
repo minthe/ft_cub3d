@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 09:49:29 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2022/12/12 20:50:23 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2022/12/28 20:26:36 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,12 @@ static void	copy_element(t_var *var)
 		var->data->f = ft_calloc(1, sizeof(int));
 	else if (var->line[i] == 'C')
 		var->data->c = ft_calloc(1, sizeof(int));
+	else if ((check_cub(var->data) == 2)) // TODO insert primary check for map: allowed characters, check if player is set and if another player character appears then mark as invalid
+	{
+		// var->data->map[0] = calloc(ft_strlen(var->line), sizeof(char));
+		// var->data->map[0] = ft_strdup_cub(var->line);
+		printf("%s", var->line);
+	}
 }
 
 int	import_cub(t_var *var, char *argv, char *type)
@@ -55,9 +61,9 @@ int	import_cub(t_var *var, char *argv, char *type)
 		|| !ft_check_fileext(argv, type))
 		return (0);
 	var->line = get_next_line(var->fd1);
-	while (var->line && (check_cub(var->data) != 2))
+	while (var->line && (check_cub(var->data) != 3))
 	{
-		if (var->line && !ft_is_whitespace(var->line))
+		if (var->line && !ft_is_whitespace(var->line)) // TODO check if map lines are written, if so and if empty lines appear then invalid
 			copy_element(var);
 		free(var->line);
 		var->line = get_next_line(var->fd1);

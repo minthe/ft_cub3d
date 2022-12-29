@@ -6,7 +6,7 @@
 #    By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/01 14:46:38 by vfuhlenb          #+#    #+#              #
-#    Updated: 2022/12/12 18:01:45 by vfuhlenb         ###   ########.fr        #
+#    Updated: 2022/12/28 13:58:08 by vfuhlenb         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ src/import_cub.c\
 src/init_struct.c\
 src/check_cub.c\
 src/err_elements.c\
+src/cleanup.c\
 utils/ft_open_file.c\
 utils/ft_check_fileext.c\
 utils/ft_whitespace.c\

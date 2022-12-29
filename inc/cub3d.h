@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 14:27:58 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2022/12/12 20:47:19 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2022/12/28 14:00:49 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ typedef struct s_var
 int		import_cub(t_var *var, char *argv, char *type);
 int		check_cub(t_data *data);
 void	err_elements(t_data *data);
+void	cleanup(t_var *var);
 
 // UTILS
 int		ft_open_file(int *fd, char *path, int opt);
@@ -80,6 +81,5 @@ int		ft_is_whitespace(char *line);
 char	ft_skip_whitespace(char *line);
 int		ft_is_whitespace_char(char c);
 char	*ft_strdup_cub(const char *s1);
-// skip whitespace
 
 #endif
