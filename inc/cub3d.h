@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 14:27:58 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2022/12/28 14:00:49 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2022/12/29 14:11:19 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,29 @@
 # include <sys/stat.h>
 # include <math.h>
 
+typedef struct s_node {
+	char				*data;
+	int					pipe_nbr;
+	struct s_node		*next;
+}	t_node;
+
+typedef struct s_linked_list {
+	t_node	*head;
+	t_node	*tail;
+	t_node	*current;
+}	t_linked_list;
+
 typedef struct s_data
 {
-	char	*no; // N,E,S,W char *path_to_file.xmp
-	char	*so;
-	char	*we;
-	char	*ea;
-	int		*f; // F,C (int *)(unsigned char [4]){r, g, b, a})
-	int		*c;
-	char	**map; // valid map data
-	int		err;
+	char			*no; // N,E,S,W char *path_to_file.xmp
+	char			*so;
+	char			*we;
+	char			*ea;
+	int				*f; // F,C (int *)(unsigned char [4]){r, g, b, a})
+	int				*c;
+	char			**map; // valid map data
+	t_linked_list	*map_lst;
+	int				err;
 }t_data;
 
 typedef struct s_mlx
@@ -70,7 +83,15 @@ typedef struct s_var
 int		import_cub(t_var *var, char *argv, char *type);
 int		check_cub(t_data *data);
 void	err_elements(t_data *data);
+void	err_map(t_data *data);
 void	cleanup(t_var *var);
+
+// SRC/LIST-UTILS
+void	initialize_list(t_linked_list *list);
+void	add_tail(t_linked_list *list, void *data);
+int		count_linked_list(t_linked_list *list);
+void	delete_list(t_linked_list *list);
+void	display_linked_list(t_linked_list *list);
 
 // UTILS
 int		ft_open_file(int *fd, char *path, int opt);
@@ -81,5 +102,6 @@ int		ft_is_whitespace(char *line);
 char	ft_skip_whitespace(char *line);
 int		ft_is_whitespace_char(char c);
 char	*ft_strdup_cub(const char *s1);
+char	*ft_strdup_map(const char *s1);
 
 #endif

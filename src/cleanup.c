@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 13:54:39 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2022/12/28 14:00:34 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2022/12/29 13:21:24 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,7 @@ void	cleanup(t_var *var)
 		free (var->data->map);
 	if (var->line)
 		free (var->line);
+	delete_list(var->data->map_lst);
+	if (var->data->map_lst)
+		free (var->data->map_lst);
 }

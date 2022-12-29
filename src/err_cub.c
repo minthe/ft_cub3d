@@ -1,16 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   err_elements.c                                     :+:      :+:    :+:   */
+/*   err_cub.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 09:28:34 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2022/12/12 20:56:36 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2022/12/29 14:42:05 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
+
+void	err_map(t_data *data)
+{
+	// TODO check for single player
+	// invalid characters
+	(void)data;
+}
 
 static void	err_elements2(t_data *data)
 {
