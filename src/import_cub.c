@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 09:49:29 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2022/12/29 14:55:16 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2022/12/29 15:18:57 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,17 +72,25 @@ int	import_cub(t_var *var, char *argv, char *type)
 			var->line = get_next_line(var->fd1);
 		}
 	}
-	while (var->line && (check_cub(var->data) > 1))
+	while (var->line && !ft_is_whitespace(var->line))
 	{
 		if (var->line) // TODO check if map lines are written, if so and if empty lines appear then invalid
 			copy_element(var);
 		free(var->line);
 		var->line = get_next_line(var->fd1);
 	}
+	while (var->line)
+	{
+		free(var->line);
+		var->line = get_next_line(var->fd1);
+		if (var->line && !ft_is_whitespace(var->line))
+			var->data->err = -5;
+	}
 	close(var->fd1);
+	display_linked_list(var->data->map_lst);
+	printf("%d\n", var->data->err);
 	err_elements(var->data);
 	err_map(var->data);
-	display_linked_list(var->data->map_lst);
 	if (var->data->err != 0)
 		return (0);
 	return (1);

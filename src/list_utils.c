@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 16:14:40 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2022/12/29 13:56:03 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2022/12/29 15:01:16 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,14 @@ void	display_linked_list(t_linked_list *list)
 	current = list->head;
 	while (current != NULL)
 	{
-		ft_putstr_fd(current->data, 1);
-		ft_putchar_fd('$', 1);
-		ft_putchar_fd('\n', 1);
+		if (ft_is_whitespace(current->data) && current->next)
+			printf("invalid empty line\n");
+		else
+		{
+			ft_putstr_fd(current->data, 1);
+			ft_putchar_fd('$', 1);
+			ft_putchar_fd('\n', 1);
+		}
 		current = current->next;
 	}
 }
