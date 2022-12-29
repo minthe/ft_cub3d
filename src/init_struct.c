@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 11:18:44 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2022/12/29 13:11:47 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2022/12/29 16:11:18 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ static void	init_cub(t_data *data)
 	data->map_lst = ft_calloc(1, sizeof(t_linked_list));
 	initialize_list(data->map_lst);
 	data->err = 0;
+	data->err_map = 0;
 }
 
 static void	init_mlx(t_mlx *mlx)

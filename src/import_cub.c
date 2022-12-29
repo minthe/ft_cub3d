@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 09:49:29 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2022/12/29 15:18:57 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2022/12/29 16:14:32 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static void	copy_element(t_var *var)
 		var->data->f = ft_calloc(1, sizeof(int));
 	else if (var->line[i] == 'C')
 		var->data->c = ft_calloc(1, sizeof(int));
-	else if ((check_cub(var->data) == 2)) // TODO insert primary check for map: allowed characters, check if player is set and if another player character appears then mark as invalid
+	else if ((check_cub(var->data) == 2))
 		add_tail(var->data->map_lst, ft_strdup_map(var->line));
 }
 
@@ -59,7 +59,7 @@ int	import_cub(t_var *var, char *argv, char *type)
 	var->line = get_next_line(var->fd1);
 	while (var->line && (check_cub(var->data) != 2))
 	{
-		if (var->line && !ft_is_whitespace(var->line)) // TODO check if map lines are written, if so and if empty lines appear then invalid
+		if (var->line && !ft_is_whitespace(var->line))
 			copy_element(var);
 		free(var->line);
 		var->line = get_next_line(var->fd1);
@@ -74,7 +74,7 @@ int	import_cub(t_var *var, char *argv, char *type)
 	}
 	while (var->line && !ft_is_whitespace(var->line))
 	{
-		if (var->line) // TODO check if map lines are written, if so and if empty lines appear then invalid
+		if (var->line)
 			copy_element(var);
 		free(var->line);
 		var->line = get_next_line(var->fd1);
@@ -84,14 +84,13 @@ int	import_cub(t_var *var, char *argv, char *type)
 		free(var->line);
 		var->line = get_next_line(var->fd1);
 		if (var->line && !ft_is_whitespace(var->line))
-			var->data->err = -5;
+			var->data->err_map = 12;
 	}
 	close(var->fd1);
 	display_linked_list(var->data->map_lst);
-	printf("%d\n", var->data->err);
 	err_elements(var->data);
 	err_map(var->data);
-	if (var->data->err != 0)
+	if (var->data->err != 0 || var->data->err_map != 0)
 		return (0);
 	return (1);
 }

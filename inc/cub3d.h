@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 14:27:58 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2022/12/29 14:11:19 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2022/12/29 16:10:13 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ typedef struct s_data
 	char			**map; // valid map data
 	t_linked_list	*map_lst;
 	int				err;
+	int				err_map;
 }t_data;
 
 typedef struct s_mlx
