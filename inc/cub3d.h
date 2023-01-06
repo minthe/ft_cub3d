@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 14:27:58 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2022/12/29 16:10:13 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/06 16:07:25 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,6 @@ void	display_linked_list(t_linked_list *list);
 
 // UTILS
 int		ft_open_file(int *fd, char *path, int opt);
-int		*ft_itox_rgba(int r, int g, int b, int a);
 int		init_struct(t_var *var);
 int		ft_check_fileext(char *path, char *ext);
 int		ft_is_whitespace(char *line);
