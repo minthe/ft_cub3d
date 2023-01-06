@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 09:28:34 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2022/12/29 16:40:40 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/06 17:25:50 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,12 @@ void	err_map(t_data *data)
 
 static void	err_elements3(t_data *data)
 {
-	if (!data->f)
+	if (!data->f_set)
 	{
 		data->err = 5;
 		write(2, "missing element: F\n", 19);
 	}
-	if (!data->c)
+	if (!data->c_set)
 	{
 		data->err = 6;
 		write(2, "missing element: C\n", 19);

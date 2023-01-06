@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 13:54:39 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2022/12/29 13:21:24 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/06 17:12:18 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,6 @@ void	cleanup(t_var *var)
 		free (var->data->we);
 	if (var->data->ea)
 		free (var->data->ea);
-	if (var->data->f)
-		free (var->data->f);
-	if (var->data->c)
-		free (var->data->c);
 	if (var->data->map)
 		free (var->data->map);
 	if (var->line)

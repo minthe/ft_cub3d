@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 09:49:29 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2022/12/29 16:48:30 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/06 17:29:17 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ static void	copy_element(t_var *var)
 	else if (var->line[i] == 'E')
 		write_to_struct(var, i, 'A', "ea");
 	else if (var->line[i] == 'F')
-		var->data->f = ft_calloc(1, sizeof(int));
+		cpy_color_to_struct(var, i, &var->data->f);
 	else if (var->line[i] == 'C')
-		var->data->c = ft_calloc(1, sizeof(int));
+		cpy_color_to_struct(var, i, &var->data->c);
 	else if ((check_cub(var->data) == 2))
 		add_tail(var->data->map_lst, ft_strdup_map(var->line));
 }
@@ -95,6 +95,7 @@ int	import_cub(t_var *var, char *argv, char *type)
 	display_linked_list(var->data->map_lst);
 	err_elements(var->data);
 	err_map(var->data);
+	printf("data->f: %x\n", var->data->f);
 	if (var->data->err != 0 || var->data->err_map != 0)
 		return (0);
 	return (1);

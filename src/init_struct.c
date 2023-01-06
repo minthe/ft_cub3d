@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 11:18:44 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2022/12/29 16:11:18 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/06 17:37:02 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,14 @@ static void	init_cub(t_data *data)
 	data->so = NULL;
 	data->we = NULL;
 	data->ea = NULL;
-	data->f = NULL;
-	data->c = NULL;
+	data->f = 0x00000000;
+	data->c = 0x00000000;
+	data->f_set = 0;
+	data->c_set = 0;
+	data->t = 0;
+	data->r = 0;
+	data->g = 0;
+	data->b = 0;
 	data->map = NULL;
 	data->map_lst = ft_calloc(1, sizeof(t_linked_list));
 	initialize_list(data->map_lst);
