@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 14:27:58 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/06 17:36:07 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/07 16:29:26 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,9 @@ typedef struct s_data
 	int				f_set;
 	int				c_set;
 	int				t;
-	int				r;
-	int				g;
-	int				b;
+	long			r;
+	long			g;
+	long			b;
 	char			**map; // valid map data
 	t_linked_list	*map_lst;
 	int				err;
