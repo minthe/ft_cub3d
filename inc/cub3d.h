@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 14:27:58 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/07 16:29:26 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/08 14:28:02 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,5 +110,6 @@ char	ft_skip_whitespace(char *line);
 int		ft_is_whitespace_char(char c);
 char	*ft_strdup_cub(const char *s1);
 char	*ft_strdup_map(const char *s1);
+void	ft_free_doublepoint(char **to_free);
 
 #endif

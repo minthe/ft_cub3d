@@ -1,32 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cleanup.c                                          :+:      :+:    :+:   */
+/*   ft_free_doublepoint.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/28 13:54:39 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/08 14:28:07 by vfuhlenb         ###   ########.fr       */
+/*   Created: 2023/01/08 14:28:22 by vfuhlenb          #+#    #+#             */
+/*   Updated: 2023/01/08 14:28:51 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cub3d.h"
+#include <stdlib.h>
 
-void	cleanup(t_var *var)
+void	ft_free_doublepoint(char **to_free)
 {
-	if (var->data->no)
-		free (var->data->no);
-	if (var->data->so)
-		free (var->data->so);
-	if (var->data->we)
-		free (var->data->we);
-	if (var->data->ea)
-		free (var->data->ea);
-	if (var->data->map)
-		free (var->data->map);
-	if (var->line)
-		free (var->line);
-	delete_list(var->data->map_lst);
-	if (var->data->map_lst)
-		free (var->data->map_lst);
+	int	i;
+
+	i = 0;
+	while (to_free[i])
+	{
+		free(to_free[i]);
+		i++;
+	}
+	free(to_free);
 }
