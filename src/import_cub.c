@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 09:49:29 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/06 17:29:17 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/08 17:46:48 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ static void	copy_element(t_var *var)
 	else if (var->line[i] == 'E')
 		write_to_struct(var, i, 'A', "ea");
 	else if (var->line[i] == 'F')
-		cpy_color_to_struct(var, i, &var->data->f);
+		cpy_color_to_struct(var, i, &var->data->f, &var->data->f_set);
 	else if (var->line[i] == 'C')
-		cpy_color_to_struct(var, i, &var->data->c);
+		cpy_color_to_struct(var, i, &var->data->c, &var->data->c_set);
 	else if ((check_cub(var->data) == 2))
 		add_tail(var->data->map_lst, ft_strdup_map(var->line));
 }
@@ -92,11 +92,14 @@ int	import_cub(t_var *var, char *argv, char *type)
 	}
 	import_cub2(var);
 	close(var->fd1);
-	display_linked_list(var->data->map_lst);
 	err_elements(var->data);
 	err_map(var->data);
-	printf("data->f: %x\n", var->data->f);
-	if (var->data->err != 0 || var->data->err_map != 0)
+	err_color(var->data);
+	printf("\n\ndata->f: %x\n", var->data->f);
+	printf("data->c: %x\n\n", var->data->c);
+	display_linked_list(var->data->map_lst);
+	if (var->data->err != 0 || var->data->err_map != 0 || \
+		var->data->err_color != 0)
 		return (0);
 	return (1);
 }

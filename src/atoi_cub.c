@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/22 09:20:50 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/08 15:19:20 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/08 17:42:58 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ static int	ft_isspace(int c)
 
 static int	limiter(int i)
 {
-	printf("debug c: %d\n", i);
 	if (i < 0)
 		return (0);
 	else if (i > 255)
