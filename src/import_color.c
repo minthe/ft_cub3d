@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 16:04:17 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/08 18:16:08 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/08 18:26:44 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ void	cpy_color_to_struct(t_var *var, int i, int *trgb, int *color_set)
 {
 	char	**color_temp;
 
-	i++;
 	del_newline(var->line);
 	if (ft_is_whitespace_char(var->line[i]))
 		i += ft_skip_whitespace(&var->line[i]);

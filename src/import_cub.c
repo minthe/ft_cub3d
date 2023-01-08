@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 09:49:29 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/08 17:46:48 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/08 18:26:33 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ static void	copy_element(t_var *var)
 	else if (var->line[i] == 'E')
 		write_to_struct(var, i, 'A', "ea");
 	else if (var->line[i] == 'F')
-		cpy_color_to_struct(var, i, &var->data->f, &var->data->f_set);
+		cpy_color_to_struct(var, ++i, &var->data->f, &var->data->f_set);
 	else if (var->line[i] == 'C')
-		cpy_color_to_struct(var, i, &var->data->c, &var->data->c_set);
+		cpy_color_to_struct(var, ++i, &var->data->c, &var->data->c_set);
 	else if ((check_cub(var->data) == 2))
 		add_tail(var->data->map_lst, ft_strdup_map(var->line));
 }
