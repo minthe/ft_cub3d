@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 16:04:17 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/08 15:03:18 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/08 15:15:21 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,11 @@ void	cpy_color_to_struct(t_var *var, int i, int *trgb)
 	// var->data->r = atoi_cub(var, color_temp[0]);
 	// var->data->g = atoi_cub(var, color_temp[1]);
 	// var->data->b = atoi_cub(var, color_temp[2]);
-	*trgb = create_trgb(atoi_cub(var, color_temp[0]), \
-	atoi_cub(var, color_temp[1]), atoi_cub(var, color_temp[2]), \
-	255);
+	*trgb = create_trgb(255, atoi_cub(var, color_temp[0]), \
+	atoi_cub(var, color_temp[1]), atoi_cub(var, color_temp[2]));
 	printf("$%s$\n", color_temp[0]);
 	printf("%x\n", *trgb);
+	printf("err_color: %d\n", var->data->err_color);
 	var->data->f_set = 1;
 	ft_free_doublepoint(color_temp);
 }
