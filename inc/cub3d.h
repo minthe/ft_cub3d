@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 14:27:58 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/08 14:28:02 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/08 14:54:11 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ typedef struct s_data
 	t_linked_list	*map_lst;
 	int				err;
 	int				err_map;
+	int				err_color;
 }t_data;
 
 typedef struct s_mlx
@@ -93,6 +94,7 @@ void	err_elements(t_data *data);
 void	err_map(t_data *data);
 void	cleanup(t_var *var);
 void	cpy_color_to_struct(t_var *var, int i, int *trgb);
+int		atoi_cub(t_var *var, const char *str);
 
 // SRC/LIST-UTILS
 void	initialize_list(t_linked_list *list);

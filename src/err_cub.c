@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 09:28:34 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/06 17:25:50 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/08 14:55:03 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ no access:
 	11 EA
 map:
 	12 invalid line after map
-	
+color:
+	20 invalid characters
 */
 
 void	err_map(t_data *data)
