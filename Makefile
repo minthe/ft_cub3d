@@ -6,7 +6,7 @@
 #    By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/01 14:46:38 by vfuhlenb          #+#    #+#              #
-#    Updated: 2023/01/08 14:42:13 by vfuhlenb         ###   ########.fr        #
+#    Updated: 2023/01/08 21:24:18 by vfuhlenb         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ inc/get_next_line/get_next_line_utils.c\
 src/import_cub.c\
 src/init_struct.c\
 src/check_cub.c\
+src/check_map.c\
 src/err_cub.c\
 src/cleanup.c\
 src/list_utils.c\

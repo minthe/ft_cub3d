@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 14:27:58 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/08 17:41:08 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/08 20:05:36 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,8 +107,8 @@ int		ft_check_fileext(char *path, char *ext);
 int		ft_is_whitespace(char *line);
 char	ft_skip_whitespace(char *line);
 int		ft_is_whitespace_char(char c);
-char	*ft_strdup_cub(const char *s1);
-char	*ft_strdup_map(const char *s1);
+char	*ft_strdup_cub(const char *s1, size_t i, size_t j);
+char	*ft_strdup_map(const char *s1, size_t i, char *str);
 void	ft_free_doublepoint(char **to_free);
 
 #endif
