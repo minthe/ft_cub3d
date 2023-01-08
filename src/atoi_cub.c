@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/22 09:20:50 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/08 15:12:11 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/08 15:19:20 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	atoi_cub(t_var *var, const char *str)
 	{
 		if (ft_isdigit(*str))
 			ret = (ret * 10) + (*str - '0');
-		else
+		else if (!ft_isdigit(*str) && !ft_isspace(*str))
 			var->data->err_color = 20;
 		str++;
 	}
