@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 09:49:29 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/08 21:42:29 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/08 22:19:28 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,8 @@ static void	write_to_struct(t_var *var, int i, char c, char *nswe)
 	}
 }
 
-static void	copy_element(t_var *var)
+static void	copy_element(t_var *var, int i)
 {
-	int	i;
-
-	i = ft_skip_whitespace(var->line);
 	if (var->line[i] == 'N')
 		write_to_struct(var, i, 'O', "no");
 	else if (var->line[i] == 'S')
@@ -66,7 +63,7 @@ static void	import_cub2(t_var *var)
 	while (var->line && !ft_is_whitespace(var->line))
 	{
 		if (var->line)
-			copy_element(var);
+			copy_element(var, ft_skip_whitespace(var->line));
 		free(var->line);
 		var->line = get_next_line(var->fd1);
 	}
@@ -88,20 +85,19 @@ int	import_cub(t_var *var, char *argv, char *type)
 	while (var->line && (check_cub(var->data) != 2))
 	{
 		if (var->line && !ft_is_whitespace(var->line))
-			copy_element(var);
+			copy_element(var, ft_skip_whitespace(var->line));
 		free(var->line);
 		var->line = get_next_line(var->fd1);
 	}
 	import_cub2(var);
 	close(var->fd1);
-	err_elements(var->data);
-	err_map(var->data);
-	err_color(var->data);
-	printf("\n\ndata->f: %x\n", var->data->f);
-	printf("data->c: %x\n\n", var->data->c);
-	display_linked_list(var->data->map_lst);
 	if (var->data->err != 0 || var->data->err_map != 0 || \
 		var->data->err_color != 0)
+	{
+		err_elements(var->data);
+		err_color(var->data);
+		err_map(var->data);
 		return (0);
+	}
 	return (1);
 }
