@@ -6,7 +6,7 @@
 /*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 19:03:45 by dimbrea           #+#    #+#             */
-/*   Updated: 2023/01/09 12:43:55 by dimbrea          ###   ########.fr       */
+/*   Updated: 2023/01/09 16:09:49 by dimbrea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void ft_player(t_var *var)
 		x = var->plr->pos_x - 2;
 		y += 1;
 	}
-	draw_ln(var);// keeps casting a line from player
+	ft_cast_rayz(var, var->plr->radians);
 }
 
 void	ft_map_size(t_var *var)
@@ -129,22 +129,10 @@ void	ft_set_walls(t_var *var)
 
 int ft_is_in_wall(t_var *var, int height, int width, int x, int y)
 {
-	int i;
-	int j;
-
-	i = height;
-	while (i < (height + var->map->modul_h + 1))
-	{
-		j = width;
-		while(j < (width + var->map->modul_w + 1))
-		{
-			if (i == y && j == x )
-				return (1);
-			j++;
-		}
-		i++;
-	}
-	return (0);
+	if (x >= width && x < width + var->map->modul_w &&
+	y >= height && y < height + var->map->modul_h)
+		return 1;
+	return 0;
 }
 
 int	ft_is_wall(t_var *var, int x, int y)
@@ -162,9 +150,9 @@ int	ft_is_wall(t_var *var, int x, int y)
 		width = 0;
 		while (var->map->d_map[i][++j])
 		{
-			if (var->map->d_map[i][j] == '1')
-				if (ft_is_in_wall(var, height, width, x, y) == 1)
-					return (1);
+			if (var->map->d_map[i][j] == '1' &&
+			ft_is_in_wall(var, height, width, x, y))
+				return (1);
 			width += var->map->modul_w;
 		}
 		height += var->map->modul_h;
@@ -208,6 +196,8 @@ void	ft_starting_angle(t_var *var, char nswe)
 		var->plr->p_angle = 180;
 	if (nswe == 'E')
 		var->plr->p_angle = 0;
+	var->plr->radians = var->plr->p_angle * M_PI /180;
+	
 }
 
 void	ft_plr_orient(t_var *var, char nswe)
@@ -238,6 +228,7 @@ void	ft_ray(t_var *var, char nswe)
 {
 	ft_starting_angle(var, nswe);
 	ft_plr_orient(var, nswe);
+	ft_cast_rayz(var, var->plr->radians);
 }
 
 int	main(int argc, char **argv)
@@ -253,7 +244,7 @@ int	main(int argc, char **argv)
 	var.plr = &player;
 	var.map->d_map[0] = " 111111111111111111111111";
 	var.map->d_map[1] = "1000000000110000000000001";
-	var.map->d_map[2] = "101100S001110000000000001";
+	var.map->d_map[2] = "101100N001110000000000001";
 	var.map->d_map[3] = "1001000000000000000111111";
 	var.map->d_map[4] = "1111111110110000011110001";
 	var.map->d_map[5] = "1000000000110000011101111";
