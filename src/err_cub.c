@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 09:28:34 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/09 08:09:21 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/09 15:45:54 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ no access:
 map:
 	12 invalid line after map
 	13 map not last element
+	14 invalid map character
+	15 mupliple player not possible
 color:
 	20 invalid characters
 	21 too few color values
@@ -52,6 +54,10 @@ void	err_map(t_data *data)
 		write(2, "map error: empty lines\n", 23);
 	if (data->err_map == 13)
 		write(2, "map error: not last element\n", 28);
+	if (data->err_map == 14)
+		write(2, "map error: invalid character\n", 29);
+	if (data->err_map == 15)
+		write(2, "map error: multiple player not possible\n", 40);
 }
 
 static void	err_elements3(t_data *data)

@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 14:27:58 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/09 08:37:12 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/09 15:11:10 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ typedef struct s_data
 	int				c;
 	int				f_set;
 	int				c_set;
+	int				p_set;
 	char			**map; // valid map data
 	t_linked_list	*map_lst;
 	int				err;
@@ -87,7 +88,7 @@ typedef struct s_var
 int		import_cub(t_var *var, char *argv, char *type);
 int		check_cub(t_data *data);
 void	check_elements(t_data *data);
-void	check_map(t_var *var);
+void	check_map(t_var *var, char c);
 void	err_elements(t_data *data);
 void	err_map(t_data *data);
 void	err_color(t_data *data);

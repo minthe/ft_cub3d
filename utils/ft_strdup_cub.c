@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 18:01:17 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/09 08:38:01 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/09 15:10:58 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*ft_strdup_map(t_var *var, size_t i, char *str)
 		{
 			if (var->line[i] == '\n')
 				break ;
-			check_map(var);
+			check_map(var, var->line[i]);
 			str[i] = var->line[i];
 			i++;
 		}
