@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 09:49:29 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/08 22:19:28 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/09 08:32:28 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static void	copy_element(t_var *var, int i)
 	else if ((check_cub(var->data) == 0))
 		var->data->err_map = 13;
 	else if ((check_cub(var->data) == 2))
-		add_tail(var->data->map_lst, ft_strdup_map(var->line, 0, NULL));
+		add_tail(var->data->map_lst, ft_strdup_map(var, 0, NULL));
 }
 
 static void	import_cub2(t_var *var)
@@ -90,14 +90,16 @@ int	import_cub(t_var *var, char *argv, char *type)
 		var->line = get_next_line(var->fd1);
 	}
 	import_cub2(var);
-	close(var->fd1);
+	check_elements(var->data);
 	if (var->data->err != 0 || var->data->err_map != 0 || \
 		var->data->err_color != 0)
 	{
 		err_elements(var->data);
 		err_color(var->data);
 		err_map(var->data);
+		close(var->fd1);
 		return (0);
 	}
+	close(var->fd1);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 14:27:58 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/08 20:05:36 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/09 08:37:12 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,8 @@ typedef struct s_var
 // SRC
 int		import_cub(t_var *var, char *argv, char *type);
 int		check_cub(t_data *data);
+void	check_elements(t_data *data);
+void	check_map(t_var *var);
 void	err_elements(t_data *data);
 void	err_map(t_data *data);
 void	err_color(t_data *data);
@@ -108,7 +110,7 @@ int		ft_is_whitespace(char *line);
 char	ft_skip_whitespace(char *line);
 int		ft_is_whitespace_char(char c);
 char	*ft_strdup_cub(const char *s1, size_t i, size_t j);
-char	*ft_strdup_map(const char *s1, size_t i, char *str);
+char	*ft_strdup_map(t_var *var, size_t i, char *str);
 void	ft_free_doublepoint(char **to_free);
 
 #endif

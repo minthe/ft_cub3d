@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 14:28:02 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/08 22:19:53 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/09 08:11:01 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	keypress(int key, t_var *var)
 		var->posy += 5;
 }
 
-static void	debug(t_var *var)
+static void	debug(t_var *var) // DEBUG
 {
 	printf("\n---- DEBUG ----\n\n");
 	printf("data->f: %x\n", var->data->f);
@@ -42,7 +42,7 @@ int	main(int argc, char **argv)
 	var.mlx = &mlx_s;
 	if (argc > 1 && init_struct(&var) && import_cub(&var, argv[1], ".cub"))
 	{
-		printf("running...\n"); // TODO runs despite map data is missing
+		printf("running...\n");
 	}
 	debug(&var); // DEBUG
 	cleanup(&var);
