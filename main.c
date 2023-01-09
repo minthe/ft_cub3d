@@ -6,7 +6,7 @@
 /*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 19:03:45 by dimbrea           #+#    #+#             */
-/*   Updated: 2023/01/09 16:09:49 by dimbrea          ###   ########.fr       */
+/*   Updated: 2023/01/09 18:37:01 by dimbrea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -189,6 +189,14 @@ void	ft_put_player(t_var *var)
 
 void	ft_starting_angle(t_var *var, char nswe)
 {
+	double fov;
+	// double ray_pos;
+	double ray_angle;
+
+	fov = FOV;
+	var->plr->ray_pos = 0.0;
+	ray_angle = fov * var->plr->ray_pos - fov / 2 + 90;
+	var->plr->radians = ray_angle * M_PI / 180;
 	var->plr->p_angle = 90.0;
 	if (nswe == 'S')
 		var->plr->p_angle = 270;
@@ -196,7 +204,6 @@ void	ft_starting_angle(t_var *var, char nswe)
 		var->plr->p_angle = 180;
 	if (nswe == 'E')
 		var->plr->p_angle = 0;
-	var->plr->radians = var->plr->p_angle * M_PI /180;
 	
 }
 
@@ -226,6 +233,7 @@ void	ft_plr_orient(t_var *var, char nswe)
 
 void	ft_ray(t_var *var, char nswe)
 {
+	
 	ft_starting_angle(var, nswe);
 	ft_plr_orient(var, nswe);
 	ft_cast_rayz(var, var->plr->radians);
@@ -242,7 +250,7 @@ int	main(int argc, char **argv)
 	var.map = &map_m;
 	var.img = &s_img;
 	var.plr = &player;
-	var.map->d_map[0] = " 111111111111111111111111";
+	var.map->d_map[0] = "1111111111111111111111111";
 	var.map->d_map[1] = "1000000000110000000000001";
 	var.map->d_map[2] = "101100N001110000000000001";
 	var.map->d_map[3] = "1001000000000000000111111";

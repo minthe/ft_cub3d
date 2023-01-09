@@ -6,7 +6,7 @@
 /*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 14:27:58 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/09 15:18:25 by dimbrea          ###   ########.fr       */
+/*   Updated: 2023/01/09 17:46:25 by dimbrea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ typedef struct s_player
 	double	radians;
 	double	begin_x;
 	double	begin_y;
+	double ray_pos;
 	double	end_x;
 	double	end_y;
 	int		pos_x;
@@ -67,7 +68,7 @@ typedef struct s_player
 
 typedef struct s_ray
 {
-	
+
 }t_ray;
 
 typedef struct s_map
