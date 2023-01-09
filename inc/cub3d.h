@@ -6,7 +6,7 @@
 /*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 14:27:58 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2022/12/13 10:38:15 by dimbrea          ###   ########.fr       */
+/*   Updated: 2023/01/09 12:44:26 by dimbrea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # define R_ARROW 65363
 # define L_ARROW 65361
 # define ESC 65307
+# define ROT_SPEED 0.02
 # include "mlx/mlx.h"
 # include "math.h"
 # include "libft/libft.h"
@@ -52,37 +53,19 @@ typedef struct s_mlx
 typedef struct s_player
 {
 	char	orient;
-	double	pos_x;
-	double	pos_y;
+	double	p_angle;
+	double	begin_x;
+	double	begin_y;
+	double	end_x;
+	double	end_y;
+	int		pos_x;
+	int		pos_y;
 	
 }t_player;
 
 typedef struct s_ray
 {
-	double	dir_x;
-	double	dir_y;
-	double	plane_x;
-	double	plane_y;
-	double	time;
-	double	pv_time;
-	double	camera_x;
-	double	raydir_x;
-	double	raydir_y;
-	double	deltadist_x;
-	double	deltadist_y;
-	double	sidedist_x;
-	double	sidedist_y;
-	double	perpWallDist;
-	double	frametime;
-	int		map_x;
-	int		map_y;
-	int		step_x;
-	int		step_y;
-	int		hit;
-	int		side;
-	int		lineHeight;
-	int		drawStart;
-	int		drawEnd;
+	
 }t_ray;
 
 typedef struct s_map
@@ -109,6 +92,7 @@ void	ft_w(t_var *var);
 void	ft_a(t_var *var);
 void	ft_s(t_var *var);
 void	ft_d(t_var *var);
+void	ft_l_arrow(t_var *var);
 
 //main.c
 void	ft_set_walls(t_var *var);
@@ -119,5 +103,6 @@ int		render(t_var *var);
 int		ft_is_wall(t_var *var, int x, int y);
 void	ft_put_player(t_var *var);
 void	ft_ray(t_var *var, char nswe);
-
+void	draw_ln(t_var *var);
+void	ft_arrow(t_var *var, int key);
 #endif

@@ -6,7 +6,7 @@
 /*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 17:09:03 by dimbrea           #+#    #+#             */
-/*   Updated: 2022/12/12 17:56:20 by dimbrea          ###   ########.fr       */
+/*   Updated: 2023/01/09 12:44:09 by dimbrea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,10 @@ int	x_window(t_var *var)// need to free other stuff here later
 void	ft_w(t_var *var)
 {
 	if (!ft_is_wall(var, var->plr->pos_x, var->plr->pos_y - 5))
+	{
 		var->plr->pos_y -= 5;
+		var->plr->end_y -= 5;
+	}
 	mlx_destroy_image(var->mlx->ptr, var->img->structure);
 	var->img->structure = mlx_new_image(var->mlx->ptr, SCREEN_WIDTH, SCREEN_HEIGHT);
 }
@@ -41,7 +44,10 @@ void	ft_w(t_var *var)
 void	ft_a(t_var *var)
 {
 	if (!ft_is_wall(var, var->plr->pos_x - 5, var->plr->pos_y))
+	{
 		var->plr->pos_x -= 5;
+		var->plr->end_x -= 5;
+	}
 	mlx_destroy_image(var->mlx->ptr, var->img->structure);
 	var->img->structure = mlx_new_image(var->mlx->ptr, SCREEN_WIDTH, SCREEN_HEIGHT);
 }
@@ -49,7 +55,10 @@ void	ft_a(t_var *var)
 void	ft_s(t_var *var)
 {
 	if (!ft_is_wall(var, var->plr->pos_x, var->plr->pos_y + 5))
+	{
 		var->plr->pos_y += 5;
+		var->plr->end_y += 5;
+	}
 	mlx_destroy_image(var->mlx->ptr, var->img->structure);
 	var->img->structure = mlx_new_image(var->mlx->ptr, SCREEN_WIDTH, SCREEN_HEIGHT);
 }
@@ -57,11 +66,51 @@ void	ft_s(t_var *var)
 void	ft_d(t_var *var)
 {
 	if (!ft_is_wall(var, var->plr->pos_x + 5, var->plr->pos_y))
+	{
 		var->plr->pos_x += 5;
+		var->plr->end_x += 5;
+	}
 	mlx_destroy_image(var->mlx->ptr, var->img->structure);
 	var->img->structure = mlx_new_image(var->mlx->ptr, SCREEN_WIDTH, SCREEN_HEIGHT);
 }
 
+// void	ft_arrow(t_var *var)
+// {
+// 	double radians;
+// 	double line_l;
+
+// 	if (var->plr->p_angle >= 360.0)
+// 		var->plr->p_angle = 0.0;
+// 	line_l = sqrt((var->plr->end_x - var->plr->pos_x) * (var->plr->end_x - var->plr->pos_x) + (var->plr->end_y - var->plr->pos_y) * (var->plr->end_y - var->plr->pos_y));
+// 	printf("%f angle_r ARROW\n", var->plr->p_angle);
+// 	var->plr->p_angle += 10;
+// 	radians = var->plr->p_angle * M_PI /180;
+// 	printf("%f angle\n", radians);
+// 	var->plr->end_x = var->plr->pos_x + line_l * cos(radians);
+// 	var->plr->end_y = var->plr->pos_y + line_l * sin(radians);
+// 	mlx_destroy_image(var->mlx->ptr, var->img->structure);
+// 	var->img->structure = mlx_new_image(var->mlx->ptr, SCREEN_WIDTH, SCREEN_HEIGHT);
+// }
+
+void	ft_arrow(t_var *var, int arrow)
+{
+	double radians;
+	double line_l;
+	
+	if (var->plr->p_angle >= 360.0 || var->plr->p_angle <= -360.0)
+		var->plr->p_angle = 0.0;
+	line_l = sqrt((var->plr->end_x - var->plr->pos_x) * (var->plr->end_x - var->plr->pos_x) + (var->plr->end_y - var->plr->pos_y) * (var->plr->end_y - var->plr->pos_y));
+	if (arrow == L_ARROW)
+		var->plr->p_angle += 10;
+	else
+		var->plr->p_angle -= 10;
+	radians = var->plr->p_angle * M_PI /180;
+	printf("%f angle\n", radians);
+	var->plr->end_x = var->plr->pos_x + line_l * cos(-radians);
+	var->plr->end_y = var->plr->pos_y + line_l * sin(-radians);
+	mlx_destroy_image(var->mlx->ptr, var->img->structure);
+	var->img->structure = mlx_new_image(var->mlx->ptr, SCREEN_WIDTH, SCREEN_HEIGHT);
+}
 
 void	render_background(t_var *var)
 {

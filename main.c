@@ -6,7 +6,7 @@
 /*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 19:03:45 by dimbrea           #+#    #+#             */
-/*   Updated: 2022/12/13 11:15:06 by dimbrea          ###   ########.fr       */
+/*   Updated: 2023/01/09 12:43:55 by dimbrea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ int	keypress(int key, t_var *var)
 		ft_s(var);
 	if (key == D)
 		ft_d(var);
+	if (key == L_ARROW || key == R_ARROW)
+		ft_arrow(var, key);
 	return 0;
 }
 int	render(t_var *var)
@@ -59,9 +61,7 @@ void ft_player(t_var *var)
 		x = var->plr->pos_x - 2;
 		y += 1;
 	}
-	// var->plr->pos_x = x;
-	// var->plr->pos_y = y;
-	ft_ray(var, var->plr->orient);
+	draw_ln(var);// keeps casting a line from player
 }
 
 void	ft_map_size(t_var *var)
@@ -119,7 +119,7 @@ void	ft_set_walls(t_var *var)
 		width = 0;
 		while (var->map->d_map[i][++j])
 		{
-			if (var->map->d_map[i][j] == '1')
+			if (var->map->d_map[i][j] == '1' || var->map->d_map[i][j] == ' ')
 				ft_color(var, height, width);
 			width += var->map->modul_w;
 		}
@@ -199,6 +199,47 @@ void	ft_put_player(t_var *var)
 	}
 }
 
+void	ft_starting_angle(t_var *var, char nswe)
+{
+	var->plr->p_angle = 90.0;
+	if (nswe == 'S')
+		var->plr->p_angle = 270;
+	if (nswe == 'W')
+		var->plr->p_angle = 180;
+	if (nswe == 'E')
+		var->plr->p_angle = 0;
+}
+
+void	ft_plr_orient(t_var *var, char nswe)
+{
+	if (nswe == 'N')
+	{
+		var->plr->end_y = var->plr->pos_y - 25;
+		var->plr->end_x = var->plr->pos_x;
+	}
+	if (nswe == 'S')
+	{
+		var->plr->end_y = var->plr->pos_y + 25;
+		var->plr->end_x = var->plr->pos_x;
+	}
+	if (nswe == 'W')
+	{
+		var->plr->end_y = var->plr->pos_y;
+		var->plr->end_x = var->plr->pos_x - 25;
+	}
+	if (nswe == 'E')
+	{
+		var->plr->end_y = var->plr->pos_y;
+		var->plr->end_x = var->plr->pos_x + 25;
+	}
+}
+
+void	ft_ray(t_var *var, char nswe)
+{
+	ft_starting_angle(var, nswe);
+	ft_plr_orient(var, nswe);
+}
+
 int	main(int argc, char **argv)
 {
 	t_var	var;
@@ -210,31 +251,31 @@ int	main(int argc, char **argv)
 	var.map = &map_m;
 	var.img = &s_img;
 	var.plr = &player;
-	var.map->d_map[0] = "        1111111111111111111111111";
-	var.map->d_map[1] = "        1000000000110000000000001";
-	var.map->d_map[2] = "        1011000001110000000000001";
-	var.map->d_map[3] = "        1001000000000000000000001";
-	var.map->d_map[4] = "111111111011000001110000000000001";
-	var.map->d_map[5] = "100000000011000001110111111111111";
-	var.map->d_map[6] = "11110111111011011100000010001";
-	var.map->d_map[7] = "11110111111111011101010010001";
-	var.map->d_map[8] = "11000000110101011100000010001";
-	var.map->d_map[9] = "100000000N0000001100000010001";
-	var.map->d_map[10] = "10000000000000001101010010001";
-	var.map->d_map[11] = "110000011101010111110111100111";
-	var.map->d_map[12] = "11110111 1110101 101111010001";
-	var.map->d_map[13] = "11111111 1111111 111111111111";
+	var.map->d_map[0] = " 111111111111111111111111";
+	var.map->d_map[1] = "1000000000110000000000001";
+	var.map->d_map[2] = "101100S001110000000000001";
+	var.map->d_map[3] = "1001000000000000000111111";
+	var.map->d_map[4] = "1111111110110000011110001";
+	var.map->d_map[5] = "1000000000110000011101111";
+	var.map->d_map[6] = "1111011111101101110000001";
+	var.map->d_map[7] = "1111011111111101110101001";
+	var.map->d_map[8] = "1100000011010101110000001";
+	var.map->d_map[9] = "1000000000000000110000001";
+	var.map->d_map[10] = "100000000000000011010101";
+	var.map->d_map[11] = "110000011101010111110111";
+	var.map->d_map[12] = "111101111110101101111001";
+	var.map->d_map[13] = "111111111111111111111111";
 	var.map->d_map[14] = NULL;
 	(void)argv;
 	if (argc == 2)
 	{
 		ft_map_size(&var);
 		ft_put_player(&var);
-		// printf("x-%f y-%f\n", var.plr->pos_x, var.plr->pos_y);
 		var.mlx->ptr = mlx_init();
 		var.mlx->window = mlx_new_window(var.mlx->ptr,SCREEN_WIDTH, SCREEN_HEIGHT, "cub3d");
 		var.img->structure = mlx_new_image(var.mlx->ptr, SCREEN_WIDTH, SCREEN_HEIGHT);
 		var.img->addr = mlx_get_data_addr(var.img->structure, &var.img->bpp, &var.img->size_line, &var.img->endian);
+		ft_ray(&var, var.plr->orient);
 		mlx_loop_hook(var.mlx->ptr, &render, &var);
 		mlx_hook(var.mlx->window, 17, 0L, x_window, &var);
 		mlx_hook(var.mlx->window,2, (1l << 0),keypress, &var);
