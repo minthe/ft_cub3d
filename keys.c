@@ -6,7 +6,7 @@
 /*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 17:09:03 by dimbrea           #+#    #+#             */
-/*   Updated: 2023/01/09 18:41:04 by dimbrea          ###   ########.fr       */
+/*   Updated: 2023/01/11 13:26:51 by dimbrea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,17 @@ int	x_window(t_var *var)// need to free other stuff here later
 
 void	ft_w(t_var *var)
 {
-	if (!ft_is_wall(var, var->plr->pos_x, var->plr->pos_y - 5))
+	double new_x;
+	double new_y;
+	double radians;
+
+	radians = (var->plr->p_angle) * M_PI / 180;
+	new_x = var->plr->pos_x + 5 * cos(radians);
+	new_y = var->plr->pos_y + 5 * sin(radians);
+	if (!ft_is_wall(var, new_x, new_y))
 	{
-		var->plr->pos_y -= 5;
-		var->plr->end_y -= 5;
+		var->plr->pos_x = new_x;
+		var->plr->pos_y = new_y;
 	}
 	mlx_destroy_image(var->mlx->ptr, var->img->structure);
 	var->img->structure = mlx_new_image(var->mlx->ptr, SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -43,10 +50,17 @@ void	ft_w(t_var *var)
 
 void	ft_a(t_var *var)
 {
-	if (!ft_is_wall(var, var->plr->pos_x - 5, var->plr->pos_y))
+	double new_x;
+	double new_y;
+	double radians;
+
+	radians = (90 - var->plr->p_angle) * M_PI / 180;
+	new_x = var->plr->pos_x + 5 * cos(radians);
+	new_y = var->plr->pos_y - 5 * sin(radians);
+	if (!ft_is_wall(var, new_x, new_y))
 	{
-		var->plr->pos_x -= 5;
-		var->plr->end_x -= 5;
+		var->plr->pos_x = new_x;
+		var->plr->pos_y = new_y;
 	}
 	mlx_destroy_image(var->mlx->ptr, var->img->structure);
 	var->img->structure = mlx_new_image(var->mlx->ptr, SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -54,10 +68,17 @@ void	ft_a(t_var *var)
 
 void	ft_s(t_var *var)
 {
-	if (!ft_is_wall(var, var->plr->pos_x, var->plr->pos_y + 5))
+	double new_x;
+	double new_y;
+	double radians;
+
+	radians = (var->plr->p_angle) * M_PI / 180;
+	new_x = var->plr->pos_x - 5 * cos(radians);
+	new_y = var->plr->pos_y - 5 * sin(radians);
+	if (!ft_is_wall(var, new_x, new_y))
 	{
-		var->plr->pos_y += 5;
-		var->plr->end_y += 5;
+		var->plr->pos_x = new_x;
+		var->plr->pos_y = new_y;
 	}
 	mlx_destroy_image(var->mlx->ptr, var->img->structure);
 	var->img->structure = mlx_new_image(var->mlx->ptr, SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -65,21 +86,34 @@ void	ft_s(t_var *var)
 
 void	ft_d(t_var *var)
 {
-	if (!ft_is_wall(var, var->plr->pos_x + 5, var->plr->pos_y))
+	double new_x;
+	double new_y;
+	double radians;
+	
+	radians = (90 - var->plr->p_angle) * M_PI / 180;
+	new_x = var->plr->pos_x - 5 * cos(radians);
+	new_y = var->plr->pos_y + 5 * sin(radians);
+	if (!ft_is_wall(var, new_x, new_y))
 	{
-		var->plr->pos_x += 5;
-		var->plr->end_x += 5;
+		var->plr->pos_x = new_x;
+		var->plr->pos_y = new_y;
 	}
 	mlx_destroy_image(var->mlx->ptr, var->img->structure);
 	var->img->structure = mlx_new_image(var->mlx->ptr, SCREEN_WIDTH, SCREEN_HEIGHT);
 }
 
-void	ft_arrow(t_var *var, int arrow)
+void	ft_lr_arrows(t_var *var, int arrow)
 {
 	if (arrow == L_ARROW)
+	{
+		if (var->plr->p_angle == 0)
+			var->plr->p_angle = 360;
 		var->plr->p_angle -= 5;
-	else
+	}
+	else if (arrow == R_ARROW)
 		var->plr->p_angle += 5;
+	if (var->plr->p_angle > 359)
+		var->plr->p_angle = 0.0;
 	mlx_destroy_image(var->mlx->ptr, var->img->structure);
 	var->img->structure = mlx_new_image(var->mlx->ptr, SCREEN_WIDTH, SCREEN_HEIGHT);
 }

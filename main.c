@@ -6,7 +6,7 @@
 /*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 19:03:45 by dimbrea           #+#    #+#             */
-/*   Updated: 2023/01/09 18:37:01 by dimbrea          ###   ########.fr       */
+/*   Updated: 2023/01/11 15:45:03 by dimbrea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,15 @@ int	keypress(int key, t_var *var)
 	if (key == D)
 		ft_d(var);
 	if (key == L_ARROW || key == R_ARROW)
-		ft_arrow(var, key);
+		ft_lr_arrows(var, key);
 	return 0;
 }
 int	render(t_var *var)
 {
 	if (var->mlx->window == NULL)
 		return (1);
-	ft_set_walls(var);
-	render_background(var);
+	// ft_set_walls(var);
+	// render_background(var);
 	ft_player(var);
 	mlx_put_image_to_window(var->mlx->ptr, var->mlx->window, var->img->structure, 0, 0);
 	return (0);
@@ -189,17 +189,17 @@ void	ft_put_player(t_var *var)
 
 void	ft_starting_angle(t_var *var, char nswe)
 {
-	double fov;
+	// double fov;
 	// double ray_pos;
-	double ray_angle;
+	// double ray_angle;
 
-	fov = FOV;
+	// fov = FOV;
 	var->plr->ray_pos = 0.0;
-	ray_angle = fov * var->plr->ray_pos - fov / 2 + 90;
-	var->plr->radians = ray_angle * M_PI / 180;
-	var->plr->p_angle = 90.0;
+	// ray_angle = fov * var->plr->ray_pos - fov / 2 + 90;
+	// var->plr->radians = ray_angle * M_PI / 180;
+	var->plr->p_angle = 270.0;
 	if (nswe == 'S')
-		var->plr->p_angle = 270;
+		var->plr->p_angle = 90.0;
 	if (nswe == 'W')
 		var->plr->p_angle = 180;
 	if (nswe == 'E')
@@ -207,35 +207,35 @@ void	ft_starting_angle(t_var *var, char nswe)
 	
 }
 
-void	ft_plr_orient(t_var *var, char nswe)
-{
-	if (nswe == 'N')
-	{
-		var->plr->end_y = var->plr->pos_y - 25;
-		var->plr->end_x = var->plr->pos_x;
-	}
-	if (nswe == 'S')
-	{
-		var->plr->end_y = var->plr->pos_y + 25;
-		var->plr->end_x = var->plr->pos_x;
-	}
-	if (nswe == 'W')
-	{
-		var->plr->end_y = var->plr->pos_y;
-		var->plr->end_x = var->plr->pos_x - 25;
-	}
-	if (nswe == 'E')
-	{
-		var->plr->end_y = var->plr->pos_y;
-		var->plr->end_x = var->plr->pos_x + 25;
-	}
-}
+// void	ft_plr_orient(t_var *var, char nswe)
+// {
+// 	if (nswe == 'N')
+// 	{
+// 		var->plr->end_y = var->plr->pos_y - 25;
+// 		var->plr->end_x = var->plr->pos_x;
+// 	}
+// 	if (nswe == 'S')
+// 	{
+// 		var->plr->end_y = var->plr->pos_y + 25;
+// 		var->plr->end_x = var->plr->pos_x;
+// 	}
+// 	if (nswe == 'W')
+// 	{
+// 		var->plr->end_y = var->plr->pos_y;
+// 		var->plr->end_x = var->plr->pos_x - 25;
+// 	}
+// 	if (nswe == 'E')
+// 	{
+// 		var->plr->end_y = var->plr->pos_y;
+// 		var->plr->end_x = var->plr->pos_x + 25;
+// 	}
+// }
 
 void	ft_ray(t_var *var, char nswe)
 {
 	
 	ft_starting_angle(var, nswe);
-	ft_plr_orient(var, nswe);
+	// ft_plr_orient(var, nswe);
 	ft_cast_rayz(var, var->plr->radians);
 }
 
@@ -251,8 +251,8 @@ int	main(int argc, char **argv)
 	var.img = &s_img;
 	var.plr = &player;
 	var.map->d_map[0] = "1111111111111111111111111";
-	var.map->d_map[1] = "1000000000110000000000001";
-	var.map->d_map[2] = "101100N001110000000000001";
+	var.map->d_map[1] = "1N00000000110000000000001";
+	var.map->d_map[2] = "1011000001110000000000001";
 	var.map->d_map[3] = "1001000000000000000111111";
 	var.map->d_map[4] = "1111111110110000011110001";
 	var.map->d_map[5] = "1000000000110000011101111";
@@ -273,6 +273,9 @@ int	main(int argc, char **argv)
 		var.mlx->ptr = mlx_init();
 		var.mlx->window = mlx_new_window(var.mlx->ptr,SCREEN_WIDTH, SCREEN_HEIGHT, "cub3d");
 		var.img->structure = mlx_new_image(var.mlx->ptr, SCREEN_WIDTH, SCREEN_HEIGHT);
+		//3dwindow;
+		// var.mlx->window2 = mlx_new_window(var.mlx->ptr,SCREEN_WIDTH, SCREEN_HEIGHT, "cub3d");
+		// var.img->img_ptr = mlx_new_image(var.mlx->ptr, SCREEN_WIDTH, SCREEN_HEIGHT);
 		var.img->addr = mlx_get_data_addr(var.img->structure, &var.img->bpp, &var.img->size_line, &var.img->endian);
 		ft_ray(&var, var.plr->orient);
 		mlx_loop_hook(var.mlx->ptr, &render, &var);

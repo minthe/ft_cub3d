@@ -6,7 +6,7 @@
 /*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 14:27:58 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/09 17:46:25 by dimbrea          ###   ########.fr       */
+/*   Updated: 2023/01/11 16:32:03 by dimbrea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 typedef struct s_img
 {
 	void	*img_ptr;
+	void	*img_2ptr;
 	void	*structure;
 	char	*addr;
 	void	*img_xpm;
@@ -48,22 +49,23 @@ typedef struct s_mlx
 {
 	void	*ptr;
 	void	*window;
+	void	*window2;
 	int		cur_img;
 }t_mlx;
 
 typedef struct s_player
 {
 	char	orient;
+	double	p_height;
 	double	p_angle;
 	double	radians;
 	double	begin_x;
 	double	begin_y;
-	double ray_pos;
+	double	ray_pos;
 	double	end_x;
 	double	end_y;
 	int		pos_x;
-	int		pos_y;
-	
+	int		pos_y;	
 }t_player;
 
 typedef struct s_ray
@@ -76,6 +78,11 @@ typedef struct s_map
 	char	*d_map[100];
 	int		map_w;
 	int		map_h;
+	int		wall_sx;
+	int		wall_sy;
+	int		wall_ex;
+	int		wall_ey;
+	int		wall_height;
 	int		modul_w;
 	int		modul_h;
 }t_map;
@@ -95,18 +102,17 @@ void	ft_w(t_var *var);
 void	ft_a(t_var *var);
 void	ft_s(t_var *var);
 void	ft_d(t_var *var);
-void	ft_l_arrow(t_var *var);
+void	ft_lr_arrows(t_var *var, int arrow);
 
 //main.c
 void	ft_set_walls(t_var *var);
 void	img_pix_put(t_var *var, int x, int y, int color);
-void	render_background(t_var *var);
+// void	render_background(t_var *var);
 void	ft_player(t_var *var);
 int		render(t_var *var);
 int		ft_is_wall(t_var *var, int x, int y);
 void	ft_put_player(t_var *var);
 void	ft_ray(t_var *var, char nswe);
-void	draw_ln(t_var *var);
-void	ft_arrow(t_var *var, int key);
+// void	draw_ln(t_var *var);// not needded
 void	ft_cast_rayz(t_var *var, double radians);
 #endif
