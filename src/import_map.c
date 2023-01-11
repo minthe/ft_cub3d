@@ -1,31 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_elements.c                                   :+:      :+:    :+:   */
+/*   import_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/09 08:15:38 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/11 18:05:14 by vfuhlenb         ###   ########.fr       */
+/*   Created: 2023/01/11 15:23:47 by vfuhlenb          #+#    #+#             */
+/*   Updated: 2023/01/11 17:33:49 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
-void	check_elements(t_data *data)
+static void	copy_linked_list(t_linked_list *list, char **map)
 {
-	if (!data->no)
-		data->err = 1;
-	if (!data->so)
-		data->err = 2;
-	if (!data->we)
-		data->err = 3;
-	if (!data->ea)
-		data->err = 4;
-	if (!data->f_set)
-		data->err = 5;
-	if (!data->c_set)
-		data->err = 6;
-	if (!data->map)
-		data->err = 7;
+	t_node	*current;
+
+	current = list->head;
+	while (current != NULL)
+	{
+		*map = ft_strdup(current->data);
+		current = current->next;
+		map++;
+	}
+}
+
+void	import_map(t_var *var)
+{
+	var->data->map_lines = count_linked_list(var->data->map_lst);
+	var->data->map = ft_calloc(var->data->map_lines + 1, \
+		sizeof(char *));
+	copy_linked_list(var->data->map_lst, var->data->map);
 }

@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/22 09:33:04 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2022/12/12 14:17:45 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/11 17:22:20 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*ft_strdup(const char *s1)
 	size_t	len;
 
 	len = ft_strlen(s1);
-	new = (char *)malloc(sizeof(char) * (len + 1));
+	new = ft_calloc(len + 1, sizeof(char));
 	if (!new)
 		return (0);
 	ft_strlcpy(new, s1, len + 1);

@@ -6,7 +6,7 @@
 #    By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/01 14:46:38 by vfuhlenb          #+#    #+#              #
-#    Updated: 2023/01/09 08:15:28 by vfuhlenb         ###   ########.fr        #
+#    Updated: 2023/01/11 16:47:41 by vfuhlenb         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ SRCS = \
 inc/get_next_line/get_next_line.c\
 inc/get_next_line/get_next_line_utils.c\
 src/import_cub.c\
+src/import_map.c\
 src/init_struct.c\
 src/check_cub.c\
 src/check_map.c\

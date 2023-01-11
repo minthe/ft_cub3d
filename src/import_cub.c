@@ -6,40 +6,63 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 09:49:29 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/11 14:08:27 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/11 18:03:25 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
+static void	check_access(char *str, char *element)
+{
+	if (access(str, R_OK) != 0)
+	{
+		write(2, "Error\n", 6);
+		write(2, element, ft_strlen(element));
+		write(2, " -> ", 4);
+		perror(str);
+		exit (EXIT_FAILURE);
+	}
+}
+
 static void	write_to_struct(t_var *var, int i, char c, char *nswe)
 {
-	i++;
 	if (var->line[i] == c)
 	{
 		i++;
 		i += ft_skip_whitespace(&var->line[i]);
 		if (ft_strncmp(nswe, "no", 2) == 0)
+		{
 			var->data->no = ft_strdup_cub(&var->line[i], 0, 0);
+			check_access(var->data->no, "NO");
+		}
 		else if (ft_strncmp(nswe, "so", 2) == 0)
+		{
 			var->data->so = ft_strdup_cub(&var->line[i], 0, 0);
+			check_access(var->data->so, "SO");
+		}
 		else if (ft_strncmp(nswe, "we", 2) == 0)
+		{
 			var->data->we = ft_strdup_cub(&var->line[i], 0, 0);
+			check_access(var->data->we, "WE");
+		}
 		else if (ft_strncmp(nswe, "ea", 2) == 0)
+		{
 			var->data->ea = ft_strdup_cub(&var->line[i], 0, 0);
+			check_access(var->data->ea, "EA");
+		}
 	}
 }
 
 static void	copy_element(t_var *var, int i)
 {
 	if (var->line[i] == 'N')
-		write_to_struct(var, i, 'O', "no");
+		write_to_struct(var, ++i, 'O', "no");
 	else if (var->line[i] == 'S')
-		write_to_struct(var, i, 'O', "so");
+		write_to_struct(var, ++i, 'O', "so");
 	else if (var->line[i] == 'W')
-		write_to_struct(var, i, 'E', "we");
+		write_to_struct(var, ++i, 'E', "we");
 	else if (var->line[i] == 'E')
-		write_to_struct(var, i, 'A', "ea");
+		write_to_struct(var, ++i, 'A', "ea");
 	else if (var->line[i] == 'F')
 		cpy_color_to_struct(var, ++i, &var->data->f, &var->data->f_set);
 	else if (var->line[i] == 'C')
@@ -96,6 +119,7 @@ int	import_cub(t_var *var, char *argv, char *type)
 		var->line = get_next_line(var->fd1);
 	}
 	import_cub2(var);
+	import_map(var);
 	check_elements(var->data);
 	if (var->data->err != 0)
 	{

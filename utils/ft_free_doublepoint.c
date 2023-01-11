@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 14:28:22 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/08 14:28:51 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/11 17:20:33 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,10 @@ void	ft_free_doublepoint(char **to_free)
 	i = 0;
 	while (to_free[i])
 	{
-		free(to_free[i]);
+		if (to_free[i])
+			free(to_free[i]);
 		i++;
 	}
-	free(to_free);
+	if (to_free)
+		free(to_free);
 }
