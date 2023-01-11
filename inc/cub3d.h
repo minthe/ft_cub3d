@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 14:27:58 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/11 19:25:27 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/11 21:34:37 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,5 +111,8 @@ int		ft_is_whitespace_char(char c);
 char	*ft_strdup_cub(const char *s1, size_t i, size_t j);
 char	*ft_strdup_map(t_var *var, size_t i, char *str);
 void	ft_free_doublepoint(char **to_free);
+int		is_map_char(char c);
+int		is_ident_char(char c);
+int		only_map_char(const char *str);
 
 #endif

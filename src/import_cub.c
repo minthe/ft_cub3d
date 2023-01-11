@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 09:49:29 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/11 18:34:19 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/11 21:35:18 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,12 @@ static void	copy_element(t_var *var, int i)
 		cpy_color_to_struct(var, ++i, &var->data->f, &var->data->f_set);
 	else if (var->line[i] == 'C')
 		cpy_color_to_struct(var, ++i, &var->data->c, &var->data->c_set);
-	else if ((check_cub(var->data) == 0))
+	else if ((check_cub(var->data) == 0) && !is_ident_char(var->line[i]))
+	{
+		write(2, "Error\ninvalid line\n", 19);
+		exit (EXIT_FAILURE);
+	}
+	else if ((check_cub(var->data) == 0) && only_map_char(var->line))
 	{
 		write(2, "Error\nmap error: not last element\n", 34);
 		exit (EXIT_FAILURE);

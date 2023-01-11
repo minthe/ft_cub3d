@@ -6,7 +6,7 @@
 #    By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/01 14:46:38 by vfuhlenb          #+#    #+#              #
-#    Updated: 2023/01/11 18:34:33 by vfuhlenb         ###   ########.fr        #
+#    Updated: 2023/01/11 21:31:55 by vfuhlenb         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,7 @@ utils/ft_check_fileext.c\
 utils/ft_whitespace.c\
 utils/ft_strdup_cub.c\
 utils/ft_free_doublepoint.c\
+utils/peeks.c\
 cub3d.c\
 
 OBJS = $(SRCS:.c=.o)

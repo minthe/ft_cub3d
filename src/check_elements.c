@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 08:15:38 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/11 18:41:47 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/11 21:40:18 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,6 @@ void	check_elements(t_data *data)
 		write_error_and_exit("F");
 	if (!data->c_set)
 		write_error_and_exit("C");
-	if (!data->map || data->map_lines < 3)
+	if (!data->map || data->map_lines < 1)
 		write_error_and_exit("map");
 }

@@ -12,9 +12,9 @@ NO    te     s     t.xmp
 WE   test.xmp
 
 
-C       255,    -,  0
+C       255,    -6,  0
 
-F       255,    -177,  0
+F 255,    -6,  0
 
 EAte s		t.xmp
 SO						   test.xmp
@@ -23,8 +23,7 @@ SO						   test.xmp
 
 
 
-
-                    1
+                  
 
 
 
