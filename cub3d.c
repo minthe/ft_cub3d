@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 14:28:02 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/09 08:11:01 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/11 14:35:24 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,9 @@ static void	debug(t_var *var) // DEBUG
 	printf("\n---- DEBUG ----\n\n");
 	printf("data->f: %x\n", var->data->f);
 	printf("data->c: %x\n\n", var->data->c);
+	printf("data->p_set: %d\n\n", var->data->p_set);
+	printf("data->f_set: %d\n\n", var->data->f_set);
+	printf("data->c_set: %d\n\n", var->data->c_set);
 	display_linked_list(var->data->map_lst);
 }
 

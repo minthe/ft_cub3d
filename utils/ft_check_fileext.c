@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 09:01:15 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2022/12/12 20:43:02 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/11 12:43:32 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ int	ft_check_fileext(char *path, char *ext)
 	if ((ft_strncmp(&path[(ft_strlen(path) - ft_strlen(ext))], \
 		ext, ft_strlen(ext))) == 0)
 		return (1);
+	write(2, "Error\n", 6);
 	write(2, path, ft_strlen(path));
 	write(2, ": not a valid \n", 14);
 	write(2, ext, ft_strlen(ext));

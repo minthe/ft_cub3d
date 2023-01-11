@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 09:49:29 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/09 08:32:28 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/11 14:08:27 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,10 @@ static void	copy_element(t_var *var, int i)
 	else if (var->line[i] == 'C')
 		cpy_color_to_struct(var, ++i, &var->data->c, &var->data->c_set);
 	else if ((check_cub(var->data) == 0))
-		var->data->err_map = 13;
+	{
+		write(2, "Error\nmap error: not last element\n", 34);
+		exit (EXIT_FAILURE);
+	}
 	else if ((check_cub(var->data) == 2))
 		add_tail(var->data->map_lst, ft_strdup_map(var, 0, NULL));
 }
@@ -72,7 +75,10 @@ static void	import_cub2(t_var *var)
 		free(var->line);
 		var->line = get_next_line(var->fd1);
 		if (var->line && !ft_is_whitespace(var->line))
-			var->data->err_map = 12;
+		{
+			write(2, "Error\nmap error: empty lines\n", 29);
+			exit (EXIT_FAILURE);
+		}
 	}
 }
 
@@ -80,7 +86,7 @@ int	import_cub(t_var *var, char *argv, char *type)
 {
 	if (!ft_open_file(&var->fd1, argv, O_RDONLY) \
 		|| !ft_check_fileext(argv, type))
-		return (0);
+		exit (EXIT_FAILURE);
 	var->line = get_next_line(var->fd1);
 	while (var->line && (check_cub(var->data) != 2))
 	{
@@ -91,12 +97,9 @@ int	import_cub(t_var *var, char *argv, char *type)
 	}
 	import_cub2(var);
 	check_elements(var->data);
-	if (var->data->err != 0 || var->data->err_map != 0 || \
-		var->data->err_color != 0)
+	if (var->data->err != 0)
 	{
 		err_elements(var->data);
-		err_color(var->data);
-		err_map(var->data);
 		close(var->fd1);
 		return (0);
 	}

@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 09:28:34 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/09 15:45:54 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/11 12:58:01 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,27 +38,6 @@ color:
 	22 too many color values
 */
 
-void	err_color(t_data *data)
-{
-	if (data->err_color == 20)
-		write(2, "color error: illegal characters\n", 32);
-	else if (data->err_color == 21)
-		write(2, "color error: less than 3 values\n", 32);
-	else if (data->err_color == 22)
-		write(2, "color error: more than 3 values\n", 32);
-}
-
-void	err_map(t_data *data)
-{
-	if (data->err_map == 12)
-		write(2, "map error: empty lines\n", 23);
-	if (data->err_map == 13)
-		write(2, "map error: not last element\n", 28);
-	if (data->err_map == 14)
-		write(2, "map error: invalid character\n", 29);
-	if (data->err_map == 15)
-		write(2, "map error: multiple player not possible\n", 40);
-}
 
 static void	err_elements3(t_data *data)
 {

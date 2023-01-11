@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/22 09:20:50 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/08 17:42:58 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/11 14:57:41 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int	limiter(int i)
 }
 
 // takes a string and converts it into an integer
-int	atoi_cub(t_var *var, const char *str)
+int	atoi_cub(const char *str)
 {
 	int	sign;
 	int	ret;
@@ -50,8 +50,11 @@ int	atoi_cub(t_var *var, const char *str)
 	{
 		if (ft_isdigit(*str))
 			ret = (ret * 10) + (*str - '0');
-		else if (!ft_isdigit(*str) && !ft_isspace(*str))
-			var->data->err_color = 20;
+		else if ((!ft_isdigit(*str) && !ft_isspace(*str)) || !hasdigits(str))
+		{
+			write(2, "Error\nF/C: invalid characters\n", 30);
+			exit (EXIT_FAILURE);
+		}
 		str++;
 	}
 	return (limiter(ret * sign));

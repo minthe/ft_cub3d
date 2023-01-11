@@ -6,11 +6,27 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 12:45:08 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/09 15:54:32 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/11 15:00:21 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
+
+// checks if string has digits
+int	hasdigits(const char *str)
+{
+
+	while (*str)
+	{
+		if (!(*str >= 48 && *str <= 57) && *str != 32)
+		{
+			write(2, "Error\nF/C: invalid characters\n", 30);
+			exit (EXIT_FAILURE);
+		}
+		str++;
+	}
+	return (1);
+}
 
 // returns 1 if all textures are ok
 // returns 2 if additionally all colors are set
