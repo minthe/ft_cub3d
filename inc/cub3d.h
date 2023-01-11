@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 14:27:58 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/11 17:33:22 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/11 19:25:27 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,10 +89,9 @@ void	import_map(t_var *var);
 int		check_cub(t_data *data);
 void	check_elements(t_data *data);
 void	check_map(t_var *var, char c);
-void	err_elements(t_data *data);
 void	cleanup(t_var *var);
 void	cpy_color_to_struct(t_var *var, int i, int *trgb, int *color_set);
-int		atoi_cub(const char *str);
+int		atoi_cub(const char *str, int sign, int ret);
 int		hasdigits(const char *str);
 
 // SRC/LIST-UTILS

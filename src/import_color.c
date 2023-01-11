@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 16:04:17 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/11 15:05:30 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/11 19:26:11 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ void	cpy_color_to_struct(t_var *var, int i, int *trgb, int *color_set)
 	color_temp = ft_split(&var->line[i], ',');
 	if (count_values(color_temp) == 3)
 	{
-		*trgb = create_trgb(255, atoi_cub(color_temp[0]), \
-		atoi_cub(color_temp[1]), atoi_cub(color_temp[2]));
+		*trgb = create_trgb(255, atoi_cub(color_temp[0], 1, 0), \
+		atoi_cub(color_temp[1], 1, 0), atoi_cub(color_temp[2], 1, 0));
 	}
 	else if (count_values(color_temp) < 3)
 	{

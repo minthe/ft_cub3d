@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 09:49:29 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/11 18:03:25 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/11 18:34:19 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,12 +121,6 @@ int	import_cub(t_var *var, char *argv, char *type)
 	import_cub2(var);
 	import_map(var);
 	check_elements(var->data);
-	if (var->data->err != 0)
-	{
-		err_elements(var->data);
-		close(var->fd1);
-		return (0);
-	}
 	close(var->fd1);
 	return (1);
 }

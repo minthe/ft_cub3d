@@ -6,7 +6,7 @@
 #    By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/01 14:46:38 by vfuhlenb          #+#    #+#              #
-#    Updated: 2023/01/11 16:47:41 by vfuhlenb         ###   ########.fr        #
+#    Updated: 2023/01/11 18:34:33 by vfuhlenb         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,6 @@ src/init_struct.c\
 src/check_cub.c\
 src/check_map.c\
 src/check_elements.c\
-src/err_cub.c\
 src/cleanup.c\
 src/list_utils.c\
 src/import_color.c\

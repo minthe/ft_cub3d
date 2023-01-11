@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 12:45:08 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/11 15:00:21 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/11 19:36:22 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,21 @@
 // checks if string has digits
 int	hasdigits(const char *str)
 {
+	int	check;
 
+	check = 0;
 	while (*str)
 	{
-		if (!(*str >= 48 && *str <= 57) && *str != 32)
-		{
-			write(2, "Error\nF/C: invalid characters\n", 30);
-			exit (EXIT_FAILURE);
-		}
+		if (*str >= 48 && *str <= 57)
+			check = 1;
 		str++;
 	}
-	return (1);
+	if (check == 0)
+	{
+		write(2, "Error\ninvalid color characters\n", 31);
+		exit (EXIT_FAILURE);
+	}
+	return (check);
 }
 
 // returns 1 if all textures are ok

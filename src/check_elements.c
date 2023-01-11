@@ -6,26 +6,35 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 08:15:38 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/11 18:05:14 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/11 18:41:47 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
+static void	write_error_and_exit(char *element)
+{
+	write(2, "Error\nmissing element: ", 23);
+	write(2, element, ft_strlen(element));
+	write(2, "\n", 1);
+	exit (EXIT_FAILURE);
+}
+
+// checks for missing elements
 void	check_elements(t_data *data)
 {
 	if (!data->no)
-		data->err = 1;
+		write_error_and_exit("NO");
 	if (!data->so)
-		data->err = 2;
+		write_error_and_exit("SO");
 	if (!data->we)
-		data->err = 3;
+		write_error_and_exit("WE");
 	if (!data->ea)
-		data->err = 4;
+		write_error_and_exit("EA");
 	if (!data->f_set)
-		data->err = 5;
+		write_error_and_exit("F");
 	if (!data->c_set)
-		data->err = 6;
-	if (!data->map)
-		data->err = 7;
+		write_error_and_exit("C");
+	if (!data->map || data->map_lines < 3)
+		write_error_and_exit("map");
 }
