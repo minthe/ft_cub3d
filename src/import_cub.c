@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 09:49:29 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/11 21:35:18 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/12 13:42:51 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,12 @@ static void	copy_element(t_var *var, int i)
 		cpy_color_to_struct(var, ++i, &var->data->f, &var->data->f_set);
 	else if (var->line[i] == 'C')
 		cpy_color_to_struct(var, ++i, &var->data->c, &var->data->c_set);
-	else if ((check_cub(var->data) == 0) && !is_ident_char(var->line[i]))
+	else if ((check_cub(var->data) == 0) && !is_ident_char(var->line[i]) && !is_map_char(var->line[i]))
 	{
 		write(2, "Error\ninvalid line\n", 19);
 		exit (EXIT_FAILURE);
 	}
-	else if ((check_cub(var->data) == 0) && only_map_char(var->line))
+	else if ((check_cub(var->data) == 0) && !is_ident_char(var->line[i]))
 	{
 		write(2, "Error\nmap error: not last element\n", 34);
 		exit (EXIT_FAILURE);
@@ -124,7 +124,8 @@ int	import_cub(t_var *var, char *argv, char *type)
 		var->line = get_next_line(var->fd1);
 	}
 	import_cub2(var);
-	import_map(var);
+	if (check_cub(var->data) == 2)
+		import_map(var);
 	check_elements(var->data);
 	close(var->fd1);
 	return (1);

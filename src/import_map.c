@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:23:47 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/11 21:42:05 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/12 13:31:56 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	import_map(t_var *var)
 	var->data->map_lines = count_linked_list(var->data->map_lst);
 	if (var->data->map_lines < 3)
 	{
-		write(2, "Error\nmap error: minimum lines not met\n", 39);
+		write(2, "Error\nmap error: invalid layout\n", 32);
 		exit (EXIT_FAILURE);
 	}
 	var->data->map = ft_calloc(var->data->map_lines + 1, \
