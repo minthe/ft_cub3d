@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 09:49:29 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/12 13:42:51 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/13 17:01:29 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,16 +67,11 @@ static void	copy_element(t_var *var, int i)
 		cpy_color_to_struct(var, ++i, &var->data->f, &var->data->f_set);
 	else if (var->line[i] == 'C')
 		cpy_color_to_struct(var, ++i, &var->data->c, &var->data->c_set);
-	else if ((check_cub(var->data) == 0) && !is_ident_char(var->line[i]) && !is_map_char(var->line[i]))
-	{
-		write(2, "Error\ninvalid line\n", 19);
-		exit (EXIT_FAILURE);
-	}
+	else if ((check_cub(var->data) == 0) && !is_ident_char(var->line[i]) && \
+		!is_map_char(var->line[i]))
+		error_msg_exit("invalid line");
 	else if ((check_cub(var->data) == 0) && !is_ident_char(var->line[i]))
-	{
-		write(2, "Error\nmap error: not last element\n", 34);
-		exit (EXIT_FAILURE);
-	}
+		error_msg_exit("map error: not last element");
 	else if ((check_cub(var->data) == 2))
 		add_tail(var->data->map_lst, ft_strdup_map(var, 0, NULL));
 }
@@ -103,10 +98,7 @@ static void	import_cub2(t_var *var)
 		free(var->line);
 		var->line = get_next_line(var->fd1);
 		if (var->line && !ft_is_whitespace(var->line))
-		{
-			write(2, "Error\nmap error: empty lines\n", 29);
-			exit (EXIT_FAILURE);
-		}
+			error_msg_exit("map error: empty lines");
 	}
 }
 
@@ -127,6 +119,8 @@ int	import_cub(t_var *var, char *argv, char *type)
 	if (check_cub(var->data) == 2)
 		import_map(var);
 	check_elements(var->data);
+	if (check_cub(var->data) == 3)
+		check_map(var, var->data->map, var->data->map_lines, var->data->p_set);
 	close(var->fd1);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 16:04:17 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/11 21:23:29 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/12 14:55:46 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,15 +61,9 @@ void	cpy_color_to_struct(t_var *var, int i, int *trgb, int *color_set)
 		atoi_cub(color_temp[2], 1, 0));
 	}
 	else if (count_values(color_temp) < 3)
-	{
-		write(2, "Error\nF/C: less than 3 color values\n", 36);
-		exit (EXIT_FAILURE);
-	}
+		error_msg_exit("F/C: less than 3 color values");
 	else if (count_values(color_temp) > 3)
-	{
-		write(2, "Error\nF/C: more than 3 color values\n", 36);
-		exit (EXIT_FAILURE);
-	}
+		error_msg_exit("F/C: more than 3 color values");
 	if (color_temp)
 		ft_free_doublepoint(color_temp);
 	*color_set = 1;

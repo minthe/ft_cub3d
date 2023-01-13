@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/22 09:20:50 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/11 21:36:27 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/12 14:57:15 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,7 @@ int	atoi_cub(const char *str, int sign, int ret)
 		if (ft_isdigit(*str))
 			ret = (ret * 10) + (*str - '0');
 		else if (!ft_isdigit(*str) && !ft_isspace(*str))
-		{
-			write(2, "Error\ninvalid color characters\n", 31);
-			exit (EXIT_FAILURE);
-		}
+			error_msg_exit("invalid color characters");
 		str++;
 	}
 	return (limiter(ret * sign));

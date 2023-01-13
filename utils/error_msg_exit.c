@@ -1,18 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_map.c                                        :+:      :+:    :+:   */
+/*   error_msg_exit.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/08 21:24:03 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/13 17:00:34 by vfuhlenb         ###   ########.fr       */
+/*   Created: 2023/01/12 14:19:39 by vfuhlenb          #+#    #+#             */
+/*   Updated: 2023/01/12 14:39:34 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cub3d.h"
+#include <stdlib.h>
+#include <unistd.h>
 
-void	check_map(t_var *var, const char **map, int map_lines, int p_set)
+static size_t	ft_strlen(const char *s)
 {
-	
+	size_t	counter;
+
+	counter = 0;
+	while (s[counter])
+	{
+		counter ++;
+	}
+	return (counter);
+}
+
+void	error_msg_exit(char *str)
+{
+	write(2, "Error\n", 6);
+	write(2, str, ft_strlen(str));
+	write(2, "\n", 1);
+	exit (EXIT_FAILURE);
 }

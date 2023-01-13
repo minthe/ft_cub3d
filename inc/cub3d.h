@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 14:27:58 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/11 21:34:37 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/13 17:02:00 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ typedef struct s_linked_list {
 
 typedef struct s_data
 {
-	char			*no; // N,E,S,W char *path_to_file.xmp
+	char			*no;
 	char			*so;
 	char			*we;
 	char			*ea;
@@ -59,7 +59,7 @@ typedef struct s_data
 	int				f_set;
 	int				c_set;
 	int				p_set;
-	char			**map; // valid map data
+	char			**map;
 	t_linked_list	*map_lst;
 	int				map_lines;
 	int				err;
@@ -88,7 +88,6 @@ int		import_cub(t_var *var, char *argv, char *type);
 void	import_map(t_var *var);
 int		check_cub(t_data *data);
 void	check_elements(t_data *data);
-void	check_map(t_var *var, char c);
 void	cleanup(t_var *var);
 void	cpy_color_to_struct(t_var *var, int i, int *trgb, int *color_set);
 int		atoi_cub(const char *str, int sign, int ret);
@@ -102,6 +101,7 @@ void	delete_list(t_linked_list *list);
 void	display_linked_list(t_linked_list *list);
 
 // UTILS
+void	error_msg_exit(char *str);
 int		ft_open_file(int *fd, char *path, int opt);
 int		init_struct(t_var *var);
 int		ft_check_fileext(char *path, char *ext);
@@ -111,8 +111,12 @@ int		ft_is_whitespace_char(char c);
 char	*ft_strdup_cub(const char *s1, size_t i, size_t j);
 char	*ft_strdup_map(t_var *var, size_t i, char *str);
 void	ft_free_doublepoint(char **to_free);
-int		is_map_char(char c);
 int		is_ident_char(char c);
+// map utils
+int		is_map_char(char c);
 int		only_map_char(const char *str);
+void	set_player(t_var *var, char c);
+void	check_map_char(t_var *var, char c);
+void	check_map(t_var *var, const char **map, int map_lines, int p_set);
 
 #endif
