@@ -3,3 +3,5 @@ _sandbox/
 .stfolder/
 .DS_Store
 .stignore
+probe/
+build/
