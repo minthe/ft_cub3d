@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 21:09:12 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/11 21:34:27 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/14 18:38:47 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ int	is_ident_char(char c)
 //function that checks for valid map character
 int	is_map_char(char c)
 {
-	if (c == 78 || (c >= 48 && c <= 49) || \
-		(c >= 78 && c <= 79) || c == 83 || c == 87)
+	if (c == 32 || (c >= 48 && c <= 49) || \
+		c == 78 || c == 79 || c == 83 || c == 87)
 		return (1);
 	return (0);
 }

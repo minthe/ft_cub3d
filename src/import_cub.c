@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 09:49:29 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/13 17:01:29 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/14 18:41:33 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,9 @@ static void	write_to_struct(t_var *var, int i, char c, char *nswe)
 
 static void	copy_element(t_var *var, int i)
 {
-	if (var->line[i] == 'N')
+	if ((check_cub(var->data) == 2))
+		add_tail(var->data->map_lst, ft_strdup_map(var, 0, NULL));
+	else if (var->line[i] == 'N')
 		write_to_struct(var, ++i, 'O', "no");
 	else if (var->line[i] == 'S')
 		write_to_struct(var, ++i, 'O', "so");
@@ -72,8 +74,6 @@ static void	copy_element(t_var *var, int i)
 		error_msg_exit("invalid line");
 	else if ((check_cub(var->data) == 0) && !is_ident_char(var->line[i]))
 		error_msg_exit("map error: not last element");
-	else if ((check_cub(var->data) == 2))
-		add_tail(var->data->map_lst, ft_strdup_map(var, 0, NULL));
 }
 
 static void	import_cub2(t_var *var)
@@ -119,8 +119,8 @@ int	import_cub(t_var *var, char *argv, char *type)
 	if (check_cub(var->data) == 2)
 		import_map(var);
 	check_elements(var->data);
-	if (check_cub(var->data) == 3)
-		check_map(var, var->data->map, var->data->map_lines, var->data->p_set);
+	// if (check_cub(var->data) == 3)
+	// 	check_map(var, var->data->map, var->data->map_lines, var->data->p_set);
 	close(var->fd1);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 14:28:02 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/11 17:35:04 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/14 18:30:14 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ static void	debug(t_var *var) // DEBUG
 {
 	int	i;
 	printf("\n---- DEBUG ----\n\n");
+	printf("max_col: %d\n", var->data->map_col);
 	printf("data->f: %x\n", var->data->f);
 	printf("data->c: %x\n\n", var->data->c);
 	printf("data->p_set: %d\n\n", var->data->p_set);
@@ -35,12 +36,14 @@ static void	debug(t_var *var) // DEBUG
 	printf("data->c_set: %d\n\n", var->data->c_set);
 	printf("data->map_lines: %d\n\n", var->data->map_lines);
 	i = 0;
+	printf("\n---- Linked List ----\n\n");
+	display_linked_list(var->data->map_lst);
+	printf("\n---- Map ----\n\n");
 	while (var->data->map[i])
 	{
 		printf("%s$\n", var->data->map[i]);
 		i++;
 	}
-	display_linked_list(var->data->map_lst);
 }
 
 int	main(int argc, char **argv)

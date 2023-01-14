@@ -6,22 +6,36 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:23:47 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/12 14:54:47 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/14 18:29:22 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
-static void	copy_linked_list(t_linked_list *list, char **map)
+static void	copy_linked_list(t_var *var, t_linked_list *list, char **map)
 {
 	t_node	*current;
+	int	row;
+	int col;
+	int	len;
 
+	row = 0;
 	current = list->head;
 	while (current != NULL)
 	{
-		*map = ft_strdup(current->data);
+		len = ft_strlen(current->data);
+		map[row] = ft_calloc(var->data->map_col + 1, sizeof(char));
+		col = 0;
+		while(col < var->data->map_col)
+		{
+			if (col < len)
+				map[row][col] = current->data[col];
+			else
+				map[row][col] = 32;
+			col++;
+		}
 		current = current->next;
-		map++;
+		row++;
 	}
 }
 
@@ -32,5 +46,6 @@ void	import_map(t_var *var)
 		error_msg_exit("map error: invalid layout");
 	var->data->map = ft_calloc(var->data->map_lines + 1, \
 		sizeof(char *));
-	copy_linked_list(var->data->map_lst, var->data->map);
+	var->data->map_col = max_col(var->data->map_lst);
+	copy_linked_list(var, var->data->map_lst, var->data->map);
 }

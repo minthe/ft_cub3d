@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 14:27:58 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/13 17:02:00 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/14 17:46:12 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ typedef struct s_data
 	char			**map;
 	t_linked_list	*map_lst;
 	int				map_lines;
+	int				map_col;
 	int				err;
 }t_data;
 
@@ -117,6 +118,7 @@ int		is_map_char(char c);
 int		only_map_char(const char *str);
 void	set_player(t_var *var, char c);
 void	check_map_char(t_var *var, char c);
-void	check_map(t_var *var, const char **map, int map_lines, int p_set);
+void	check_map(t_var *var, char **map, int map_lines, int p_set);
+int		max_col(t_linked_list *list);
 
 #endif
