@@ -6,15 +6,22 @@
 #    By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/01 14:46:38 by vfuhlenb          #+#    #+#              #
-#    Updated: 2023/01/14 18:42:23 by vfuhlenb         ###   ########.fr        #
+#    Updated: 2023/01/14 19:49:14 by vfuhlenb         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3D
 
+UNAME_S := $(shell uname -s)
+ifeq ($(UNAME_S), Darwin)
+CFLAGS= $(CFLAGS_MAC)
+else
+CFLAGS= $(CFLAGS_LINUX)
+endif
+
 CC = gcc
 CFLAGS_LINUX= -Wall -Wextra -Werror inc/mlx/libmlx_Linux.a -lXext -lX11 -lm -lz -fsanitize=address -g
-CFLAGS_MAC= -Wall -Wextra -Werror inc/mlx/libmlx.a /usr/X11/lib/libXext.dylib /usr/X11/lib/libX11.dylib -lm -lz -fsanitize=address -g
+CFLAGS_MAC= -Wall -Wextra -Werror -fsanitize=address -g
 
 RM = rm -f
 AF = ar rcs
@@ -42,19 +49,12 @@ utils/ft_free_doublepoint.c\
 utils/peeks.c\
 cub3d.c\
 
-UNAME_S := $(shell uname -s)
-ifeq ($(UNAME_S), Darwin)
-CFLAGS= $(CFLAGS_MAC)
-else
-CFLAGS= $(CFLAGS_LINUX)
-endif
-
 OBJS = $(SRCS:.c=.o)
 
 $(NAME): $(OBJS)
+	make -C inc/mlx
 	make -C inc/libft
 	make bonus -C inc/libft
-	make -C inc/mlx
 	$(CC) $(OBJS) $(CFLAGS) $(LIBFT) -o $(NAME)
 
 LIBFT_DIR = inc/libft
@@ -65,6 +65,7 @@ all: $(NAME)
 clean:
 	$(RM) $(OBJS)
 	make clean -C inc/libft
+	make clean -C inc/mlx
 
 fclean: clean
 	$(RM) $(NAME)
