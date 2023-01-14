@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 12:45:08 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/11 19:36:22 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/14 20:18:06 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	check_cub(t_data *cub)
 		&& cub->f_set && cub->c_set && !cub->map)
 		return (2);
 	if (cub->no && cub->so && cub->we && cub->ea \
-		&& cub->f_set && cub->c_set && cub->map && cub->p_set)
+		&& cub->f_set && cub->c_set && cub->map)
 		return (3);
 	return (0);
 }
