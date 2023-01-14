@@ -6,7 +6,7 @@
 /*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 14:27:58 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/11 16:32:03 by dimbrea          ###   ########.fr       */
+/*   Updated: 2023/01/14 12:40:46 by dimbrea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,17 @@
 # include "math.h"
 # include "libft/libft.h"
 # include <stdio.h>
+
+//trying to make wall reading more efficient
+
+typedef struct s_node
+{
+	int		x;
+	int		y;
+	char	is_wall;
+	struct s_node	*next;
+	
+}t_node;
 
 typedef struct s_img
 {
@@ -68,14 +79,10 @@ typedef struct s_player
 	int		pos_y;	
 }t_player;
 
-typedef struct s_ray
-{
-
-}t_ray;
-
 typedef struct s_map
 {
 	char	*d_map[100];
+	int		**grid_dims;
 	int		map_w;
 	int		map_h;
 	int		wall_sx;
@@ -90,10 +97,10 @@ typedef struct s_map
 typedef struct s_var
 {
 	t_img		*img;
-	t_ray		*ray;
 	t_mlx		*mlx;
 	t_player	*plr;
 	t_map		*map;
+	t_node		*node;
 }t_var;
 
 // keys.c

@@ -6,7 +6,7 @@
 /*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 17:09:03 by dimbrea           #+#    #+#             */
-/*   Updated: 2023/01/11 13:26:51 by dimbrea          ###   ########.fr       */
+/*   Updated: 2023/01/13 10:28:21 by dimbrea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	ft_w(t_var *var)
 	}
 	mlx_destroy_image(var->mlx->ptr, var->img->structure);
 	var->img->structure = mlx_new_image(var->mlx->ptr, SCREEN_WIDTH, SCREEN_HEIGHT);
-}
+	}
 
 void	ft_a(t_var *var)
 {
@@ -116,6 +116,7 @@ void	ft_lr_arrows(t_var *var, int arrow)
 		var->plr->p_angle = 0.0;
 	mlx_destroy_image(var->mlx->ptr, var->img->structure);
 	var->img->structure = mlx_new_image(var->mlx->ptr, SCREEN_WIDTH, SCREEN_HEIGHT);
+
 }
 
 void	render_background(t_var *var)
