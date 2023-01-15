@@ -6,7 +6,7 @@
 /*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 19:03:45 by dimbrea           #+#    #+#             */
-/*   Updated: 2023/01/15 18:32:31 by dimbrea          ###   ########.fr       */
+/*   Updated: 2023/01/15 19:11:59 by dimbrea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,45 +127,6 @@ void	ft_set_walls(t_var *var)
 	}
 }
 
-// void ft_grid_dims(t_var *var)
-// {
-// 	int g_rows;
-// 	int	g_cols;
-// 	int	i;
-// 	int	j;
-// 	int	height;
-// 	int width;
-
-// 	g_rows = var->map->map_h;
-// 	g_cols = var->map->map_w;
-// 	var->map->grid_dims = malloc(sizeof(int *) * g_rows);
-// 	i = 0;
-// 	while (i < g_rows)
-// 	{
-// 		var->map->grid_dims[i] = malloc(sizeof(int) * g_cols * 2);
-// 		i++;
-// 	}
-// 	height = 0;
-// 	width = 0;
-// 	i = 0;
-// 	while (i < g_rows)
-// 	{
-// 		j = 0;
-// 		while(j < g_cols)
-// 		{
-// 			var->map->grid_dims[i][j * 2] = height;
-// 			printf("%d\n", var->map->grid_dims[i][j * 2]);
-// 			var->map->grid_dims[i][j * 2 + 1] = width; 
-// 			width += var->map->modul_w;
-// 			j++;
-// 		}
-// 		height += var->map->modul_h;
-// 		width = 0;
-// 		i++;
-// 	}
-	
-// }
-
 int ft_is_in_wall(t_var *var, int height, int width, int x, int y)
 {
 	if (x >= width && x < width + var->map->modul_w &&
@@ -199,33 +160,6 @@ int	ft_is_wall(t_var *var, int x, int y)
 	}
 	return (0);
 }
-
-// int	ft_is_wall(t_var *var, int x, int y)
-// {
-// 	int	i;
-// 	int	j;
-// 	int	width;
-// 	int	height;
-
-// 	i = -1;
-// 	(void)x;
-// 	(void)y;
-// 	// height = 0;
-// 	while (++i < var->map->map_h)
-// 	{
-// 		j = -1;
-// 		while (++j < var->map->map_w)
-// 		{
-// 			height = var->map->grid_dims[i][j * 2];
-// 			width = var->map->grid_dims[i][j * 2 + 1];
-// 			printf("%d height\n", height);
-// 			printf("%d width\n", width);
-// 			if (var->data->map[i][j] == '1' && ft_is_in_wall(var,height,width, x, y))
-// 				return (1);
-// 		}
-// 	}
-// 	return (0);
-// }
 
 void	ft_put_player(t_var *var)
 {
@@ -265,30 +199,6 @@ void	ft_starting_angle(t_var *var, char nswe)
 	if (nswe == 'E')
 		var->plr->p_angle = 0;
 }
-
-// void	ft_plr_orient(t_var *var, char nswe)
-// {
-// 	if (nswe == 'N')
-// 	{
-// 		var->plr->end_y = var->plr->pos_y - 25;
-// 		var->plr->end_x = var->plr->pos_x;
-// 	}
-// 	if (nswe == 'S')
-// 	{
-// 		var->plr->end_y = var->plr->pos_y + 25;
-// 		var->plr->end_x = var->plr->pos_x;
-// 	}
-// 	if (nswe == 'W')
-// 	{
-// 		var->plr->end_y = var->plr->pos_y;
-// 		var->plr->end_x = var->plr->pos_x - 25;
-// 	}
-// 	if (nswe == 'E')
-// 	{
-// 		var->plr->end_y = var->plr->pos_y;
-// 		var->plr->end_x = var->plr->pos_x + 25;
-// 	}
-// }
 
 void	ft_ray(t_var *var, char nswe)
 {

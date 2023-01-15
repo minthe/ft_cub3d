@@ -6,7 +6,7 @@
 /*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 10:13:11 by dimbrea           #+#    #+#             */
-/*   Updated: 2023/01/15 19:03:27 by dimbrea          ###   ########.fr       */
+/*   Updated: 2023/01/15 19:17:12 by dimbrea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,14 +87,11 @@ void	ft_draw_wall(t_var *var, int distance, int x_ing)
 
 	(void)var;
 	p_plane_dist = (SCREEN_WIDTH / 2) / tan((double)FOV) / 2;
-	p_wall_height = (double)var->map->modul_w / distance * p_plane_dist;
+	p_wall_height = (double)var->map->modul_w / (double)distance * p_plane_dist;
+	if (p_wall_height < 0)
+		p_wall_height *= -1;
 	y = (SCREEN_HEIGHT / 2) - (p_wall_height / 2);
 	to_draw = 0;
-	// printf("%d y\n", y);
-	// printf("%f wall_HEIGHT\n", p_wall_height);
-	// printf("%d DISTANCE\n", distance);
-	// if (p_wall_height < 0)
-	// 	p_wall_height *= -1;
 	while(to_draw < SCREEN_HEIGHT)
 	{
 		if (to_draw < y)
