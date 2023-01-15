@@ -12,18 +12,6 @@
 
 #include "inc/cub3d.h"
 
-void	keypress(int key, t_var *var)
-{
-	if (key == W)
-		var->posy += 5;
-	if (key == A)
-		var->posx -= 5;
-	if (key == S)
-		var->posy -= 5;
-	if (key == D)
-		var->posy += 5;
-}
-
 static void	debug(t_var *var)
 {
 	int	i;

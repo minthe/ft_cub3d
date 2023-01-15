@@ -31,21 +31,11 @@ static void	init_cub(t_data *data)
 	data->err = 0;
 }
 
-static void	init_mlx(t_mlx *mlx)
-{
-	mlx->img = NULL;
-	mlx->ptr = NULL;
-	mlx->window = NULL;
-}
-
 // inits the data struct
 int	init_struct(t_var *var)
 {
 	var->fd1 = 0;
 	var->line = NULL;
 	init_cub(var->data);
-	init_mlx(var->mlx);
-	var->posx = -1;
-	var->posy = -1;
 	return (1);
 }

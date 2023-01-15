@@ -11,8 +11,8 @@
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
-
 # define CUB3D_H
+
 # define SCREEN_WIDTH 800
 # define SCREEN_HEIGHT 600
 # define W 119
@@ -24,20 +24,22 @@
 # define ESC 65307
 # define ROT_SPEED 0.02
 # define FOV 90
-# include "mlx/mlx.h"
-# include "math.h"
-# include "libft/libft.h"
-# include <stdio.h>
 
-//trying to make wall reading more efficient
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <fcntl.h>
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <math.h>
+# include "mlx/mlx.h"
+# include "libft/libft.h"
+# include "get_next_line/get_next_line.h"
 
 typedef struct s_node
 {
-	int		x;
-	int		y;
-	char	is_wall;
+	char			*data;
 	struct s_node	*next;
-	
 }t_node;
 
 typedef struct s_img
@@ -56,21 +58,6 @@ typedef struct s_img
 	int		begin_x;
 	int		begin_y;
 }t_img;
-# include "get_next_line/get_next_line.h"
-
-# include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <fcntl.h>
-# include <sys/types.h>
-# include <sys/stat.h>
-# include <math.h>
-
-typedef struct s_node {
-	char				*data;
-	int					pipe_nbr;
-	struct s_node		*next;
-}	t_node;
 
 typedef struct s_linked_list {
 	t_node	*head;
@@ -143,7 +130,7 @@ typedef struct s_var
 	t_node		*node;
 	t_data		*data;
 	char		*line;
-	int			fd1:
+	int			fd1;
 }t_var;
 
 // SRC
@@ -201,4 +188,5 @@ void	ft_put_player(t_var *var);
 void	ft_ray(t_var *var, char nswe);
 // void	draw_ln(t_var *var);// not needded
 void	ft_cast_rayz(t_var *var, double radians);
+
 #endif
