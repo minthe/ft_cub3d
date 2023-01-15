@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 14:19:39 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/12 14:39:34 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/15 16:47:40 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ static size_t	ft_strlen(const char *s)
 	return (counter);
 }
 
+// outputs str as error message and exits
 void	error_msg_exit(char *str)
 {
 	write(2, "Error\n", 6);

@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 09:49:29 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/15 14:22:45 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/15 16:48:56 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,7 @@ static void	import_cub2(t_var *var)
 	}
 }
 
+// imports all elements to struct
 int	import_cub(t_var *var, char *argv, char *type)
 {
 	if (!ft_open_file(&var->fd1, argv, O_RDONLY) \

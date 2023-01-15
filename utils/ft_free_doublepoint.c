@@ -6,12 +6,13 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 14:28:22 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/11 17:20:33 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/15 16:46:53 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
+// frees **char
 void	ft_free_doublepoint(char **to_free)
 {
 	int	i;

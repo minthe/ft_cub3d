@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 09:01:15 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/11 12:43:32 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/15 16:47:23 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ static size_t	ft_strlen(const char *s)
 	return (counter);
 }
 
+// checks if given fileextension equals
 int	ft_check_fileext(char *path, char *ext)
 {
 	if ((ft_strncmp(&path[(ft_strlen(path) - ft_strlen(ext))], \

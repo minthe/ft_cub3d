@@ -6,12 +6,13 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 18:01:17 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/13 16:31:19 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/15 16:46:08 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
+// copys string including spaces, excluding NewLine character
 char	*ft_strdup_map(t_var *var, size_t i, char *str)
 {
 	str = ft_calloc((ft_strlen_gnl(var->line) + 1), \
@@ -30,6 +31,7 @@ char	*ft_strdup_map(t_var *var, size_t i, char *str)
 	return (str);
 }
 
+// copys string excluding spaces
 char	*ft_strdup_cub(const char *s1, size_t i, size_t j)
 {
 	char	*str;

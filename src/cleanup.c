@@ -6,12 +6,13 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 13:54:39 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/11 17:19:30 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/15 16:49:27 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
+// frees all allocated memory from parsing
 void	cleanup(t_var *var)
 {
 	if (var->data->no)

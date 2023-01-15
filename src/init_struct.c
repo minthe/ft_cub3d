@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 11:18:44 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/14 17:24:01 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/15 16:48:04 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ static void	init_mlx(t_mlx *mlx)
 	mlx->window = NULL;
 }
 
+// inits the data struct
 int	init_struct(t_var *var)
 {
 	var->fd1 = 0;

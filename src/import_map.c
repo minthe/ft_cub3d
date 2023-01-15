@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:23:47 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/15 15:12:52 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/15 16:48:37 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ static void	copy_linked_list(t_var *var, t_linked_list *list, char **map)
 	}
 }
 
+// copies map from linked list to **map, normalize col-size
 void	import_map(t_var *var)
 {
 	var->data->map_lines = count_linked_list(var->data->map_lst);

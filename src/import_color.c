@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 16:04:17 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/12 14:55:46 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/15 16:49:09 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ static void	del_newline(char *line)
 	}
 }
 
+// imports color values to struct
 void	cpy_color_to_struct(t_var *var, int i, int *trgb, int *color_set)
 {
 	char	**color_temp;
