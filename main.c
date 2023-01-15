@@ -6,7 +6,7 @@
 /*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 19:03:45 by dimbrea           #+#    #+#             */
-/*   Updated: 2023/01/15 19:11:59 by dimbrea          ###   ########.fr       */
+/*   Updated: 2023/01/15 20:18:13 by dimbrea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	render(t_var *var)
 	// ft_set_walls(var);
 	// render_background(var);
 	// ft_player(var);
-	ft_cast_rayz(var, var->plr->radians);
+	ft_cast_rayz(var);
 	mlx_put_image_to_window(var->mlx->ptr, var->mlx->window, var->img->structure, 0, 0);
 	return (0);
 }
@@ -127,37 +127,15 @@ void	ft_set_walls(t_var *var)
 	}
 }
 
-int ft_is_in_wall(t_var *var, int height, int width, int x, int y)
-{
-	if (x >= width && x < width + var->map->modul_w &&
-	y >= height && y < height + var->map->modul_h)
-		return (1);
-	return (0);
-}
-
-
 int	ft_is_wall(t_var *var, int x, int y)
 {
-	int	i;
-	int	j;
-	int	width;
-	int	height;
+	int col;
+	int	row;
 
-	i = -1;
-	height = 0;
-	while (var->data->map[++i])
-	{
-		j = -1;
-		width = 0;
-		while (var->data->map[i][++j])
-		{
-			if (var->data->map[i][j] == '1' &&
-			ft_is_in_wall(var, height, width, x, y))
-				return (1);
-			width += var->map->modul_w;
-		}
-		height += var->map->modul_h;
-	}
+	col = x / var->map->modul_w;
+	row = y / var->map->modul_h;
+	if (var->data->map[row][col] == '1')
+		return (1);
 	return (0);
 }
 
@@ -204,7 +182,7 @@ void	ft_ray(t_var *var, char nswe)
 {
 	
 	ft_starting_angle(var, nswe);
-	ft_cast_rayz(var, var->plr->radians);
+	ft_cast_rayz(var);
 	mlx_put_image_to_window(var->mlx->ptr, var->mlx->window, var->img->structure, 0, 0);
 
 }
@@ -232,9 +210,9 @@ int	main(int argc, char **argv)
 		var.img->structure = mlx_new_image(var.mlx->ptr, SCREEN_WIDTH, SCREEN_HEIGHT);
 		var.img->addr = mlx_get_data_addr(var.img->structure, &var.img->bpp, &var.img->size_line, &var.img->endian);
 		ft_ray(&var, var.plr->orient);
-		mlx_loop_hook(var.mlx->ptr, &render, &var);
 		mlx_hook(var.mlx->window, 17, 0L, x_window, &var);
 		mlx_hook(var.mlx->window,2, (1l << 0),keypress, &var);
+		mlx_loop_hook(var.mlx->ptr, &render, &var);
 		mlx_loop(var.mlx->ptr);
 	}
 	else

@@ -6,7 +6,7 @@
 /*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 14:27:58 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/15 19:24:40 by dimbrea          ###   ########.fr       */
+/*   Updated: 2023/01/15 21:51:18 by dimbrea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,8 @@ typedef struct s_player
 	double	end_x;
 	double	end_y;
 	int		pos_x;
-	int		pos_y;	
+	int		pos_y;
+	double	mid_ray;
 }t_player;
 
 typedef struct s_map
@@ -187,7 +188,7 @@ int		ft_is_wall(t_var *var, int x, int y);
 void	ft_put_player(t_var *var);
 void	ft_ray(t_var *var, char nswe);
 // void	draw_ln(t_var *var);// not needded
-void	ft_cast_rayz(t_var *var, double radians);
+void	ft_cast_rayz(t_var *var);
 void	ft_draw_wall(t_var *var, int distance, int x_ing);
 
 #endif
