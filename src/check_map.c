@@ -14,13 +14,13 @@
 
 static void	check_hor(char **map, int row, int col)
 {
-	if (map[row][col - 1] != '1' || map[row][col + 1] != '1')
+	if (map[row][col - 1] == ' ' || map[row][col + 1] == ' ')
 		error_msg_exit("invalid map layout");
 }
 
 static void	check_ver(char **map, int row, int col)
 {
-	if (map[row - 1][col] != '1' || map[row + 1][col] != '1')
+	if (map[row - 1][col] == ' ' || map[row + 1][col] == ' ')
 		error_msg_exit("invalid map layout");
 }
 
