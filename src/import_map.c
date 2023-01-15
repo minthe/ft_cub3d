@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:23:47 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/14 18:29:22 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/15 15:12:52 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 static void	copy_linked_list(t_var *var, t_linked_list *list, char **map)
 {
 	t_node	*current;
-	int	row;
-	int col;
-	int	len;
+	int		row;
+	int		col;
+	int		len;
 
 	row = 0;
 	current = list->head;
@@ -26,7 +26,7 @@ static void	copy_linked_list(t_var *var, t_linked_list *list, char **map)
 		len = ft_strlen(current->data);
 		map[row] = ft_calloc(var->data->map_col + 1, sizeof(char));
 		col = 0;
-		while(col < var->data->map_col)
+		while (col < var->data->map_col)
 		{
 			if (col < len)
 				map[row][col] = current->data[col];

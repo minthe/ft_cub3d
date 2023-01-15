@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 14:28:02 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/14 18:30:14 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/15 15:13:34 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,10 @@ void	keypress(int key, t_var *var)
 		var->posy += 5;
 }
 
-static void	debug(t_var *var) // DEBUG
+static void	debug(t_var *var)
 {
 	int	i;
+
 	printf("\n---- DEBUG ----\n\n");
 	printf("max_col: %d\n", var->data->map_col);
 	printf("data->f: %x\n", var->data->f);
@@ -58,7 +59,7 @@ int	main(int argc, char **argv)
 	{
 		printf("running...\n");
 	}
-	debug(&var); // DEBUG
+	debug(&var);
 	cleanup(&var);
 	return (0);
 }
