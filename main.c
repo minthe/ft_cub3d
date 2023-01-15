@@ -6,7 +6,7 @@
 /*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 19:03:45 by dimbrea           #+#    #+#             */
-/*   Updated: 2023/01/13 16:20:50 by dimbrea          ###   ########.fr       */
+/*   Updated: 2023/01/15 18:32:31 by dimbrea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,10 +72,10 @@ void	ft_map_size(t_var *var)
 	i = 0;
 	var->map->map_h = 0;
 	var->map->map_w = 0;
-	while (var->map->d_map[i])
+	while (var->data->map[i])
 	{
 		j = 1;
-		while(var->map->d_map[i][j])
+		while(var->data->map[i][j])
 			j++;
 		if(j >  var->map->map_w)
 			var->map->map_w = j;
@@ -113,13 +113,13 @@ void	ft_set_walls(t_var *var)
 
 	i = -1;
 	height = 0;
-	while (var->map->d_map[++i])
+	while (var->data->map[++i])
 	{
 		j = -1;
 		width = 0;
-		while (var->map->d_map[i][++j])
+		while (var->data->map[i][++j])
 		{
-			if (var->map->d_map[i][j] == '1' || var->map->d_map[i][j] == ' ')
+			if (var->data->map[i][j] == '1' || var->data->map[i][j] == ' ')
 				ft_color(var, height, width);
 			width += var->map->modul_w;
 		}
@@ -184,13 +184,13 @@ int	ft_is_wall(t_var *var, int x, int y)
 
 	i = -1;
 	height = 0;
-	while (var->map->d_map[++i])
+	while (var->data->map[++i])
 	{
 		j = -1;
 		width = 0;
-		while (var->map->d_map[i][++j])
+		while (var->data->map[i][++j])
 		{
-			if (var->map->d_map[i][j] == '1' &&
+			if (var->data->map[i][j] == '1' &&
 			ft_is_in_wall(var, height, width, x, y))
 				return (1);
 			width += var->map->modul_w;
@@ -220,7 +220,7 @@ int	ft_is_wall(t_var *var, int x, int y)
 // 			width = var->map->grid_dims[i][j * 2 + 1];
 // 			printf("%d height\n", height);
 // 			printf("%d width\n", width);
-// 			if (var->map->d_map[i][j] == '1' && ft_is_in_wall(var,height,width, x, y))
+// 			if (var->data->map[i][j] == '1' && ft_is_in_wall(var,height,width, x, y))
 // 				return (1);
 // 		}
 // 	}
@@ -236,17 +236,17 @@ void	ft_put_player(t_var *var)
 
 	i = -1;
 	height = 0;
-	while (var->map->d_map[++i])
+	while (var->data->map[++i])
 	{
 		j = -1;
 		width = 0;
-		while (var->map->d_map[i][++j])
+		while (var->data->map[i][++j])
 		{
-			if (ft_strchr("NSEW", var->map->d_map[i][j]))
+			if (ft_strchr("NSEW", var->data->map[i][j]))
 			{
 				var->plr->pos_x = width + var->map->modul_w / 2;
 				var->plr->pos_y = height + var->map->modul_h / 2;
-				var->plr->orient = var->map->d_map[i][j];
+				var->plr->orient = var->data->map[i][j];
 			}
 			width += var->map->modul_w;
 		}
@@ -306,22 +306,16 @@ int	main(int argc, char **argv)
 	t_mlx	data_m;
 	t_img	s_img;
 	t_player	player;
+	t_data	cub_s;
+
+	var.data = &cub_s;
 	var.mlx = &data_m;
 	var.map = &map_m;
 	var.img = &s_img;
 	var.plr = &player;
-	var.map->d_map[0] = "1111111111111111111111111";
-	var.map->d_map[1] = "10S00000001100000000001";
-	var.map->d_map[2] = "100000000111000000011111";
-	var.map->d_map[3] = "1001000000000000000000011";
-	var.map->d_map[4] = "1111111110110000011110001";
-	var.map->d_map[5] = "1111111111111111111111111";
-	var.map->d_map[6] = NULL;
-	(void)argv;
-	if (argc == 2)
+	if (argc == 2 && init_struct(&var) && import_cub(&var, argv[1], ".cub"))
 	{
 		ft_map_size(&var);
-		// ft_grid_dims(&var);
 		ft_put_player(&var);
 		var.mlx->ptr = mlx_init();
 		var.mlx->window = mlx_new_window(var.mlx->ptr,SCREEN_WIDTH, SCREEN_HEIGHT, "cub3d");
@@ -334,6 +328,7 @@ int	main(int argc, char **argv)
 		mlx_loop(var.mlx->ptr);
 	}
 	else
-		write(2, "Error 2 arguments needed\n", 25);
+		error_msg_exit("Error only map needed as argument");
+	cleanup(&var);
 	return (0);
 }

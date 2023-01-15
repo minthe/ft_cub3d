@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 14:27:58 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/15 14:44:29 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/15 18:33:48 by dimbrea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,5 +188,6 @@ void	ft_put_player(t_var *var);
 void	ft_ray(t_var *var, char nswe);
 // void	draw_ln(t_var *var);// not needded
 void	ft_cast_rayz(t_var *var, double radians);
+void	ft_draw_wall(t_var *var, int distance, int x_ing);
 
 #endif

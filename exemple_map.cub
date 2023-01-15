@@ -1,17 +1,13 @@
-NO /path_to_north_texture
-SO /path_to_south_texture
-WE /path_to_west_texture
-EA /path_to_east_texture
+NO inc/textures/greyWall.xpm
+SO inc/textures/blueWall.xpm
+WE inc/textures/redWall.xpm
+EA inc/textures/pissWall.xpm
 
-RGBs
-Floor color
 F 200,100,0
-
-Ceiling color
 C 255,30,0
 
 111111
-100101
-101001
-1100N1
+111111
+111101
+1111N1
 111111
