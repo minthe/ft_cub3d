@@ -6,7 +6,7 @@
 /*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 14:27:58 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/14 22:47:37 by dimbrea          ###   ########.fr       */
+/*   Updated: 2023/01/15 16:51:56 by dimbrea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # define L_ARROW 65361
 # define ESC 65307
 # define ROT_SPEED 0.02
-# define FOV 90
+# define FOV 60
 # include "mlx/mlx.h"
 # include "math.h"
 # include "libft/libft.h"

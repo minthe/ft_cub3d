@@ -6,7 +6,7 @@
 /*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 19:03:45 by dimbrea           #+#    #+#             */
-/*   Updated: 2023/01/14 22:33:04 by dimbrea          ###   ########.fr       */
+/*   Updated: 2023/01/15 17:48:53 by dimbrea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	render(t_var *var)
 		return (1);
 	// ft_set_walls(var);
 	// render_background(var);
-	// ft_player(var);
+	ft_player(var);
 	ft_cast_rayz(var, var->plr->radians);
 	mlx_put_image_to_window(var->mlx->ptr, var->mlx->window, var->img->structure, 0, 0);
 	return (0);
@@ -201,7 +201,7 @@ int	main(int argc, char **argv)
 	var.map->d_map[0] = "1111111111111111111111111";
 	var.map->d_map[1] = "10N00000001100000000001  ";
 	var.map->d_map[2] = "100000000111000000011111 ";
-	var.map->d_map[3] = "1001000000000000000000011";
+	var.map->d_map[3] = "1001000000000001000000011";
 	var.map->d_map[4] = "1111111110110000011110001";
 	var.map->d_map[5] = "1111111111111111111111111";
 	var.map->d_map[6] = NULL;
