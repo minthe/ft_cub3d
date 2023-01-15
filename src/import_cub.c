@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 09:49:29 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/14 20:18:25 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/15 14:22:45 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,7 @@ int	import_cub(t_var *var, char *argv, char *type)
 		import_map(var);
 	check_elements(var->data);
 	if (check_cub(var->data) == 3)
-		check_map(var, var->data->map, var->data->map_lines, var->data->p_set);
+		check_map(var->data);
 	close(var->fd1);
 	return (1);
 }
