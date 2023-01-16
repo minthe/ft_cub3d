@@ -168,6 +168,8 @@ char	*ft_strdup_cub(const char *s1, size_t i, size_t j);
 char	*ft_strdup_map(t_var *var, size_t i, char *str);
 void	ft_free_doublepoint(char **to_free);
 int		is_ident_char(char c);
+int		is_cf_char(char c);
+
 // map utils
 int		is_map_char(char c);
 int		is_mchar(char c);

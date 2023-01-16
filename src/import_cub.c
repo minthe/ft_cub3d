@@ -14,14 +14,19 @@
 
 static void	check_access(char *str, char *element)
 {
-	if (access(str, R_OK) != 0)
+	int	fd_tex;
+
+	fd_tex = open(str, O_RDONLY);
+	if (fd_tex < 0)
 	{
 		write(2, "Error\n", 6);
 		write(2, element, ft_strlen(element));
 		write(2, " -> ", 4);
 		perror(str);
 		exit (EXIT_FAILURE);
+		close(fd_tex);
 	}
+	close(fd_tex);
 }
 
 static void	write_to_struct(t_var *var, int i, char c, char *nswe)
@@ -63,15 +68,17 @@ static void	copy_element(t_var *var, int i)
 	}
 	else if (var->line[i] == 'N')
 		write_to_struct(var, ++i, 'O', "no");
-	else if (var->line[i] == 'S')
+	else if (var->line[i] == 'S' && var->line[i + 1] && var->line[i + 1] == 'O')
 		write_to_struct(var, ++i, 'O', "so");
-	else if (var->line[i] == 'W')
+	else if (var->line[i] == 'W' && var->line[i + 1] && var->line[i + 1] == 'E')
 		write_to_struct(var, ++i, 'E', "we");
-	else if (var->line[i] == 'E')
+	else if (var->line[i] == 'E' && var->line[i + 1] && var->line[i + 1] == 'A')
 		write_to_struct(var, ++i, 'A', "ea");
-	else if (var->line[i] == 'F')
+	else if (var->line[i] == 'F' && var->line[i + 1] && \
+		is_cf_char(var->line[i + 1]))
 		cpy_color_to_struct(var, ++i, &var->data->f, &var->data->f_set);
-	else if (var->line[i] == 'C')
+	else if (var->line[i] == 'C' && var->line[i + 1] && \
+		is_cf_char(var->line[i + 1]))
 		cpy_color_to_struct(var, ++i, &var->data->c, &var->data->c_set);
 	else if ((check_cub(var->data) == 0) && !is_ident_char(var->line[i]) && \
 		!is_map_char(var->line[i]))
