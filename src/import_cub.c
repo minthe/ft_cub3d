@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   import_cub.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 09:49:29 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/15 16:48:56 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/16 18:19:27 by dimbrea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,19 @@
 
 static void	check_access(char *str, char *element)
 {
-	if (access(str, R_OK) != 0)
+	int	fd_tex;
+
+	fd_tex = open(str, O_RDONLY);
+	if (fd_tex < 0)
 	{
 		write(2, "Error\n", 6);
 		write(2, element, ft_strlen(element));
 		write(2, " -> ", 4);
 		perror(str);
 		exit (EXIT_FAILURE);
+		close(fd_tex);
 	}
+	close(fd_tex);
 }
 
 static void	write_to_struct(t_var *var, int i, char c, char *nswe)

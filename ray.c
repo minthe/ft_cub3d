@@ -6,7 +6,7 @@
 /*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 10:13:11 by dimbrea           #+#    #+#             */
-/*   Updated: 2023/01/15 21:45:35 by dimbrea          ###   ########.fr       */
+/*   Updated: 2023/01/16 17:48:38 by dimbrea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,15 +67,25 @@ void	ft_get_dist(t_var *var)
 
 void	ft_cast_rayz(t_var *var)
 {
-	double	ray_pos;
-	double	ray_angle;
-	double	distance;
-	double	x;
-	double	y;
-	double	dx;
-	double	dy;
+	long double	ray_pos;
+	long double	ray_angle;
+	long double	distance;
+	long double	x;
+	long double	y;
+	long double	dx;
+	long double	dy;
+	long double		base_offset;
+	long double	p_wall_height;
+	long double	p_plane_dist;
+	long double squirt;
+	long double d_base_off;
+
+	// double d_distance;
+	
+	// double	cam_len;
 	int		x_ing;
 
+	base_offset = 400.0 ;
 	ray_pos = 0;
 	x_ing = 0;
 	ft_get_dist(var);
@@ -99,38 +109,59 @@ void	ft_cast_rayz(t_var *var)
 			distance += 1;
 		}
 		// distance = distance * cos(var->plr->radians);
-		// printf("%f distance\n", distance);
-		// printf("%f radians\n", var->plr->radians);
-		ft_draw_wall(var, distance, x_ing);
+		// printf("%f base\n", base_offset);
+		// ray_angle = ray_angle * M_PI / 180.0;
+		// printf("%f distance before\n", distance);
+		// if (distance < SCREEN_WIDTH / 2)
+			// distance = SCREEN_WIDTH / 2;
+		// d_distance = sqrt(pow(distance, 2.0) - pow(base_offset, 2.0));
+		// printf("%f distance\n", d_distance);
+		p_plane_dist = (SCREEN_WIDTH / 2) / tan((double)FOV) / 2;
+		if (p_wall_height > SCREEN_HEIGHT)
+		{
+			p_wall_height = (double)var->map->modul_h * p_plane_dist / distance;	
+		}
+		else
+		{
+			distance *= distance;
+			base_offset *= base_offset;
+			d_base_off = distance - base_offset;
+			squirt = sqrt(distance);
+			printf("%Lf SQUIRT\n", d_base_off);
+			p_wall_height = (double)var->map->modul_h * p_plane_dist / squirt;
+		}
+		ft_draw_wall(var, p_wall_height, x_ing);
+		if (ray_pos >= 0.5)
+			base_offset += 1.0;
+		else
+			base_offset -= 1.0;
 		ray_pos += 0.00125;// decrease for more rays
 		x_ing++;
 	}
 }
 
-void	ft_draw_wall(t_var *var, int distance, int x_ing)
+void	ft_draw_wall(t_var *var, double p_wall_height, int x_ing)
 {
-	double	p_plane_dist;
-	double	p_wall_height;
+	
 	int		y;
 	int		to_draw;
-	// double	remainder_sq;
+	// double	remainder;
 	// double	x;
-	
+
+	// remainder = distance - var->plr->mid_ray;
+	// printf("%f remainder\n", distance);
 	// x = tan((double)FOV / 2) * var->plr->mid_ray;
-	p_plane_dist = (SCREEN_WIDTH / 2) / tan((double)FOV) / 2;
-	p_wall_height = (double)var->map->modul_w / (double)distance * p_plane_dist;
-	if (p_wall_height < 0)
-		p_wall_height *= -1;
+	
 	y = (SCREEN_HEIGHT / 2) - (p_wall_height / 2);
 	to_draw = 0;
 	while(to_draw < SCREEN_HEIGHT)
 	{
 		if (to_draw <= y)
-			img_pix_put(var, x_ing, to_draw, 0x0000FF);
+			img_pix_put(var, x_ing, to_draw, var->data->c);
 		else if (to_draw >= y && to_draw <= p_wall_height + y)
 			img_pix_put(var, x_ing, to_draw, 0xFFFFFF);
 		else if (to_draw >= p_wall_height)
-			img_pix_put(var, x_ing, to_draw, 0x800000);
+			img_pix_put(var, x_ing, to_draw, var->data->f);
 		to_draw++;
 	}
 

@@ -6,7 +6,7 @@
 /*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 19:03:45 by dimbrea           #+#    #+#             */
-/*   Updated: 2023/01/15 20:18:13 by dimbrea          ###   ########.fr       */
+/*   Updated: 2023/01/16 17:56:48 by dimbrea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,6 +164,7 @@ void	ft_put_player(t_var *var)
 		}
 		height += var->map->modul_h;
 	}
+	
 }
 
 void	ft_starting_angle(t_var *var, char nswe)
@@ -176,6 +177,7 @@ void	ft_starting_angle(t_var *var, char nswe)
 		var->plr->p_angle = 180;
 	if (nswe == 'E')
 		var->plr->p_angle = 0;
+	var->plr->c_angle = var->plr->p_angle;
 }
 
 void	ft_ray(t_var *var, char nswe)

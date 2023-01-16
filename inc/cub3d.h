@@ -6,7 +6,7 @@
 /*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 14:27:58 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/15 21:51:18 by dimbrea          ###   ########.fr       */
+/*   Updated: 2023/01/16 15:11:44 by dimbrea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,10 @@ typedef struct s_player
 	double	ray_pos;
 	double	end_x;
 	double	end_y;
+	double	c_angle;
+	double	c_x;
+	double	c_y;	
+	double	camera_len;
 	int		pos_x;
 	int		pos_y;
 	double	mid_ray;
@@ -189,6 +193,6 @@ void	ft_put_player(t_var *var);
 void	ft_ray(t_var *var, char nswe);
 // void	draw_ln(t_var *var);// not needded
 void	ft_cast_rayz(t_var *var);
-void	ft_draw_wall(t_var *var, int distance, int x_ing);
+void	ft_draw_wall(t_var *var, double p_wall_height, int x_ing);
 
 #endif
