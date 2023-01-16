@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 09:49:29 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/15 16:48:56 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/16 19:10:04 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static void	copy_element(t_var *var, int i)
 			error_msg_exit("map error: invalid map character");
 		add_tail(var->data->map_lst, ft_strdup_map(var, 0, NULL));
 	}
-	else if (var->line[i] == 'N')
+	if (var->line[i] == 'N' && var->line[i + 1] && var->line[i + 1] == 'O')
 		write_to_struct(var, ++i, 'O', "no");
 	else if (var->line[i] == 'S' && var->line[i + 1] && var->line[i + 1] == 'O')
 		write_to_struct(var, ++i, 'O', "so");
@@ -83,7 +83,8 @@ static void	copy_element(t_var *var, int i)
 	else if ((check_cub(var->data) == 0) && !is_ident_char(var->line[i]) && \
 		!is_map_char(var->line[i]))
 		error_msg_exit("invalid line");
-	else if ((check_cub(var->data) == 0) && !is_ident_char(var->line[i]))
+	else if ((check_cub(var->data) == 0) && !is_ident_char(var->line[i]) \
+		&& only_map_char(var->line))
 		error_msg_exit("map error: not last element");
 }
 
@@ -126,10 +127,14 @@ int	import_cub(t_var *var, char *argv, char *type)
 	while (var->line && (check_cub(var->data) != 2))
 	{
 		if (var->line && !ft_is_whitespace(var->line))
+		{
+			check_double_identifier(var, ft_skip_whitespace(var->line));
 			copy_element(var, ft_skip_whitespace(var->line));
+		}
 		free(var->line);
 		var->line = get_next_line(var->fd1);
 	}
+	check_double_identifier(var, ft_skip_whitespace(var->line));
 	import_cub2(var);
 	if (check_cub(var->data) == 2)
 		import_map(var);

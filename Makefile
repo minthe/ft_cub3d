@@ -6,10 +6,10 @@
 #    By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/01 14:46:38 by vfuhlenb          #+#    #+#              #
-#    Updated: 2023/01/14 19:46:40 by vfuhlenb         ###   ########.fr        #
-#    Updated: 2023/01/13 12:50:11 by dimbrea          ###   ########.fr        #
+#    Updated: 2023/01/16 18:46:01 by vfuhlenb         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
 
 NAME = cub3d
 
@@ -32,6 +32,7 @@ SRCS = \
 inc/get_next_line/get_next_line.c\
 inc/get_next_line/get_next_line_utils.c\
 src/import_cub.c\
+src/import_cub2.c\
 src/import_map.c\
 src/init_struct.c\
 src/check_cub.c\
@@ -75,6 +76,7 @@ fclean: clean
 	$(RM) $(NAME)
 	make fclean -C inc/libft/
 	make clean -C inc/libft
+	make clean -C inc/mlx
 
 fclean: clean
 	$(RM) $(NAME)

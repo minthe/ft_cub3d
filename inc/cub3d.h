@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
+/*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 14:27:58 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/15 18:33:48 by dimbrea          ###   ########.fr       */
+/*   Updated: 2023/01/16 18:43:15 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,6 +136,7 @@ typedef struct s_var
 // SRC
 int		import_cub(t_var *var, char *argv, char *type);
 void	import_map(t_var *var);
+void	check_double_identifier(t_var *var, int i);
 int		check_cub(t_data *data);
 void	check_elements(t_data *data);
 void	cleanup(t_var *var);
