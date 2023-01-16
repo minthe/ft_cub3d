@@ -50,3 +50,11 @@ int	only_map_char(const char *str)
 	}
 	return (1);
 }
+
+//function that checks for valid ident character for color ident
+int	is_cf_char(char c)
+{
+	if (c == ' ' || (c >= '0' && c <= '9'))
+		return (1);
+	return (0);
+}

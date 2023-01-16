@@ -3,6 +3,7 @@ SO inc/textures/blueWall.xpm
 WE inc/textures/redWall.xpm
 EA inc/textures/pissWall.xpm
 
+Color Values
 F 200,100,0
 C 255,30,0
 
