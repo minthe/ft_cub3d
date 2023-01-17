@@ -6,7 +6,7 @@
 /*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 14:27:58 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/17 13:47:20 by dimbrea          ###   ########.fr       */
+/*   Updated: 2023/01/17 15:54:23 by dimbrea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,14 +127,13 @@ typedef struct s_map
 
 typedef struct s_txt
 {
-	char	*wall_tex;
-	void	*txt_ptr;
+	char	*tex_addr;
+	void	*img_ptr;
 	int		txt_width;
 	int		txt_height;
 	int		bpp_txt;
 	int		sz_ln;
 	int		endian_txt;
-	
 }t_txt;
 
 typedef struct s_var
@@ -208,5 +207,6 @@ void	ft_ray(t_var *var, char nswe);
 // void	draw_ln(t_var *var);// not needded
 void	ft_cast_rayz(t_var *var);
 void	ft_draw_wall(t_var *var, double p_wall_height, int x_ing);
+void	ft_textures(t_var *var);
 
 #endif
