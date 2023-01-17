@@ -6,7 +6,7 @@
 /*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 10:13:11 by dimbrea           #+#    #+#             */
-/*   Updated: 2023/01/16 17:48:38 by dimbrea          ###   ########.fr       */
+/*   Updated: 2023/01/17 13:52:19 by dimbrea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,13 @@ void	ft_get_dist(t_var *var)
 		distance++;
 	}
 	var->plr->mid_ray = distance;
+}
+
+void	ft_textures(t_var *var)
+{
+	var->txt->txt_ptr = mlx_xpm_file_to_image(var->txt->txt_ptr,var->data->no\
+		,&var->txt->txt_width,&var->txt->txt_height);
+	var->txt->wall_tex = mlx_get_data_addr(var->txt->txt_ptr, &var->txt->bpp_txt, &var->txt->sz_ln, &var->txt->endian_txt);
 }
 
 void	ft_cast_rayz(t_var *var)
@@ -145,13 +152,7 @@ void	ft_draw_wall(t_var *var, double p_wall_height, int x_ing)
 	
 	int		y;
 	int		to_draw;
-	// double	remainder;
-	// double	x;
 
-	// remainder = distance - var->plr->mid_ray;
-	// printf("%f remainder\n", distance);
-	// x = tan((double)FOV / 2) * var->plr->mid_ray;
-	
 	y = (SCREEN_HEIGHT / 2) - (p_wall_height / 2);
 	to_draw = 0;
 	while(to_draw < SCREEN_HEIGHT)
@@ -164,5 +165,4 @@ void	ft_draw_wall(t_var *var, double p_wall_height, int x_ing)
 			img_pix_put(var, x_ing, to_draw, var->data->f);
 		to_draw++;
 	}
-
 }

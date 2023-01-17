@@ -6,7 +6,7 @@
 /*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 14:27:58 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/16 15:11:44 by dimbrea          ###   ########.fr       */
+/*   Updated: 2023/01/17 13:47:20 by dimbrea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,6 @@ typedef struct s_player
 
 typedef struct s_map
 {
-	char	*d_map[100];
 	int		**grid_dims;
 	int		map_w;
 	int		map_h;
@@ -126,6 +125,18 @@ typedef struct s_map
 	int		modul_h;
 }t_map;
 
+typedef struct s_txt
+{
+	char	*wall_tex;
+	void	*txt_ptr;
+	int		txt_width;
+	int		txt_height;
+	int		bpp_txt;
+	int		sz_ln;
+	int		endian_txt;
+	
+}t_txt;
+
 typedef struct s_var
 {
 	t_img		*img;
@@ -134,6 +145,7 @@ typedef struct s_var
 	t_map		*map;
 	t_node		*node;
 	t_data		*data;
+	t_txt		*txt;
 	char		*line;
 	int			fd1;
 }t_var;

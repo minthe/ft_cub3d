@@ -6,7 +6,7 @@
 /*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 19:03:45 by dimbrea           #+#    #+#             */
-/*   Updated: 2023/01/16 17:56:48 by dimbrea          ###   ########.fr       */
+/*   Updated: 2023/01/17 11:33:34 by dimbrea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,12 +197,14 @@ int	main(int argc, char **argv)
 	t_img	s_img;
 	t_player	player;
 	t_data	cub_s;
+	t_txt	txt;
 
 	var.data = &cub_s;
 	var.mlx = &data_m;
 	var.map = &map_m;
 	var.img = &s_img;
 	var.plr = &player;
+	var.txt = &txt;
 	if (argc == 2 && init_struct(&var) && import_cub(&var, argv[1], ".cub"))
 	{
 		ft_map_size(&var);
