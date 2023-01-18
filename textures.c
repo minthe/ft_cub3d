@@ -6,7 +6,7 @@
 /*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 17:44:12 by dimbrea           #+#    #+#             */
-/*   Updated: 2023/01/17 15:56:33 by dimbrea          ###   ########.fr       */
+/*   Updated: 2023/01/18 13:52:17 by dimbrea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void    texturing(t_info *info)
                 &info->img_texture.endian);
 }
 
-int    get_pixel_color_2(t_info info, int y)
+int get_pixel_color_2(t_info info, int y)
 {
     char    dst;
     double    wall_x;

@@ -3,13 +3,13 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+         #
+#    By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/01 14:46:38 by vfuhlenb          #+#    #+#              #
-#    Updated: 2023/01/14 19:46:40 by vfuhlenb         ###   ########.fr        #
-#    Updated: 2023/01/13 12:50:11 by dimbrea          ###   ########.fr        #
+#    Updated: 2023/01/18 13:54:58 by dimbrea          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
 
 NAME = cub3d
 
@@ -49,7 +49,6 @@ utils/ft_whitespace.c\
 utils/ft_strdup_cub.c\
 utils/ft_free_doublepoint.c\
 utils/peeks.c\
-cub3d.c\
 keys.c\
 ray.c\
 main.c\

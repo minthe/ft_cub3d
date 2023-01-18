@@ -6,7 +6,7 @@
 /*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 10:13:11 by dimbrea           #+#    #+#             */
-/*   Updated: 2023/01/17 16:58:47 by dimbrea          ###   ########.fr       */
+/*   Updated: 2023/01/18 16:28:36 by dimbrea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,32 +74,41 @@ void	ft_textures(t_var *var)
 	var->txt->tex_addr = mlx_get_data_addr(var->txt->img_ptr, &var->txt->bpp_txt, &var->txt->sz_ln, &var->txt->endian_txt);
 }
 
+int	ft_get_pxl_color(t_var *var, int y)
+{
+	char *dst;
+	// double	wall_x;
+	// int		texture_x;
+	
+	// texture_x
+	// if (y > 64)
+	// 	y %= 64;
+	// if (y < 0)
+	// 	y = 0;
+	// printf("%d\n", y);
+	dst = var->txt->tex_addr + (y * var->txt->sz_ln + 32 * (var->txt->bpp_txt / 8));
+	return (*(int *)dst);
+}
+
+
 void	ft_cast_rayz(t_var *var)
 {
 	double	ray_pos;
 	double	ray_angle;
 	double	distance;
+	// double	p_plane_dist;
 	double	x;
 	double	y;
 	double	dx;
 	double	dy;
-	double		base_offset;
-	double	p_wall_height;
-	double	p_plane_dist;
-	double squirt;
-	// long double d_base_off;
-
-	// double d_distance;
-	
-	// double	cam_len;
 	int		x_ing;
+	// double	fov;
 
-	base_offset = 400.0 ;
-	ray_pos = 0;
+	// fov = FOV;
+	ray_pos = 0.0;
 	x_ing = 0;
-	ft_get_dist(var);
 	while(ray_pos < 1.0 )
-	{	
+	{
 		if (x_ing >= SCREEN_WIDTH)
 			x_ing = 0;
 		ray_angle = (double)FOV * ray_pos - (double)FOV / 2 + var->plr->p_angle;
@@ -108,67 +117,46 @@ void	ft_cast_rayz(t_var *var)
 		dy = sin(var->plr->radians);
 		x = var->plr->pos_x;
 		y = var->plr->pos_y;
-
 		distance = 0;
-		while(distance < 1000)
+		while(distance < 10000)
 		{
 			if (ft_is_wall(var,x,y))
 				break;
 			x += dx;
 			y += dy;
-			distance += 1;
+			distance += 0.5;
 		}
-		// printf("%f _rayangle\n", ray_angle);
-		// printf("%f player_angle\n", var->plr->p_angle);
-		// distance = distance * cos(var->plr->radians);
-		// printf("%f base\n", base_offset);
-		// ray_angle = ray_angle * M_PI / 180.0;
-		// printf("%f distance before\n", distance);
-		// if (distance < SCREEN_WIDTH / 2)
-			// distance = SCREEN_WIDTH / 2;
-		// d_distance = sqrt(pow(distance, 2.0) - pow(base_offset, 2.0));
-		// printf("%f distance\n", d_distance);
-		p_plane_dist = (SCREEN_WIDTH / 2) / tan((double)FOV) / 2;
-		if (p_wall_height > SCREEN_HEIGHT)
-		{
-			p_wall_height = (double)var->map->modul_h * p_plane_dist / distance;	
-		}
-		else
-		{
-			distance *= distance;
-			base_offset *= base_offset;
-			// d_base_off = distance - base_offset;
-			squirt = sqrt(distance);//something's off
-			// printf("%Lf SQUIRT\n", d_base_off);
-			p_wall_height = (double)var->map->modul_h * p_plane_dist / squirt;
-		}
-		ft_draw_wall(var, p_wall_height, x_ing);
-		if (ray_pos >= 0.5)
-			base_offset += 1.0;
-		else
-			base_offset -= 1.0;
+		ft_draw_wall(var, distance, x_ing);
 		ray_pos += 0.00125;// decrease for more rays
 		x_ing++;
 	}
 }
 
-void	ft_draw_wall(t_var *var, double p_wall_height, int x_ing)
+void	ft_draw_wall(t_var *var, int distance, int x_ing)
 {
-	
+	double	p_plane_dist;
+	double	p_wall_height;
 	int		y;
 	int		to_draw;
-	
+	int		color;
 
+	(void)var;
+	p_plane_dist = (SCREEN_WIDTH / 2) / tan((double)FOV) / 2;
+	p_wall_height = 32.0 / distance * p_plane_dist;
 	y = (SCREEN_HEIGHT / 2) - (p_wall_height / 2);
 	to_draw = 0;
+	// printf("%d y\n", y);
+	// printf("%f wall_HEIGHT\n", p_wall_height);
+	// printf("%d DISTANCE\n", distance);
+	color = ft_get_pxl_color(var, 32);
 	while(to_draw < SCREEN_HEIGHT)
 	{
-		if (to_draw <= y)
-			img_pix_put(var, x_ing, to_draw, var->data->c);
+		if (to_draw < y)
+			img_pix_put(var, x_ing, to_draw, 0x0000FF);
 		else if (to_draw >= y && to_draw <= p_wall_height + y)
-			img_pix_put(var, x_ing, to_draw, 0xFFFFFF);
-		else if (to_draw >= p_wall_height)
-			img_pix_put(var, x_ing, to_draw, var->data->f);
+			img_pix_put(var, x_ing, to_draw, color);
+		else if (to_draw > p_wall_height)
+			img_pix_put(var, x_ing, to_draw, 0x800000);
 		to_draw++;
 	}
 }

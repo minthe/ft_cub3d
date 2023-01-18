@@ -6,7 +6,7 @@
 /*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 19:03:45 by dimbrea           #+#    #+#             */
-/*   Updated: 2023/01/17 17:08:09 by dimbrea          ###   ########.fr       */
+/*   Updated: 2023/01/18 16:29:28 by dimbrea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,12 +136,12 @@ int	ft_is_wall(t_var *var, int x, int y)
 	row = y / var->map->modul_h;
 	if (var->data->map[row][col] == '1')
 	{
-		printf("%d x\n", x);
-		printf("%d y\n", y);
-		printf("%d row\n",row);
-		printf("%d col\n",col);
-		printf("%d modulex", var->map->modul_w);
-		printf("%d moduley\n", var->map->modul_h);
+		// printf("%d x\n", x);
+		// printf("%d y\n", y);
+		// printf("%d row\n",row);
+		// printf("%d col\n",col);
+		// printf("%d modulex", var->map->modul_w);
+		// printf("%d moduley\n", var->map->modul_h);
 		return (1);
 	}
 	return (0);
@@ -191,6 +191,7 @@ void	ft_starting_angle(t_var *var, char nswe)
 void	ft_ray(t_var *var, char nswe)
 {
 	
+	ft_textures(var);
 	ft_starting_angle(var, nswe);
 	ft_cast_rayz(var);
 	mlx_put_image_to_window(var->mlx->ptr, var->mlx->window, var->img->structure, 0, 0);
@@ -213,6 +214,7 @@ int	main(int argc, char **argv)
 	var.img = &s_img;
 	var.plr = &player;
 	var.txt = &txt;
+
 	if (argc == 2 && init_struct(&var) && import_cub(&var, argv[1], ".cub"))
 	{
 		ft_map_size(&var);
@@ -222,7 +224,7 @@ int	main(int argc, char **argv)
 		var.img->structure = mlx_new_image(var.mlx->ptr, SCREEN_WIDTH, SCREEN_HEIGHT);
 		var.img->addr = mlx_get_data_addr(var.img->structure, &var.img->bpp, &var.img->size_line, &var.img->endian);
 		ft_ray(&var, var.plr->orient);
-		ft_textures(&var);
+		
 		mlx_hook(var.mlx->window, 17, 0L, x_window, &var);
 		mlx_hook(var.mlx->window,2, (1l << 0),keypress, &var);
 		mlx_loop_hook(var.mlx->ptr, &render, &var);

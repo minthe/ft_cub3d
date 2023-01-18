@@ -6,7 +6,7 @@
 /*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 17:09:03 by dimbrea           #+#    #+#             */
-/*   Updated: 2023/01/17 14:01:55 by dimbrea          ###   ########.fr       */
+/*   Updated: 2023/01/18 16:20:10 by dimbrea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,13 @@ void	img_pix_put(t_var *var, int x, int y, int color)
 	*(int *)pixel = color;
 }
 
+void	img_pix_put2(t_var *var, int x, int y, int color)
+{
+	char	*pixel;
+
+	pixel = var->txt->tex_addr + (y * var->txt->sz_ln + x * (var->txt->bpp_txt / 8));
+	*(int *)pixel = color;
+}
 int	x_window(t_var *var)// need to free other stuff here later
 {
 	write(1, "Exited the game\n", 16);

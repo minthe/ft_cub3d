@@ -6,7 +6,7 @@
 /*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 14:27:58 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/17 15:54:23 by dimbrea          ###   ########.fr       */
+/*   Updated: 2023/01/18 16:20:41 by dimbrea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -206,7 +206,8 @@ void	ft_put_player(t_var *var);
 void	ft_ray(t_var *var, char nswe);
 // void	draw_ln(t_var *var);// not needded
 void	ft_cast_rayz(t_var *var);
-void	ft_draw_wall(t_var *var, double p_wall_height, int x_ing);
+void	ft_draw_wall(t_var *var, int distance, int x_ing);
 void	ft_textures(t_var *var);
+void	img_pix_put2(t_var *var, int x, int y, int color);
 
 #endif
