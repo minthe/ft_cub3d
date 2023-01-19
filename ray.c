@@ -6,7 +6,7 @@
 /*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 10:13:11 by dimbrea           #+#    #+#             */
-/*   Updated: 2023/01/19 16:38:29 by dimbrea          ###   ########.fr       */
+/*   Updated: 2023/01/19 17:04:51 by dimbrea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	ft_textures(t_var *var)
 {
 	int	width;
 	int	height;
-	var->txt->img_ptr = mlx_new_image(var->mlx->ptr, 64, 64); 
+	var->txt->img_ptr = mlx_new_image(var->mlx->ptr, TXT_W, TXT_W); 
 	var->txt->img_ptr = mlx_xpm_file_to_image(var->mlx->ptr, var->data->no, &width, &height);
 	var->txt->tex_addr = mlx_get_data_addr(var->txt->img_ptr, &var->txt->bpp_txt, &var->txt->sz_ln, &var->txt->endian_txt);
 }
@@ -77,16 +77,22 @@ void	ft_textures(t_var *var)
 int	ft_get_pxl_color(t_var *var, double x, int y)
 {
 	char	*dst;
-	// int		xx;
+	int		xx;
 
 	
 	// xx = x;
 	// printf("%d xxxxxxx\n", (int)x);
 	// printf("%d yyyyyy\n", y);
+	
 	if ((int)x > TXT_W)
 		x = TXT_W;
-	(void)y;
-	dst = var->txt->tex_addr + (18 * var->img->size_line + (int)x  * (var->txt->bpp_txt / 8));
+	xx = (int)x;
+	y %= TXT_W;
+	if (y == 93)
+		y = 92;
+	printf("%d \n", y);
+	printf("%f \n", x);
+	dst = var->txt->tex_addr + (y * var->img->size_line + xx  * (var->txt->bpp_txt / 8));
 	return (*(int *)dst);
 }
 
@@ -156,12 +162,14 @@ void	ft_draw_wall(t_var *var, int distance, int x_ing, int coo_x)
 	int		y;
 	int		to_draw;
 	int		color;
+	int		d_txt;
 
 	(void)var;
 	p_plane_dist = (SCREEN_WIDTH / 2) / tan((double)FOV) / 2;
 	p_wall_height = 32.0 / distance * p_plane_dist;
 	y = (SCREEN_HEIGHT / 2) - (p_wall_height / 2);
 	to_draw = 0;
+	d_txt = -1;
 	// printf("%d y\n", y);
 	// printf("%f wall_HEIGHT\n", p_wall_height);
 	// printf("%d DISTANCE\n", distance);
@@ -172,7 +180,7 @@ void	ft_draw_wall(t_var *var, int distance, int x_ing, int coo_x)
 			img_pix_put(var, x_ing, to_draw, var->data->c);
 		else if (to_draw >= y && to_draw <= p_wall_height + y)
 		{
-			color = ft_texturing(var, coo_x, to_draw);
+			color = ft_texturing(var, coo_x, ++d_txt);
 			img_pix_put(var, x_ing, to_draw, color);
 		}
 		else if (to_draw > p_wall_height)
