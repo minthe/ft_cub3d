@@ -6,7 +6,7 @@
 /*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 14:27:58 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/18 16:20:41 by dimbrea          ###   ########.fr       */
+/*   Updated: 2023/01/19 16:01:55 by dimbrea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # define L_ARROW 65361
 # define ESC 65307
 # define ROT_SPEED 0.02
+# define TXT_W 256
 # define FOV 60
 
 # include <stdio.h>
@@ -206,7 +207,7 @@ void	ft_put_player(t_var *var);
 void	ft_ray(t_var *var, char nswe);
 // void	draw_ln(t_var *var);// not needded
 void	ft_cast_rayz(t_var *var);
-void	ft_draw_wall(t_var *var, int distance, int x_ing);
+void	ft_draw_wall(t_var *var, int distance, int x_ing, int coo_x);
 void	ft_textures(t_var *var);
 void	img_pix_put2(t_var *var, int x, int y, int color);
 
