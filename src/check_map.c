@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
+/*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 21:24:03 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/15 20:15:04 by dimbrea          ###   ########.fr       */
+/*   Updated: 2023/01/20 14:33:42 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	check_map(t_data *data)
 	int	col;
 	int	row;
 
-	if (!data->p_set)
+	if (data->p_set == 0)
 		error_msg_exit("map error: no player found");
 	row = 0;
 	while (row < data->map_lines)
