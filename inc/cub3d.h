@@ -6,7 +6,7 @@
 /*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 14:27:58 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/19 16:50:31 by dimbrea          ###   ########.fr       */
+/*   Updated: 2023/01/20 16:07:59 by dimbrea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ typedef struct s_player
 	int		pos_x;
 	int		pos_y;
 	double	mid_ray;
+	double	real_wall_height;
 }t_player;
 
 typedef struct s_map

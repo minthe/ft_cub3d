@@ -6,7 +6,7 @@
 /*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 10:13:11 by dimbrea           #+#    #+#             */
-/*   Updated: 2023/01/19 17:04:51 by dimbrea          ###   ########.fr       */
+/*   Updated: 2023/01/20 16:22:34 by dimbrea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,25 +74,18 @@ void	ft_textures(t_var *var)
 	var->txt->tex_addr = mlx_get_data_addr(var->txt->img_ptr, &var->txt->bpp_txt, &var->txt->sz_ln, &var->txt->endian_txt);
 }
 
-int	ft_get_pxl_color(t_var *var, double x, int y)
+int	ft_get_pxl_color(t_var *var, double x, double y)
 {
 	char	*dst;
 	int		xx;
-
 	
-	// xx = x;
-	// printf("%d xxxxxxx\n", (int)x);
-	// printf("%d yyyyyy\n", y);
-	
-	if ((int)x > TXT_W)
-		x = TXT_W;
-	xx = (int)x;
-	y %= TXT_W;
-	if (y == 93)
-		y = 92;
-	printf("%d \n", y);
-	printf("%f \n", x);
-	dst = var->txt->tex_addr + (y * var->img->size_line + xx  * (var->txt->bpp_txt / 8));
+	xx = x;
+	xx %= TXT_W ;
+	if (y < 0)
+		y *= -1;
+	printf("%f x %f y\n", x, y);
+	y *= (double)TXT_W;
+	dst = var->txt->tex_addr + ((int)y * var->txt->sz_ln + xx  * (var->txt->bpp_txt / 8));
 	return (*(int *)dst);
 }
 
@@ -145,14 +138,18 @@ int	ft_texturing(t_var *var, int x, int y)
 	double percent;
 
 	start = x;
+	
 	diff =  start % var->map->modul_w;
 	percent = (double)diff / (double)var->map->modul_w;
-	// printf("%f percent \n", percent);
+	
+	printf("%d x %d y %f r_W_h", x, y, var->plr->real_wall_height);
+	var->plr->real_wall_height /= y;
 	// if (diff == 0)
+	// printf("%d x \n", start);
+	// printf("%f percent \n", percent * (double)TXT_W);
 	// 	return (ft_get_pxl_color(var, percent * TXT_W));
 	// start = x - diff;
-	// printf("%d start \n", start);
-	return (ft_get_pxl_color(var, percent * (double)TXT_W, y));
+	return (ft_get_pxl_color(var, percent * (double)TXT_W, var->plr->real_wall_height));
 }
 
 void	ft_draw_wall(t_var *var, int distance, int x_ing, int coo_x)
@@ -170,23 +167,19 @@ void	ft_draw_wall(t_var *var, int distance, int x_ing, int coo_x)
 	y = (SCREEN_HEIGHT / 2) - (p_wall_height / 2);
 	to_draw = 0;
 	d_txt = -1;
-	// printf("%d y\n", y);
-	// printf("%f wall_HEIGHT\n", p_wall_height);
-	// printf("%d DISTANCE\n", distance);
-	// color = ft_get_pxl_color(var, x);
+	var->plr->real_wall_height = y;
 	while(to_draw < SCREEN_HEIGHT)
 	{
 		if (to_draw < y)
 			img_pix_put(var, x_ing, to_draw, var->data->c);
-		else if (to_draw >= y && to_draw <= p_wall_height + y)
+		else if (to_draw >= y && to_draw <= (int)(p_wall_height + y))
 		{
 			color = ft_texturing(var, coo_x, ++d_txt);
 			img_pix_put(var, x_ing, to_draw, color);
+			
 		}
 		else if (to_draw > p_wall_height)
 			img_pix_put(var, x_ing, to_draw, var->data->f);
 		to_draw++;
 	}
 }
-
-
