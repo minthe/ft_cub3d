@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
+/*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 10:13:11 by dimbrea           #+#    #+#             */
-/*   Updated: 2023/01/20 16:22:34 by dimbrea          ###   ########.fr       */
+/*   Updated: 2023/01/20 16:00:06 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,10 +81,11 @@ int	ft_get_pxl_color(t_var *var, double x, double y)
 	
 	xx = x;
 	xx %= TXT_W ;
+	y = TXT_W / y;
 	if (y < 0)
 		y *= -1;
 	printf("%f x %f y\n", x, y);
-	y *= (double)TXT_W;
+	exit (EXIT_FAILURE);
 	dst = var->txt->tex_addr + ((int)y * var->txt->sz_ln + xx  * (var->txt->bpp_txt / 8));
 	return (*(int *)dst);
 }
@@ -133,23 +134,25 @@ void	ft_cast_rayz(t_var *var)
 
 int	ft_texturing(t_var *var, int x, int y)
 {
-	int	diff;
-	int	start;
-	double percent;
+	int		diff;
+	int		start;
+	double	percent;
+	double	tex_y_percent;
 
 	start = x;
 	
+	tex_y_percent = y;
 	diff =  start % var->map->modul_w;
 	percent = (double)diff / (double)var->map->modul_w;
 	
 	printf("%d x %d y %f r_W_h", x, y, var->plr->real_wall_height);
-	var->plr->real_wall_height /= y;
+	tex_y_percent /= var->plr->real_wall_height;
 	// if (diff == 0)
 	// printf("%d x \n", start);
 	// printf("%f percent \n", percent * (double)TXT_W);
 	// 	return (ft_get_pxl_color(var, percent * TXT_W));
 	// start = x - diff;
-	return (ft_get_pxl_color(var, percent * (double)TXT_W, var->plr->real_wall_height));
+	return (ft_get_pxl_color(var, percent * (double)TXT_W, tex_y_percent));
 }
 
 void	ft_draw_wall(t_var *var, int distance, int x_ing, int coo_x)
