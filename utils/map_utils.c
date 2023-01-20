@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 16:00:39 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/15 15:14:19 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/20 14:32:11 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,15 @@
 // Detects error of multiple players
 void	set_player(t_var *var, char c)
 {
-	if (var->data->p_set != 0 && (c == 78 || c == 79 || c == 83 || c == 87))
+	if (var->data->p_set != 0 && (c == 'N' || c == 'E' || c == 'S' || c == 'W'))
 		error_msg_exit("map error: mupliple player detected");
-	else if (c == 78)
+	else if (c == 'N')
 		var->data->p_set = 1;
-	else if (c == 79)
+	else if (c == 'E')
 		var->data->p_set = 2;
-	else if (c == 83)
+	else if (c == 'S')
 		var->data->p_set = 3;
-	else if (c == 87)
+	else if (c == 'W')
 		var->data->p_set = 4;
 }
 

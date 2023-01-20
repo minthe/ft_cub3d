@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 21:09:12 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/15 14:59:05 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/20 14:15:43 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ int	is_ident_char(char c)
 //function that checks for valid map character including space
 int	is_map_char(char c)
 {
-	if (c == 32 || (c >= 48 && c <= 49) || \
-		c == 78 || c == 79 || c == 83 || c == 87)
+	if (c == ' ' || c == '0' || c == '1' || \
+		c == 'N' || c == 'E' || c == 'S' || c == 'W')
 		return (1);
 	return (0);
 }
@@ -43,12 +43,12 @@ int	only_map_char(const char *str)
 {
 	while (*str)
 	{
-		if (*str != 32 && !(*str >= 48 && *str <= 49) && \
-			!(*str >= 78 && *str <= 79) && *str != 83 && *str != 87)
-			return (0);
+		if (*str == ' ' || *str == '0' || *str == '1' || \
+			*str == 'N' || *str == 'E' || *str == 'S' || *str == 'W')
+			return (1);
 		str++;
 	}
-	return (1);
+	return (0);
 }
 
 //function that checks for valid ident character for color ident

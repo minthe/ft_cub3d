@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   import_cub.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
+/*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 09:49:29 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/16 18:19:27 by dimbrea          ###   ########.fr       */
+/*   Updated: 2023/01/20 14:37:51 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static void	copy_element(t_var *var, int i)
 {
 	if ((check_cub(var->data) == 2))
 	{
-		if (!is_map_char(var->line[i]))
+		if (!ft_is_whitespace(var->line) && !only_map_char(var->line))
 			error_msg_exit("map error: invalid map character");
 		add_tail(var->data->map_lst, ft_strdup_map(var, 0, NULL));
 	}
