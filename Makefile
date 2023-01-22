@@ -3,83 +3,72 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+         #
+#    By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/01 14:46:38 by vfuhlenb          #+#    #+#              #
-#    Updated: 2023/01/18 13:54:58 by dimbrea          ###   ########.fr        #
+#    Updated: 2023/01/22 19:16:41 by vfuhlenb         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+SHELL	= /bin/sh
 
-NAME = cub3d
+NAME =	cub3D
 
-UNAME_S := $(shell uname -s)
-ifeq ($(UNAME_S), Darwin)
-CFLAGS= $(CFLAGS_MAC)
-else
-CFLAGS= $(CFLAGS_LINUX)
-endif
+OBJECTS = $(subst .c,.o,$(SOURCES))
 
-UNAME = $(shell uname)
 CC = gcc
-CFLAGS_LINUX= -Wall -Wextra -Werror inc/mlx/libmlx_$(UNAME).a -lXext -lX11 -lm -lz -fsanitize=address -g
-CFLAGS_MAC= -Wall -Wextra -Werror -fsanitize=address -g
+CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
+MINILIBX_DIR	= src/inc/mlx
+LIBFT_DIR		= src/inc/libft
+X11_INC			= /usr/X11/include
+X11_LIB			= /usr/X11/lib
+
+LFLAGS 			= -L${LIBFT_DIR} -L${MINILIBX_DIR} -L${X11_LIB} -lmlx -lXext -lX11 -lft -lm
+
+IDIR			= .
+IFLAGS			= -I${IDIR} -I${LIBFT_DIR} -I${MINILIBX_DIR} -I${X11_INC}
+
+SRCS = src/main.c \
+		src/inc/get_next_line/get_next_line.c\
+		src/inc/get_next_line/get_next_line_utils.c\
+		src/import_cub.c\
+		src/import_map.c\
+		src/init_struct.c\
+		src/check_cub.c\
+		src/check_map.c\
+		src/check_elements.c\
+		src/cleanup.c\
+		src/list_utils.c\
+		src/import_color.c\
+		src/atoi_cub.c\
+		src/utils/map_utils.c\
+		src/utils/error_msg_exit.c\
+		src/utils/ft_open_file.c\
+		src/utils/ft_check_fileext.c\
+		src/utils/ft_whitespace.c\
+		src/utils/ft_strdup_cub.c\
+		src/utils/ft_free_doublepoint.c\
+		src/utils/peeks.c\
+		src/keys.c\
+		src/ray.c\
 
 RM = rm -f
-AF = ar rcs
 
-SRCS = \
-inc/get_next_line/get_next_line.c\
-inc/get_next_line/get_next_line_utils.c\
-src/import_cub.c\
-src/import_map.c\
-src/init_struct.c\
-src/check_cub.c\
-src/check_map.c\
-src/check_elements.c\
-src/cleanup.c\
-src/list_utils.c\
-src/import_color.c\
-src/atoi_cub.c\
-utils/map_utils.c\
-utils/error_msg_exit.c\
-utils/ft_open_file.c\
-utils/ft_check_fileext.c\
-utils/ft_whitespace.c\
-utils/ft_strdup_cub.c\
-utils/ft_free_doublepoint.c\
-utils/peeks.c\
-keys.c\
-ray.c\
-main.c\
+${NAME} : ${SRCS}
+		@make -C ${LIBFT_DIR}
+		@make -C ${MINILIBX_DIR}
+		${CC} ${CFLAGS} ${SRCS} ${IFLAGS} ${LFLAGS} -o ${NAME}
 
-OBJS = $(SRCS:.c=.o)
-
-$(NAME): $(OBJS)
-	make -C inc/mlx/
-	make -C inc/libft/
-	make bonus -C inc/libft/
-	$(CC) $(OBJS) $(CFLAGS) $(LIBFT) -o $(NAME)
-
-LIBFT_DIR = inc/libft
-LIBFT = $(LIBFT_DIR)/libft.a
-
-all: $(NAME)
+all: ${NAME}
 
 clean:
-	$(RM) $(OBJS)
-	make clean -C inc/libft/
+		@${RM} ${NAME}
+		@make clean -C ${LIBFT_DIR}
+		@make clean -C ${MINILIBX_DIR}
 
 fclean: clean
-	$(RM) $(NAME)
-	make fclean -C inc/libft/
-	make clean -C inc/libft
-
-fclean: clean
-	$(RM) $(NAME)
-	make fclean -C inc/libft
+		@make fclean -C ${LIBFT_DIR}
 
 re: fclean all
 
-norminette:
-	norminette $(SRCS)
+.PHONY: all clean fclean re

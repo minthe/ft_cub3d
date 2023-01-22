@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 10:13:11 by dimbrea           #+#    #+#             */
-/*   Updated: 2023/01/20 16:00:06 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/22 19:23:04 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,9 +84,7 @@ int	ft_get_pxl_color(t_var *var, double x, double y)
 	y = TXT_W / y;
 	if (y < 0)
 		y *= -1;
-	printf("%f x %f y\n", x, y);
-	exit (EXIT_FAILURE);
-	dst = var->txt->tex_addr + ((int)y * var->txt->sz_ln + xx  * (var->txt->bpp_txt / 8));
+	dst = var->txt->tex_addr + (16 * var->txt->sz_ln + xx  * (var->txt->bpp_txt / 8));
 	return (*(int *)dst);
 }
 
@@ -145,7 +143,7 @@ int	ft_texturing(t_var *var, int x, int y)
 	diff =  start % var->map->modul_w;
 	percent = (double)diff / (double)var->map->modul_w;
 	
-	printf("%d x %d y %f r_W_h", x, y, var->plr->real_wall_height);
+	// printf("%d x %d y %f r_W_h", x, y, var->plr->real_wall_height);
 	tex_y_percent /= var->plr->real_wall_height;
 	// if (diff == 0)
 	// printf("%d x \n", start);

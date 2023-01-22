@@ -6,11 +6,11 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 21:24:03 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/20 14:33:42 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/22 18:35:21 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cub3d.h"
+#include "inc/cub3d.h"
 
 static void	check_hor(char **map, int row, int col)
 {

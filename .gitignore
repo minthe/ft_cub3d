@@ -5,3 +5,4 @@ _sandbox/
 .stignore
 probe/
 build/
+cub3D.dSYM/

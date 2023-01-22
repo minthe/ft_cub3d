@@ -6,11 +6,11 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:23:47 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/20 14:36:40 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/22 18:35:05 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cub3d.h"
+#include "inc/cub3d.h"
 
 static void	copy_linked_list(t_var *var, t_linked_list *list, char **map)
 {

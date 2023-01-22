@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keys.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
+/*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 17:09:03 by dimbrea           #+#    #+#             */
-/*   Updated: 2023/01/19 17:01:03 by dimbrea          ###   ########.fr       */
+/*   Updated: 2023/01/22 19:56:21 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	img_pix_put(t_var *var, int x, int y, int color)
 	char	*pixel;
 
 	pixel = var->img->addr + (y * var->img->size_line + x * (var->img->bpp / 8));
-	*(int *)pixel = color;
+	*(unsigned int *)pixel = color;
 }
 
 // void	img_pix_put2(t_var *var, int x, int y, int color)
@@ -33,7 +33,7 @@ int	x_window(t_var *var)// need to free other stuff here later
 	mlx_destroy_image(var->mlx->ptr, var->img->structure);
 	mlx_destroy_window(var->mlx->ptr, var->mlx->window);
 	var->mlx->window = NULL;
-	exit(0);
+	exit(EXIT_SUCCESS);
 	return (0);
 }
 
@@ -51,8 +51,8 @@ void	ft_w(t_var *var)
 		var->plr->pos_x = new_x;
 		var->plr->pos_y = new_y;
 	}
-	mlx_destroy_image(var->mlx->ptr, var->img->structure);
-	var->img->structure = mlx_new_image(var->mlx->ptr, SCREEN_WIDTH, SCREEN_HEIGHT);
+	// mlx_destroy_image(var->mlx->ptr, var->img->structure);
+	// var->img->structure = mlx_new_image(var->mlx->ptr, SCREEN_WIDTH, SCREEN_HEIGHT);
 	}
 
 void	ft_a(t_var *var)
@@ -69,8 +69,8 @@ void	ft_a(t_var *var)
 		var->plr->pos_x = new_x;
 		var->plr->pos_y = new_y;
 	}
-	mlx_destroy_image(var->mlx->ptr, var->img->structure);
-	var->img->structure = mlx_new_image(var->mlx->ptr, SCREEN_WIDTH, SCREEN_HEIGHT);
+	// mlx_destroy_image(var->mlx->ptr, var->img->structure);
+	// var->img->structure = mlx_new_image(var->mlx->ptr, SCREEN_WIDTH, SCREEN_HEIGHT);
 }
 
 void	ft_s(t_var *var)
@@ -87,8 +87,8 @@ void	ft_s(t_var *var)
 		var->plr->pos_x = new_x;
 		var->plr->pos_y = new_y;
 	}
-	mlx_destroy_image(var->mlx->ptr, var->img->structure);
-	var->img->structure = mlx_new_image(var->mlx->ptr, SCREEN_WIDTH, SCREEN_HEIGHT);
+	// mlx_destroy_image(var->mlx->ptr, var->img->structure);
+	// var->img->structure = mlx_new_image(var->mlx->ptr, SCREEN_WIDTH, SCREEN_HEIGHT);
 }
 
 void	ft_d(t_var *var)
@@ -105,8 +105,8 @@ void	ft_d(t_var *var)
 		var->plr->pos_x = new_x;
 		var->plr->pos_y = new_y;
 	}
-	mlx_destroy_image(var->mlx->ptr, var->img->structure);
-	var->img->structure = mlx_new_image(var->mlx->ptr, SCREEN_WIDTH, SCREEN_HEIGHT);
+	// mlx_destroy_image(var->mlx->ptr, var->img->structure);
+	// var->img->structure = mlx_new_image(var->mlx->ptr, SCREEN_WIDTH, SCREEN_HEIGHT);
 }
 
 void	ft_lr_arrows(t_var *var, int arrow)
@@ -121,8 +121,8 @@ void	ft_lr_arrows(t_var *var, int arrow)
 		var->plr->p_angle += 5;
 	if (var->plr->p_angle > 359)
 		var->plr->p_angle = 0.0;
-	mlx_destroy_image(var->mlx->ptr, var->img->structure);
-	var->img->structure = mlx_new_image(var->mlx->ptr, SCREEN_WIDTH, SCREEN_HEIGHT);
+	// mlx_destroy_image(var->mlx->ptr, var->img->structure);
+	// var->img->structure = mlx_new_image(var->mlx->ptr, SCREEN_WIDTH, SCREEN_HEIGHT);
 
 }
 

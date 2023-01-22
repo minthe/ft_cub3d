@@ -1,14 +1,14 @@
-NO inc/textures/wood.xpm
-SO inc/textures/blueWall.xpm
-WE inc/textures/redWall.xpm
-EA inc/textures/pissWall.xpm
+NO src/inc/textures/wood.xpm
+SO src/inc/textures/blueWall.xpm
+WE src/inc/textures/redWall.xpm
+EA src/inc/textures/pissWall.xpm
 
 Fuck
 F 200,100,0
 C 255,30,0
 
-11111
-1N001
-10011
-10001
-11111
+111111
+100001
+101011
+100N01
+111111

@@ -6,11 +6,11 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 08:15:38 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/11 21:40:18 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/22 18:35:24 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cub3d.h"
+#include "inc/cub3d.h"
 
 static void	write_error_and_exit(char *element)
 {

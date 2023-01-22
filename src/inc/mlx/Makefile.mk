@@ -1,4 +1,3 @@
-INC=/usr/include
 ##
 ## Makefile for MiniLibX in /home/boulon/work/c/raytraceur/minilibx
 ## 
@@ -12,6 +11,7 @@ INC=/usr/include
 ## Please use configure script
 
 
+INC	=%%%%
 
 UNAME = $(shell uname)
 CC	= gcc
@@ -61,9 +61,6 @@ show:
 	@printf "OBJ		:\n	$(OBJ)\n"
 
 clean	:
-	rm -f $(NAME) $(OBJ) *~ core *.core
-
-fclean	:
 	rm -rf $(OBJ_DIR)/ $(NAME) $(NAME_UNAME) *~ core *.core
 
 .PHONY: all check show clean
