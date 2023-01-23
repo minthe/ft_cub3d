@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 17:09:03 by dimbrea           #+#    #+#             */
-/*   Updated: 2023/01/22 19:56:21 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/23 17:04:41 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ void	ft_w(t_var *var)
 	double radians;
 
 	radians = (var->plr->p_angle) * M_PI / 180;
-	new_x = var->plr->pos_x + 5 * cos(radians);
-	new_y = var->plr->pos_y + 5 * sin(radians);
+	new_x = var->plr->pos_x + 2 * cos(radians);
+	new_y = var->plr->pos_y + 2 * sin(radians);
 	if (!ft_is_wall(var, new_x, new_y))
 	{
 		var->plr->pos_x = new_x;
@@ -62,8 +62,8 @@ void	ft_a(t_var *var)
 	double radians;
 
 	radians = (90 - var->plr->p_angle) * M_PI / 180;
-	new_x = var->plr->pos_x + 5 * cos(radians);
-	new_y = var->plr->pos_y - 5 * sin(radians);
+	new_x = var->plr->pos_x + 2 * cos(radians);
+	new_y = var->plr->pos_y - 2 * sin(radians);
 	if (!ft_is_wall(var, new_x, new_y))
 	{
 		var->plr->pos_x = new_x;
@@ -80,8 +80,8 @@ void	ft_s(t_var *var)
 	double radians;
 
 	radians = (var->plr->p_angle) * M_PI / 180;
-	new_x = var->plr->pos_x - 5 * cos(radians);
-	new_y = var->plr->pos_y - 5 * sin(radians);
+	new_x = var->plr->pos_x - 2 * cos(radians);
+	new_y = var->plr->pos_y - 2 * sin(radians);
 	if (!ft_is_wall(var, new_x, new_y))
 	{
 		var->plr->pos_x = new_x;
@@ -98,8 +98,8 @@ void	ft_d(t_var *var)
 	double radians;
 	
 	radians = (90 - var->plr->p_angle) * M_PI / 180;
-	new_x = var->plr->pos_x - 5 * cos(radians);
-	new_y = var->plr->pos_y + 5 * sin(radians);
+	new_x = var->plr->pos_x - 2 * cos(radians);
+	new_y = var->plr->pos_y + 2 * sin(radians);
 	if (!ft_is_wall(var, new_x, new_y))
 	{
 		var->plr->pos_x = new_x;
@@ -115,10 +115,10 @@ void	ft_lr_arrows(t_var *var, int arrow)
 	{
 		if (var->plr->p_angle == 0)
 			var->plr->p_angle = 360;
-		var->plr->p_angle -= 5;
+		var->plr->p_angle -= 2;
 	}
 	else if (arrow == R_ARROW)
-		var->plr->p_angle += 5;
+		var->plr->p_angle += 2;
 	if (var->plr->p_angle > 359)
 		var->plr->p_angle = 0.0;
 	// mlx_destroy_image(var->mlx->ptr, var->img->structure);
