@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 10:13:11 by dimbrea           #+#    #+#             */
-/*   Updated: 2023/01/22 19:23:04 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/23 15:57:01 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,10 @@ int	ft_get_pxl_color(t_var *var, double x, double y)
 	return (*(int *)dst);
 }
 
+double	degree_to_radians(int degree)
+{
+	return (degree * M_PI / 180);
+}
 
 void	ft_cast_rayz(t_var *var)
 {
@@ -124,6 +128,7 @@ void	ft_cast_rayz(t_var *var)
 			y += dy;
 			distance += 0.5;
 		}
+		distance *= cos(degree_to_radians(ray_angle - var->plr->p_angle));
 		ft_draw_wall(var, distance, x_ing, x);
 		ray_pos += 0.00125;// decrease for more rays
 		x_ing++;
