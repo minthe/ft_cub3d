@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: dimbrea <dimbrea@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 10:13:11 by dimbrea           #+#    #+#             */
-/*   Updated: 2023/01/22 19:23:04 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/23 14:43:53 by dimbrea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	ft_get_dist(t_var *var)
 	double	y;
 	double	dx;
 	double	dy;
-	
+
 	ray_pos = 0.5;
 	ray_angle = (double)FOV * ray_pos - (double)FOV / 2 + var->plr->p_angle;
 	var->plr->radians = ray_angle * M_PI / 180;
@@ -54,10 +54,10 @@ void	ft_get_dist(t_var *var)
 	x = var->plr->pos_x;
 	y = var->plr->pos_y;
 	distance = 0;
-	while(distance < 1000)
+	while (distance < 1000)
 	{
-		if (ft_is_wall(var,x,y))
-			break;
+		if (ft_is_wall(var, x, y))
+			break ;
 		x += dx;
 		y += dy;
 		distance++;
@@ -78,31 +78,27 @@ int	ft_get_pxl_color(t_var *var, double x, double y)
 {
 	char	*dst;
 	int		xx;
-	
+
 	xx = x;
 	xx %= TXT_W ;
 	y = TXT_W / y;
 	if (y < 0)
 		y *= -1;
-	dst = var->txt->tex_addr + (16 * var->txt->sz_ln + xx  * (var->txt->bpp_txt / 8));
+	dst = var->txt->tex_addr + ((int)y * var->txt->sz_ln + xx * (var->txt->bpp_txt / 8));
 	return (*(int *)dst);
 }
-
 
 void	ft_cast_rayz(t_var *var)
 {
 	double	ray_pos;
 	double	ray_angle;
 	double	distance;
-	// double	p_plane_dist;
 	double	x;
 	double	y;
 	double	dx;
 	double	dy;
 	int		x_ing;
-	// double	fov;
 
-	// fov = FOV;
 	ray_pos = 0.0;
 	x_ing = 0;
 	while(ray_pos < 1.0 )
@@ -116,10 +112,10 @@ void	ft_cast_rayz(t_var *var)
 		x = var->plr->pos_x;
 		y = var->plr->pos_y;
 		distance = 0;
-		while(distance < 10000)
+		while (distance < 10000)
 		{
-			if (ft_is_wall(var,x,y))
-				break;
+			if (ft_is_wall(var, x, y))
+				break ;
 			x += dx;
 			y += dy;
 			distance += 0.5;
@@ -138,18 +134,10 @@ int	ft_texturing(t_var *var, int x, int y)
 	double	tex_y_percent;
 
 	start = x;
-	
 	tex_y_percent = y;
-	diff =  start % var->map->modul_w;
+	diff = start % var->map->modul_w;
 	percent = (double)diff / (double)var->map->modul_w;
-	
-	// printf("%d x %d y %f r_W_h", x, y, var->plr->real_wall_height);
 	tex_y_percent /= var->plr->real_wall_height;
-	// if (diff == 0)
-	// printf("%d x \n", start);
-	// printf("%f percent \n", percent * (double)TXT_W);
-	// 	return (ft_get_pxl_color(var, percent * TXT_W));
-	// start = x - diff;
 	return (ft_get_pxl_color(var, percent * (double)TXT_W, tex_y_percent));
 }
 
@@ -169,7 +157,7 @@ void	ft_draw_wall(t_var *var, int distance, int x_ing, int coo_x)
 	to_draw = 0;
 	d_txt = -1;
 	var->plr->real_wall_height = y;
-	while(to_draw < SCREEN_HEIGHT)
+	while (to_draw < SCREEN_HEIGHT)
 	{
 		if (to_draw < y)
 			img_pix_put(var, x_ing, to_draw, var->data->c);
@@ -177,7 +165,6 @@ void	ft_draw_wall(t_var *var, int distance, int x_ing, int coo_x)
 		{
 			color = ft_texturing(var, coo_x, ++d_txt);
 			img_pix_put(var, x_ing, to_draw, color);
-			
 		}
 		else if (to_draw > p_wall_height)
 			img_pix_put(var, x_ing, to_draw, var->data->f);

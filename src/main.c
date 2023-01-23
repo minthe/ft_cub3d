@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: dimbrea <dimbrea@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 19:03:45 by dimbrea           #+#    #+#             */
-/*   Updated: 2023/01/22 19:54:25 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/23 15:06:29 by dimbrea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ int	keypress(int key, t_var *var)
 		ft_d(var);
 	if (key == L_ARROW || key == R_ARROW)
 		ft_lr_arrows(var, key);
-	return 0;
+	return (0);
 }
 int	render(t_var *var)
 {
 	if (var->mlx->window == NULL)
 		return (1);
-	// ft_set_walls(var);
+	ft_set_walls(var);
 	// render_background(var);
 	// ft_player(var);
 	ft_cast_rayz(var);
@@ -74,9 +74,9 @@ void	ft_map_size(t_var *var)
 	while (var->data->map[i])
 	{
 		j = 1;
-		while(var->data->map[i][j])
+		while (var->data->map[i][j])
 			j++;
-		if(j >  var->map->map_w)
+		if (j >  var->map->map_w)
 			var->map->map_w = j;
 		i++;
 	}
@@ -85,16 +85,16 @@ void	ft_map_size(t_var *var)
 	var->map->modul_h = SCREEN_HEIGHT / var->map->map_h;
 }
 
-void ft_color(t_var *var, int height, int width)
+void	ft_color(t_var *var, int height, int width)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = height;
 	while (i < (height + var->map->modul_h + 1))
 	{
 		j = width;
-		while(j < (width + var->map->modul_w + 1))
+		while (j < (width + var->map->modul_w + 1))
 		{
 			img_pix_put(var, j, i, 0x808080);
 			j++;
@@ -128,7 +128,7 @@ void	ft_set_walls(t_var *var)
 
 int	ft_is_wall(t_var *var, int x, int y)
 {
-	int col;
+	int	col;
 	int	row;
 
 	col = x / var->map->modul_w;
@@ -144,6 +144,11 @@ int	ft_is_wall(t_var *var, int x, int y)
 		return (1);
 	}
 	return (0);
+}
+
+void render_minimap(t_var *var)
+{
+	
 }
 
 void	ft_put_player(t_var *var)
@@ -171,7 +176,6 @@ void	ft_put_player(t_var *var)
 		}
 		height += var->map->modul_h;
 	}
-	
 }
 
 void	ft_starting_angle(t_var *var, char nswe)
@@ -189,22 +193,20 @@ void	ft_starting_angle(t_var *var, char nswe)
 
 void	ft_ray(t_var *var, char nswe)
 {
-	
 	ft_textures(var);
 	ft_starting_angle(var, nswe);
 	ft_cast_rayz(var);
-	// mlx_put_image_to_window(var->mlx->ptr, var->mlx->window, var->img->structure, 0, 0);
 }
 
 int	main(int argc, char **argv)
 {
-	t_var	var;
-	t_map	map_m;
-	t_mlx	data_m;
-	t_img	s_img;
+	t_var		var;
+	t_map		map_m;
+	t_mlx		data_m;
+	t_img		s_img;
 	t_player	player;
-	t_data	cub_s;
-	t_txt	txt;
+	t_data		cub_s;
+	t_txt		txt;
 
 	var.data = &cub_s;
 	var.mlx = &data_m;
@@ -212,18 +214,17 @@ int	main(int argc, char **argv)
 	var.img = &s_img;
 	var.plr = &player;
 	var.txt = &txt;
-
 	if (argc == 2 && init_struct(&var) && import_cub(&var, argv[1], ".cub"))
 	{
 		ft_map_size(&var);
-		ft_put_player(&var);
+		 ft_put_player(&var);
 		var.mlx->ptr = mlx_init();
-		var.mlx->window = mlx_new_window(var.mlx->ptr,SCREEN_WIDTH, SCREEN_HEIGHT, "cub3d");
+		var.mlx->window = mlx_new_window(var.mlx->ptr, SCREEN_WIDTH, SCREEN_HEIGHT, "cub3d");
 		var.img->structure = mlx_new_image(var.mlx->ptr, SCREEN_WIDTH, SCREEN_HEIGHT);
 		var.img->addr = mlx_get_data_addr(var.img->structure, &var.img->bpp, &var.img->size_line, &var.img->endian);
 		ft_ray(&var, var.plr->orient);
 		mlx_hook(var.mlx->window, 17, 0L, x_window, &var);
-		mlx_hook(var.mlx->window,2, (1l << 0),keypress, &var);
+		mlx_hook(var.mlx->window, 2, (1l << 0), keypress, &var);
 		mlx_loop_hook(var.mlx->ptr, &render, &var);
 		mlx_loop(var.mlx->ptr);
 	}
