@@ -6,7 +6,7 @@
 /*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 14:27:58 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/24 16:29:35 by dimbrea          ###   ########.fr       */
+/*   Updated: 2023/01/24 16:59:37 by dimbrea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -220,4 +220,6 @@ int		keypress(int key, t_var *var);
 void	ft_map_size(t_var *var);
 void	ft_starting_angle(t_var *var, char nswe);
 double	degree_to_radians(double degree);
+int	ft_get_pxl_color(t_var *var, double x, double y);
+
 #endif

@@ -6,7 +6,7 @@
 /*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 10:13:11 by dimbrea           #+#    #+#             */
-/*   Updated: 2023/01/24 16:56:56 by dimbrea          ###   ########.fr       */
+/*   Updated: 2023/01/24 17:00:17 by dimbrea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,11 +102,11 @@ void	ft_cast_rayz(t_var *var)
 		{
 			if (ft_is_wall(var, x, y))
 				break ;
-			x += dx
+			x += dx;
 			y += dy;
 			distance += 0.5;
 		}
-		distance *= cos((ray_angle - var->plr->p_angle * M_PI / 180.0);  
+		distance *= cos((ray_angle - var->plr->p_angle) * M_PI / 180.0);
 		ft_draw_wall(var, distance, x_ing, x);
 		ray_pos += 0.00125;// decrease for more rays
 		x_ing++;
