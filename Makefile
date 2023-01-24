@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+         #
+#    By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/01 14:46:38 by vfuhlenb          #+#    #+#              #
-#    Updated: 2023/01/22 19:16:41 by vfuhlenb         ###   ########.fr        #
+#    Updated: 2023/01/24 16:55:40 by dimbrea          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,11 @@ SRCS = src/main.c \
 		src/utils/ft_strdup_cub.c\
 		src/utils/ft_free_doublepoint.c\
 		src/utils/peeks.c\
+		src/wall_textures.c\
+		src/exec.c\
 		src/keys.c\
+		src/keys_2.c\
+		src/map_plr_utils.c\
 		src/ray.c\
 
 RM = rm -f

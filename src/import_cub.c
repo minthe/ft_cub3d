@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   import_cub.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 09:49:29 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/22 18:35:09 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/24 15:08:08 by dimbrea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

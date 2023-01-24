@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 16:00:39 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/20 14:32:11 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/24 15:11:08 by dimbrea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

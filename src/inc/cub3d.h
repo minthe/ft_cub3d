@@ -6,7 +6,7 @@
 /*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 14:27:58 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/20 16:07:59 by dimbrea          ###   ########.fr       */
+/*   Updated: 2023/01/24 16:29:35 by dimbrea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@
 # define A 97
 # define S 115
 # define D 100
+# define M 109
 # define R_ARROW 65363
 # define L_ARROW 65361
 # define ESC 65307
-# define ROT_SPEED 0.02
 # define TXT_W 	256
 # define FOV 60
 
@@ -111,20 +111,23 @@ typedef struct s_player
 	int		pos_y;
 	double	mid_ray;
 	double	real_wall_height;
+	int		mini_x;
+	int		mini_y;
 }t_player;
 
 typedef struct s_map
 {
-	int		**grid_dims;
 	int		map_w;
 	int		map_h;
-	int		wall_sx;
-	int		wall_sy;
-	int		wall_ex;
-	int		wall_ey;
 	int		wall_height;
 	int		modul_w;
 	int		modul_h;
+	int		minimap;
+	// void	*mini_img;
+	// char	*mini_addr;
+	// int		mini_bpp;
+	// int		mini_szl;
+	// int		mini_end;
 }t_map;
 
 typedef struct s_txt
@@ -173,6 +176,7 @@ void	ft_w(t_var *var);
 void	ft_a(t_var *var);
 void	ft_s(t_var *var);
 void	ft_d(t_var *var);
+void	ft_m(t_var *var);
 void	ft_lr_arrows(t_var *var, int arrow);
 // UTILS
 void	error_msg_exit(char *str);
@@ -211,5 +215,9 @@ void	ft_cast_rayz(t_var *var);
 void	ft_draw_wall(t_var *var, int distance, int x_ing, int coo_x);
 void	ft_textures(t_var *var);
 void	img_pix_put2(t_var *var, int x, int y, int color);
-
+//exec.c
+int		keypress(int key, t_var *var);
+void	ft_map_size(t_var *var);
+void	ft_starting_angle(t_var *var, char nswe);
+double	degree_to_radians(double degree);
 #endif
