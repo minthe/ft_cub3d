@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 14:27:58 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/25 12:53:22 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/25 17:57:43 by dimbrea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ typedef struct s_img
 	int		color;
 	int		begin_x;
 	int		begin_y;
+	
 }t_img;
 
 typedef struct s_linked_list {
@@ -123,6 +124,7 @@ typedef struct s_map
 	int		modul_w;
 	int		modul_h;
 	int		minimap;
+	
 	// void	*mini_img;
 	// char	*mini_addr;
 	// int		mini_bpp;
@@ -139,6 +141,8 @@ typedef struct s_txt
 	int		bpp_txt;
 	int		sz_ln;
 	int		endian_txt;
+	void	*texture;
+	
 }t_txt;
 
 typedef struct s_var
@@ -154,6 +158,7 @@ typedef struct s_var
 	int			fd1;
 }t_var;
 
+void	ft_get_wall_orient(t_var *var, double dx, double dy, double x, double y);
 // SRC
 int		import_cub(t_var *var, char *argv, char *type);
 void	import_map(t_var *var);
