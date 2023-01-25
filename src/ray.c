@@ -3,43 +3,43 @@
 /*                                                        :::      ::::::::   */
 /*   ray.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 10:13:11 by dimbrea           #+#    #+#             */
-/*   Updated: 2023/01/25 13:59:13 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/25 14:38:52 by dimbrea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "inc/cub3d.h"
 
-void	ft_get_dist(t_var *var)
-{
-	double	ray_pos;
-	double	ray_angle;
-	double	distance;
-	double	x;
-	double	y;
-	double	dx;
-	double	dy;
+// void	ft_get_dist(t_var *var)
+// {
+// 	double	ray_pos;
+// 	double	ray_angle;
+// 	double	distance;
+// 	double	x;
+// 	double	y;
+// 	double	dx;
+// 	double	dy;
 
-	ray_pos = 0.5;
-	ray_angle = (double)FOV * ray_pos - (double)FOV / 2 + var->plr->p_angle;
-	var->plr->radians = ray_angle * (double)M_PI / 180.0;
-	dx = cos(var->plr->radians);
-	dy = sin(var->plr->radians);
-	x = var->plr->pos_x;
-	y = var->plr->pos_y;
-	distance = 0;
-	while (distance < 1000)
-	{
-		if (ft_is_wall(var, x, y))
-			break ;
-		x += dx;
-		y += dy;
-		distance++;
-	}
-	var->plr->mid_ray = distance;
-}
+// 	ray_pos = 0.5;
+// 	ray_angle = (double)FOV * ray_pos - (double)FOV / 2 + var->plr->p_angle;
+// 	var->plr->radians = ray_angle * (double)M_PI / 180.0;
+// 	dx = cos(var->plr->radians);
+// 	dy = sin(var->plr->radians);
+// 	x = var->plr->pos_x;
+// 	y = var->plr->pos_y;
+// 	distance = 0;
+// 	while (distance < 1000)
+// 	{
+// 		if (ft_is_wall(var, x, y))
+// 			break ;
+// 		x += dx;
+// 		y += dy;
+// 		distance++;
+// 	}
+// 	var->plr->mid_ray = distance;
+// }
 
 void	ft_textures(t_var *var)
 {
@@ -104,7 +104,7 @@ void	ft_cast_rayz(t_var *var)
 				break ;
 			x += dx;
 			y += dy;
-			distance += 0.5;
+			distance += 1;
 		}
 		distance *= cos((ray_angle - var->plr->p_angle) * M_PI / 180.0);
 		ft_draw_wall(var, distance, x_ing, x);
