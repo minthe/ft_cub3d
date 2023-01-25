@@ -82,32 +82,49 @@ void	ft_get_wall_orient(t_var *var, double dx, double dy, double x, double y)
 	// int	h;
 	// int	w;
 	(void)var;
-	(void)x;
-	(void)y;
-	printf("%d x%%modul %d y%%modul\n", (int)x % var->map->modul_w, (int)y % var->map->modul_h);
+	(void)dx;
+	(void)dy;
+	printf("%d x%%modul %d y%%modul  %f X, %f Y\n", (int)x % var->map->modul_w , (int)y % var->map->modul_h, x ,y);
 	printf("%d, %d\n", var->map->modul_w, var->map->modul_h);
 	// var->txt->texture = mlx_xpm_file_to_image(var->txt->img_ptr, var->data->no, &w, &h);
-	if (dx > 0.0 && dx < 1.0 && dy > -1.0 && dy < 0.0)
-	{
+	// if (dx > 0.0 && dx < 1.0 && dy > -1.0 && dy < 0.0)
+	// {
+		// y = floor(y);
+		if ((int)y % (var->map->modul_h - 1) == 0 || (int)y % (var->map->modul_h - 1) == var->map->modul_h - 1)
+			printf("NORTH\n");
+		// else
+		// 	printf("EAST\n");
 		// printf("%f dx %f dy\n", dx, dy);
 		// if ((int)x % var->map->modul_w == 0 && (int)y % var->map->modul_h != 0) // E
 			// printf("THIS IS  E %d res \n", (int)x % var->map->modul_w);
-	}
-	else if (dx < 1.0 && dx > 0.0 && dy > 0.0 && dy < 1.0)
-	{
+	// }
+	// else if (dx < 1.0 && dx > 0.0 && dy > 0.0 && dy < 1.0)
+	// {
+		else if ((unsigned int)x % var->map->modul_w == 0)
+			printf("EAST\n");
+		// else
+		// 	printf("SOUTH\n");
 		// printf("THIS IS SE 2\n");w
 		// printf("%f dx %f dy\n", dx, dy);
-	}
-	else if (dx < 0.0 && dx > -1.0 && dy < 1.0 && dy > 0.0)
-	{
+	// }
+	// else if (dx < 0.0 && dx > -1.0 && dy < 1.0 && dy > 0.0)
+	// {
+		else if ((unsigned int)y % var->map->modul_h == 0)
+			printf("SOUTH\n");
+		// else
+		// 	printf("WEST\n");
 		// printf("THIS IS SW 3\n");
 		// printf("%f dx %f dy\n", dx, dy);
-	}
-	else if (dx > -1.0 && dx < 0.0 && dy < 0.0 && dy > -1.0)
-	{
+	// }
+	// else if (dx > -1.0 && dx < 0.0 && dy < 0.0 && dy > -1.0)
+	// {
+		else if ((unsigned int)x % (var->map->modul_w - 1) == 0)
+			printf("WEST\n");
+		// else
+		// 	printf("NORTH\n");
 		// printf("THIS IS NW 4\n");
 		// printf("%f dx %f dy\n", dx, dy);
-	}
+	// }
 	// else
 		// printf("%f dx %f dy\n", dx, dy);
 	// var->txt->tex_addr = mlx_get_data_addr(var->txt->texture, &var->txt->bpp_txt, &var->txt->sz_ln, &var->txt->endian_txt);
