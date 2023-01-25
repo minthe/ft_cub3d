@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
+/*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 10:13:11 by dimbrea           #+#    #+#             */
-/*   Updated: 2023/01/24 17:00:17 by dimbrea          ###   ########.fr       */
+/*   Updated: 2023/01/25 13:59:13 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,13 @@ int	ft_get_pxl_color(t_var *var, double x, double y)
 {
 	char	*dst;
 	int		xx;
+	int		yy;
 
 	xx = x;
-	xx %= TXT_W ;
-	y = TXT_W / y;
-	if (y < 0)
-		y *= -1;
-	dst = var->txt->tex_addr + (16 * var->txt->sz_ln \
+	yy = y;
+	xx %= TXT_W;
+	yy %= TXT_W;
+	dst = var->txt->tex_addr + (yy * var->txt->sz_ln \
 		+ xx * (var->txt->bpp_txt / 8));
 	return (*(int *)dst);
 }

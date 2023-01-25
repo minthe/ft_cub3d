@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wall_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
+/*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 16:54:25 by dimbrea           #+#    #+#             */
-/*   Updated: 2023/01/24 16:56:21 by dimbrea          ###   ########.fr       */
+/*   Updated: 2023/01/25 12:44:57 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,11 @@ int	ft_texturing(t_var *var, int x, int y)
 	int		diff;
 	int		start;
 	double	percent;
-	double	tex_y_percent;
 
 	start = x;
-	tex_y_percent = y;
 	diff = start % var->map->modul_w;
 	percent = (double)diff / (double)var->map->modul_w;
-	tex_y_percent /= var->plr->real_wall_height;
-	return (ft_get_pxl_color(var, percent * (double)TXT_W, tex_y_percent));
+	return (ft_get_pxl_color(var, percent * (double)TXT_W, y));
 }
 
 void	ft_draw_wall(t_var *var, int distance, int x_ing, int coo_x)
