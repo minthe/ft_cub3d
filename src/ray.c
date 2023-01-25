@@ -84,7 +84,8 @@ void	ft_get_wall_orient(t_var *var, double dx, double dy, double x, double y)
 	(void)var;
 	(void)x;
 	(void)y;
-	printf("%d x%%modul %d y%%modul\n", (int)x % var->map->modul_h, (int)y % var->map->modul_w);
+	printf("%d x%%modul %d y%%modul\n", (int)x % var->map->modul_w, (int)y % var->map->modul_h);
+	printf("%d, %d\n", var->map->modul_w, var->map->modul_h);
 	// var->txt->texture = mlx_xpm_file_to_image(var->txt->img_ptr, var->data->no, &w, &h);
 	if (dx > 0.0 && dx < 1.0 && dy > -1.0 && dy < 0.0)
 	{
@@ -94,7 +95,7 @@ void	ft_get_wall_orient(t_var *var, double dx, double dy, double x, double y)
 	}
 	else if (dx < 1.0 && dx > 0.0 && dy > 0.0 && dy < 1.0)
 	{
-		// printf("THIS IS SE 2\n");
+		// printf("THIS IS SE 2\n");w
 		// printf("%f dx %f dy\n", dx, dy);
 	}
 	else if (dx < 0.0 && dx > -1.0 && dy < 1.0 && dy > 0.0)
