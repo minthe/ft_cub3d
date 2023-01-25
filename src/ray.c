@@ -89,8 +89,7 @@ void	ft_get_wall_orient(t_var *var, double dx, double dy, double x, double y)
 	// var->txt->texture = mlx_xpm_file_to_image(var->txt->img_ptr, var->data->no, &w, &h);
 	// if (dx > 0.0 && dx < 1.0 && dy > -1.0 && dy < 0.0)
 	// {
-		// y = floor(y);
-		if ((int)y % (var->map->modul_h - 1) == 0 || (int)y % (var->map->modul_h - 1) == var->map->modul_h - 1)
+		if (((int)ceil(y) % (var->map->modul_h) == 0 || (int)y % (var->map->modul_h - 1) == 0) || (dx == 0.0 && dy == -1.0))
 			printf("NORTH\n");
 		// else
 		// 	printf("EAST\n");
@@ -100,7 +99,7 @@ void	ft_get_wall_orient(t_var *var, double dx, double dy, double x, double y)
 	// }
 	// else if (dx < 1.0 && dx > 0.0 && dy > 0.0 && dy < 1.0)
 	// {
-		else if ((unsigned int)x % var->map->modul_w == 0)
+		else if (((int)x % var->map->modul_w == 0) || (dx == 1.0 && dy == 0.0))
 			printf("EAST\n");
 		// else
 		// 	printf("SOUTH\n");
@@ -109,7 +108,7 @@ void	ft_get_wall_orient(t_var *var, double dx, double dy, double x, double y)
 	// }
 	// else if (dx < 0.0 && dx > -1.0 && dy < 1.0 && dy > 0.0)
 	// {
-		else if ((unsigned int)y % var->map->modul_h == 0)
+		else if (((int)y % var->map->modul_h == 0) || (dx == 0.0 && dy == 1.0))
 			printf("SOUTH\n");
 		// else
 		// 	printf("WEST\n");
@@ -118,7 +117,7 @@ void	ft_get_wall_orient(t_var *var, double dx, double dy, double x, double y)
 	// }
 	// else if (dx > -1.0 && dx < 0.0 && dy < 0.0 && dy > -1.0)
 	// {
-		else if ((unsigned int)x % (var->map->modul_w - 1) == 0)
+		else if (((int)ceil(x) % var->map->modul_w == 0 || (int)x % (var->map->modul_w - 1) == 0)|| (dx == -1.0 && dy == 0.0))
 			printf("WEST\n");
 		// else
 		// 	printf("NORTH\n");
@@ -144,7 +143,7 @@ void	ft_cast_rayz(t_var *var)
 	ray_pos = 0.0;
 	x_ing = 0;
 	ft_get_dist(var);
-	while (ray_pos < 1.0 )
+	while (ray_pos < 1.0)
 	{
 		if (x_ing >= SCREEN_WIDTH)
 			x_ing = 0;
