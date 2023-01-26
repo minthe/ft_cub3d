@@ -6,7 +6,7 @@
 /*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 14:27:58 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/26 11:37:20 by dimbrea          ###   ########.fr       */
+/*   Updated: 2023/01/26 15:29:33 by dimbrea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,7 @@ typedef struct s_map
 	int		modul_w;
 	int		modul_h;
 	int		minimap;
+	int		is_w_or_e;
 	
 	// void	*mini_img;
 	// char	*mini_addr;
@@ -221,6 +222,7 @@ void	ft_ray(t_var *var, char nswe);
 // void	draw_ln(t_var *var);// not needded
 void	ft_cast_rayz(t_var *var);
 void	ft_draw_wall(t_var *var, int distance, int x_ing, int coo_x);
+// void	ft_draw_wall(t_var *var, int distance, int x_ing, int coo_x)
 void	ft_textures(t_var *var);
 void	img_pix_put2(t_var *var, int x, int y, int color);
 //exec.c
