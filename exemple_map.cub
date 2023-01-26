@@ -3,12 +3,20 @@ NO src/inc/textures/blueWall.xpm
 SO src/inc/textures/redWall.xpm
 EA src/inc/textures/pissWall.xpm
 
-Fuck
-F 128,128,128
-C 255,30,0
 
+F 128,128,128
+
+CF
+C 255,00002505, 53
+
+
+
+1
 111111111
-100100001
-100010101
-10N000001
-111111111
+1110111
+1111111
+11111
+111
+
+
+

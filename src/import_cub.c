@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   import_cub.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
+/*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 09:49:29 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/24 15:08:08 by dimbrea          ###   ########.fr       */
+/*   Updated: 2023/01/26 17:02:02 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,13 +60,7 @@ static void	write_to_struct(t_var *var, int i, char c, char *nswe)
 
 static void	copy_element(t_var *var, int i)
 {
-	if ((check_cub(var->data) == 2))
-	{
-		if (!ft_is_whitespace(var->line) && !only_map_char(var->line))
-			error_msg_exit("map error: invalid map character");
-		add_tail(var->data->map_lst, ft_strdup_map(var, 0, NULL));
-	}
-	else if (var->line[i] == 'N')
+	if (var->line[i] == 'N')
 		write_to_struct(var, ++i, 'O', "no");
 	else if (var->line[i] == 'S' && var->line[i + 1] && var->line[i + 1] == 'O')
 		write_to_struct(var, ++i, 'O', "so");
@@ -100,7 +94,7 @@ static void	import_cub2(t_var *var)
 	while (var->line && !ft_is_whitespace(var->line))
 	{
 		if (var->line)
-			copy_element(var, ft_skip_whitespace(var->line));
+			checks_and_add_tail(var);
 		free(var->line);
 		var->line = get_next_line(var->fd1);
 	}
@@ -126,7 +120,11 @@ int	import_cub(t_var *var, char *argv, char *type)
 	while (var->line && (check_cub(var->data) != 2))
 	{
 		if (var->line && !ft_is_whitespace(var->line))
+		{
+			if ((check_cub(var->data) == 2))
+				checks_and_add_tail(var);
 			copy_element(var, ft_skip_whitespace(var->line));
+		}
 		free(var->line);
 		var->line = get_next_line(var->fd1);
 	}
