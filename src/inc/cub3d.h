@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 14:27:58 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/27 15:00:51 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/27 16:58:50 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,7 +160,7 @@ typedef struct s_var
 	int			fd1;
 }t_var;
 
-void	ft_get_wall_orient(t_var *var, double dx, double dy, double x, double y);
+void	ft_get_wall_orient(t_var *var, double x, double y);
 // SRC
 int		import_cub(t_var *var, char *argv, char *type);
 void	import_map(t_var *var);
