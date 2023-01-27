@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 16:00:39 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/26 17:00:47 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/27 09:58:11 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,12 @@ int	max_col(t_linked_list *list)
 
 void	checks_and_add_tail(t_var *var)
 {
-	if (!ft_is_whitespace(var->line) && !only_map_char(var->line) && \
-		check_double_identifier(var, ft_skip_whitespace(var->line)))
-		error_msg_exit("map error: invalid map character");
+	check_double_identifier(var, ft_skip_whitespace(var->line));
+	if (check_cub(var->data) == 2)
+	{
+		if (!ft_is_whitespace(var->line) && !only_map_char(var->line) && \
+			check_double_identifier(var, ft_skip_whitespace(var->line)))
+			error_msg_exit("map error: invalid map character 2");
+	}
 	add_tail(var->data->map_lst, ft_strdup_map(var, 0, NULL));
 }

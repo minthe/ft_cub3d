@@ -6,42 +6,26 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 15:11:55 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/26 17:03:53 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/27 09:46:18 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "inc/cub3d.h"
 
-static void	check_double_identifier2(t_var *var)
-{
-	if ((var->line[i] == 'F' && var->line[i + 1] && \
-		is_cf_char(var->line[i + 1]) && var->data->f_set) \
-		|| (var->line[i] == 'F' && ft_strlen(var->line) == 2))
-		error_msg_exit("F duplicate");
-	if ((var->line[i] == 'C' && var->line[i + 1] && \
-		is_cf_char(var->line[i + 1]) && var->data->c_set) \
-		|| (var->line[i] == 'C' && ft_strlen(var->line) == 2))
-		error_msg_exit("C duplicate");
-}
-
 int	check_double_identifier(t_var *var, int i)
 {
-	if ((var->line[i] == 'N' && var->line[i + 1] && var->line[i + 1] \
-	== 'O' && var->data->no) || (var->line[i] == 'N' && var->line[i + 1] \
-	== 'O' && ft_strlen(var->line) == 3))
+	(void)i;
+	if (ft_strncmp(var->line, "NO", 2) == 0 && var->data->no)
 		error_msg_exit("NO duplicate");
-	if ((var->line[i] == 'S' && var->line[i + 1] && var->line[i + 1] \
-	== 'O' && var->data->so) || (var->line[i] == 'S' && var->line[i + 1] \
-	== 'O' && ft_strlen(var->line) == 3))
+	if (ft_strncmp(var->line, "SO", 2) == 0 && var->data->so)
 		error_msg_exit("SO duplicate");
-	if ((var->line[i] == 'W' && var->line[i + 1] && var->line[i + 1] == 'E' \
-	&& var->data->we) || (var->line[i] == 'W' && var->line[i + 1] == 'E' \
-	&& ft_strlen(var->line) == 3))
+	if (ft_strncmp(var->line, "WE", 2) == 0 && var->data->we)
 		error_msg_exit("WE duplicate");
-	if ((var->line[i] == 'E' && var->line[i + 1] && var->line[i + 1] \
-	== 'A' && var->data->ea) || (var->line[i] == 'E' && var->line[i + 1] \
-	== 'A' && ft_strlen(var->line) == 3))
+	if (ft_strncmp(var->line, "EA", 2) == 0 && var->data->ea)
 		error_msg_exit("EA duplicate");
-	check_double_identifier2(var);
+	if (ft_strncmp(var->line, "F", 1) == 0 && var->data->f_set)
+		error_msg_exit("F duplicate");
+	if (ft_strncmp(var->line, "C", 1) == 0 && var->data->c_set)
+		error_msg_exit("C duplicate");
 	return (1);
 }

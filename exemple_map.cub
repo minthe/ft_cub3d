@@ -1,20 +1,17 @@
 WE src/inc/textures/greyWall.xpm
 NO src/inc/textures/blueWall.xpm
-SO src/inc/textures/redWall.xpm
+
+
+SO src/inc/textures/redwall.xpm
 EA src/inc/textures/pissWall.xpm
 
-
 F 128,128,128
-
-CF
-C 255,00002505, 53
+C 153,256,234
 
 
-
-1
-111111111
-1110111
-1111111
+1111111111111111111111
+1110S00000000000000001111
+1111111111111111111111
 11111
 111
 

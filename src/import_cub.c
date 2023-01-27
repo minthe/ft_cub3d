@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 09:49:29 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/26 17:02:02 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/27 10:36:23 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ static void	copy_element(t_var *var, int i)
 	else if ((check_cub(var->data) == 0) && !is_ident_char(var->line[i]) && \
 		!is_map_char(var->line[i]))
 		error_msg_exit("invalid line");
-	else if ((check_cub(var->data) == 0) && !is_ident_char(var->line[i]))
+	else if ((check_cub(var->data) == 0) && only_map_char(var->line))
 		error_msg_exit("map error: not last element");
 }
 
@@ -85,7 +85,7 @@ static void	import_cub2(t_var *var)
 {
 	if (var->line && ft_is_whitespace(var->line))
 	{
-		while (var->line && ft_is_whitespace(var->line))
+		while (var->line && (ft_is_whitespace(var->line)))
 		{
 			free(var->line);
 			var->line = get_next_line(var->fd1);
@@ -121,8 +121,8 @@ int	import_cub(t_var *var, char *argv, char *type)
 	{
 		if (var->line && !ft_is_whitespace(var->line))
 		{
-			if ((check_cub(var->data) == 2))
-				checks_and_add_tail(var);
+			// if ((check_cub(var->data) == 2))
+			checks_and_add_tail(var);
 			copy_element(var, ft_skip_whitespace(var->line));
 		}
 		free(var->line);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup_cub.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
+/*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 18:01:17 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/24 15:07:07 by dimbrea          ###   ########.fr       */
+/*   Updated: 2023/01/26 17:51:07 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ char	*ft_strdup_map(t_var *var, size_t i, char *str)
 		{
 			if (var->line[i] == '\n')
 				break ;
-			check_map_char(var, var->line[i]);
+			if (check_cub(var->data) == 2)
+				check_map_char(var, var->line[i]);
 			str[i] = var->line[i];
 			i++;
 		}
