@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 09:49:29 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/27 15:51:51 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/27 19:14:34 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,13 +60,7 @@ static void	write_to_struct(t_var *var, int i, char c, char *nswe)
 
 static void	copy_element(t_var *var, int i)
 {
-	if ((check_cub(var->data) == 2))
-	{
-		if (!ft_is_whitespace(var->line) && !only_map_char(var->line))
-			error_msg_exit("map error: invalid map character");
-		add_tail(var->data->map_lst, ft_strdup_map(var, 0, NULL));
-	}
-	else if (ft_strncmp(&var->line[i], "NO", 2) == 0 && !var->data->no)
+	if (ft_strncmp(&var->line[i], "NO", 2) == 0 && !var->data->no)
 		write_to_struct(var, ++i, 'O', "no");
 	else if (ft_strncmp(&var->line[i], "SO", 2) == 0 && !var->data->so)
 		write_to_struct(var, ++i, 'O', "so");
@@ -78,10 +72,8 @@ static void	copy_element(t_var *var, int i)
 		cpy_color_to_struct(var, ++i, &var->data->f, 'F');
 	else if (ft_strncmp(&var->line[i], "C", 1) == 0 && var->data->c_set == 0)
 		cpy_color_to_struct(var, ++i, &var->data->c, 'C');
-	else if ((check_cub(var->data) == 0) && unknown_key(&var->line[i]))
+	else if (unknown_key(&var->line[i]))
 		error_msg_exit("unknown key");
-	else if ((check_cub(var->data) == 0) && only_map_char(var->line))
-		error_msg_exit("map error: not last element");
 }
 
 static void	import_cub2(t_var *var)
@@ -97,7 +89,7 @@ static void	import_cub2(t_var *var)
 	while (var->line && !ft_is_whitespace(var->line))
 	{
 		if (var->line)
-			copy_element(var, ft_skip_whitespace(var->line));
+			copy_map_line(var);
 		free(var->line);
 		var->line = get_next_line(var->fd1);
 	}

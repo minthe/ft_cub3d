@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 10:54:47 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/27 16:41:16 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/27 18:59:07 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ int	unknown_key(char *line)
 {
 	int	check;
 
-	printf("%")
 	check = 1;
 	if (ft_strncmp(line, "NO", 2) == 0)
 		check = 0;
@@ -48,4 +47,14 @@ int	unknown_key(char *line)
 	else if (ft_strncmp(line, "C", 1) == 0)
 		check = 0;
 	return (check);
+}
+
+void	copy_map_line(t_var *var)
+{
+	if ((check_cub(var->data) == 2))
+	{
+		if (!ft_is_whitespace(var->line) && !only_map_char(var->line))
+			error_msg_exit("map error: invalid map character");
+		add_tail(var->data->map_lst, ft_strdup_map(var, 0, NULL));
+	}
 }

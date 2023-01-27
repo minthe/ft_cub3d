@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 14:27:58 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/27 16:58:50 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/27 18:59:10 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,6 +172,7 @@ int		atoi_cub(const char *str, int sign, int ret, char c);
 int		hasdigits(const char *str, char c);
 int		check_double_identifier(t_var *var);
 int		unknown_key(char *line);
+void	copy_map_line(t_var *var);
 
 // SRC/LIST-UTILS
 void	initialize_list(t_linked_list *list);
