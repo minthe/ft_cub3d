@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 14:27:58 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/27 18:59:10 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/27 19:32:27 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,12 +124,6 @@ typedef struct s_map
 	int		modul_h;
 	int		minimap;
 	int		is_w_or_e;
-	
-	// void	*mini_img;
-	// char	*mini_addr;
-	// int		mini_bpp;
-	// int		mini_szl;
-	// int		mini_end;
 }t_map;
 
 typedef struct s_txt
@@ -145,6 +139,14 @@ typedef struct s_txt
 	void	*texture_so;
 	void	*texture_ea;
 	void	*texture_we;
+	int		ray_x_ing;
+	int		ray_dx;
+	int		ray_dy;
+	int		ray_x;
+	int		ray_y;
+	int		ray_angle;
+	int		ray_pos;
+	int		to_draw;
 }t_txt;
 
 typedef struct s_var
@@ -214,23 +216,22 @@ int		max_col(t_linked_list *list);
 //main.c
 void	ft_set_walls(t_var *var);
 void	img_pix_put(t_var *var, int x, int y, int color);
-// void	render_background(t_var *var);
 void	ft_player(t_var *var);
 int		render(t_var *var);
 int		ft_is_wall(t_var *var, int x, int y);
 void	ft_put_player(t_var *var);
 void	ft_ray(t_var *var, char nswe);
-// void	draw_ln(t_var *var);// not needded
 void	ft_cast_rayz(t_var *var);
-void	ft_draw_wall(t_var *var, int distance, int x_ing, int coo_x, int y);
-// void	ft_draw_wall(t_var *var, int distance, int x_ing, int coo_x)
+void	ft_draw_wall(t_var *var, int distance);
 void	ft_textures(t_var *var);
 void	img_pix_put2(t_var *var, int x, int y, int color);
 //exec.c
 int		keypress(int key, t_var *var);
 void	ft_map_size(t_var *var);
 void	ft_starting_angle(t_var *var, char nswe);
-double	degree_to_radians(double degree);
 int		ft_get_pxl_color(t_var *var, double x, double y);
+//ray
+double	degree_to_radians(double degree);
+void	ft_get_dist(t_var *var, double dx, double dy, double ray_pos);
 
 #endif

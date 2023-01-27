@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 11:18:44 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/22 18:35:02 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/27 19:15:07 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int	init_struct(t_var *var)
 {
 	var->fd1 = 0;
 	var->line = NULL;
+	var->txt->to_draw = 0;
 	init_cub(var->data);
 	return (1);
 }

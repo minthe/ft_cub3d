@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 16:04:17 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/27 11:53:11 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/27 19:33:57 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,15 +46,8 @@ static void	del_newline(char *line)
 	}
 }
 
-// imports color values to struct
-void	cpy_color_to_struct(t_var *var, int i, int *trgb, char c)
+static void	cpy_color_2(char **color_temp, char c, int *trgb)
 {
-	char	**color_temp;
-
-	del_newline(var->line);
-	if (ft_is_whitespace_char(var->line[i]))
-		i += ft_skip_whitespace(&var->line[i]);
-	color_temp = ft_split(&var->line[i], ',');
 	if (count_values(color_temp) == 3)
 	{
 		*trgb = create_trgb(255, atoi_cub(color_temp[0], 1, 0, c), \
@@ -75,6 +68,18 @@ void	cpy_color_to_struct(t_var *var, int i, int *trgb, char c)
 		else
 			error_msg_exit("F: more than 3 color values");
 	}
+}
+
+// imports color values to struct
+void	cpy_color_to_struct(t_var *var, int i, int *trgb, char c)
+{
+	char	**color_temp;
+
+	del_newline(var->line);
+	if (ft_is_whitespace_char(var->line[i]))
+		i += ft_skip_whitespace(&var->line[i]);
+	color_temp = ft_split(&var->line[i], ',');
+	cpy_color_2(color_temp, c, trgb);
 	if (color_temp)
 		ft_free_doublepoint(color_temp);
 	if (c == 'C')
