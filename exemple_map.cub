@@ -1,11 +1,11 @@
 WE src/inc/textures/greyWall.xpm
 NO src/inc/textures/blueWall.xpm
-F 128,128,128
-C 1,0,0
-C
 SO src/inc/textures/redWall.xpm
-EA src/inc/textures/redWall.xpm
+EA src/inc/textures/pissWall.xpm
 
-1111
-1N11
-1111
+F 128,128,128
+C 1,0,1
+
+111111
+10N001
+111111

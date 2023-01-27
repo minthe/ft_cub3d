@@ -6,14 +6,14 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 12:45:08 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/22 18:35:28 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/27 11:56:46 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "inc/cub3d.h"
 
 // checks if string has digits
-int	hasdigits(const char *str)
+int	hasdigits(const char *str, char c)
 {
 	int	check;
 
@@ -26,8 +26,11 @@ int	hasdigits(const char *str)
 	}
 	if (check == 0)
 	{
-		write(2, "Error\ninvalid color characters\n", 31);
-		exit (EXIT_FAILURE);
+		if (c == 'C')
+			error_msg_exit("C: invalid color characters");
+		else
+			error_msg_exit("F: invalid color characters");
+
 	}
 	return (check);
 }

@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 16:04:17 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/22 18:35:11 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/27 11:53:11 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static void	del_newline(char *line)
 }
 
 // imports color values to struct
-void	cpy_color_to_struct(t_var *var, int i, int *trgb, int *color_set)
+void	cpy_color_to_struct(t_var *var, int i, int *trgb, char c)
 {
 	char	**color_temp;
 
@@ -57,15 +57,28 @@ void	cpy_color_to_struct(t_var *var, int i, int *trgb, int *color_set)
 	color_temp = ft_split(&var->line[i], ',');
 	if (count_values(color_temp) == 3)
 	{
-		*trgb = create_trgb(255, atoi_cub(color_temp[0], 1, 0), \
-		atoi_cub(color_temp[1], 1, 0), \
-		atoi_cub(color_temp[2], 1, 0));
+		*trgb = create_trgb(255, atoi_cub(color_temp[0], 1, 0, c), \
+		atoi_cub(color_temp[1], 1, 0, c), \
+		atoi_cub(color_temp[2], 1, 0, c));
 	}
 	else if (count_values(color_temp) < 3)
-		error_msg_exit("F/C: less than 3 color values");
+	{
+		if (c == 'C')
+			error_msg_exit("C: less than 3 color values");
+		else
+			error_msg_exit("F: less than 3 color values");
+	}
 	else if (count_values(color_temp) > 3)
-		error_msg_exit("F/C: more than 3 color values");
+	{
+		if (c == 'C')
+			error_msg_exit("C: more than 3 color values");
+		else
+			error_msg_exit("F: more than 3 color values");
+	}
 	if (color_temp)
 		ft_free_doublepoint(color_temp);
-	*color_set = 1;
+	if (c == 'C')
+		var->data->c_set = 1;
+	else
+		var->data->f_set = 1;
 }

@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 09:49:29 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/27 11:07:22 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/27 11:48:57 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,18 +66,18 @@ static void	copy_element(t_var *var, int i)
 			error_msg_exit("map error: invalid map character");
 		add_tail(var->data->map_lst, ft_strdup_map(var, 0, NULL));
 	}
-	else if (var->line[i] == 'N')
+	else if (ft_strncmp(var->line, "NO", 2) == 0 && !var->data->no)
 		write_to_struct(var, ++i, 'O', "no");
-	else if (var->line[i] == 'S' && var->line[i + 1] && var->line[i + 1] == 'O')
+	else if (ft_strncmp(var->line, "SO", 2) == 0 && !var->data->so)
 		write_to_struct(var, ++i, 'O', "so");
-	else if (var->line[i] == 'W' && var->line[i + 1] && var->line[i + 1] == 'E')
+	else if (ft_strncmp(var->line, "WE", 2) == 0 && !var->data->we)
 		write_to_struct(var, ++i, 'E', "we");
-	else if (var->line[i] == 'E' && var->line[i + 1] && var->line[i + 1] == 'A')
+	else if (ft_strncmp(var->line, "EA", 2) == 0 && !var->data->ea)
 		write_to_struct(var, ++i, 'A', "ea");
 	else if (ft_strncmp(var->line, "F", 1) == 0 && var->data->f_set == 0)
-		cpy_color_to_struct(var, ++i, &var->data->f, &var->data->f_set);
+		cpy_color_to_struct(var, ++i, &var->data->f, 'F');
 	else if (ft_strncmp(var->line, "C", 1) == 0 && var->data->c_set == 0)
-		cpy_color_to_struct(var, ++i, &var->data->c, &var->data->c_set);
+		cpy_color_to_struct(var, ++i, &var->data->c, 'C');
 	else if ((check_cub(var->data) == 0) && !only_map_char(var->line))
 		error_msg_exit("invalid line");
 	else if ((check_cub(var->data) == 0) && only_map_char(var->line))
