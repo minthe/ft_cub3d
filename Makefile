@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+         #
+#    By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/01 14:46:38 by vfuhlenb          #+#    #+#              #
-#    Updated: 2023/01/27 10:57:21 by vfuhlenb         ###   ########.fr        #
+#    Updated: 2023/01/27 22:39:11 by dimbrea          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,6 +56,7 @@ SRCS = src/main.c \
 		src/keys_2.c\
 		src/map_plr_utils.c\
 		src/ray.c\
+		src/ray2.c\
 
 RM = rm -f
 

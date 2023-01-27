@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_cub.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 12:45:08 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/27 12:25:52 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/27 22:00:48 by dimbrea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ int	hasdigits(const char *str, char c)
 			error_msg_exit("C: invalid color characters");
 		else
 			error_msg_exit("F: invalid color characters");
-
 	}
 	return (check);
 }

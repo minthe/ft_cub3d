@@ -6,7 +6,7 @@
 /*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 10:13:11 by dimbrea           #+#    #+#             */
-/*   Updated: 2023/01/25 16:13:332 by dimbrea          ###   ########.fr       */
+/*   Updated: 2023/01/27 22:40:54 by dimbrea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,35 +14,26 @@
 
 void	ft_get_dist(t_var *var)
 {
-	double	ray_pos;
-	double	ray_angle;
-	double	distance;
-	double	x;
-	double	y;
-	double	dx;
-	double	dy;
-
-	ray_pos = 0.5;
-	ray_angle = (double)FOV * ray_pos - (double)FOV / 2 + var->plr->p_angle;
-	var->plr->radians = ray_angle * (double)M_PI / 180.0;
-	dx = cos(var->plr->radians);
-	dy = sin(var->plr->radians);
-	x = var->plr->pos_x;
-	y = var->plr->pos_y;
-	distance = 0;
-	while (distance < 1000)
+	var->txt->dist_pos = 0.5;
+	var->txt->dist_angle = (double)FOV * var->txt->dist_pos \
+		- (double)FOV / 2 + var->plr->p_angle;
+	var->plr->radians = var->txt->dist_angle * (double)M_PI / 180.0;
+	var->txt->dist_dx = cos(var->plr->radians);
+	var->txt->dist_dy = sin(var->plr->radians);
+	var->txt->dist_x = var->plr->pos_x;
+	var->txt->dist_y = var->plr->pos_y;
+	var->txt->dist_distance = 0;
+	while (var->txt->dist_distance < 1000)
 	{
-		if (ft_is_wall(var, x, y))
+		if (ft_is_wall(var, var->txt->dist_x, var->txt->dist_y))
 		{
-			// printf("%f x , %f y\n", x, y);
-			ft_get_wall_orient(var, x, y);
+			ft_get_wall_orient(var, var->txt->dist_x, var->txt->dist_y);
 			break ;
 		}
-		x += dx;
-		y += dy;
-		distance+= 1 ;
+		var->txt->dist_x += var->txt->dist_dx;
+		var->txt->dist_y += var->txt->dist_dy;
+		var->txt->dist_distance += 1;
 	}
-	var->plr->mid_ray = distance;
 }
 
 void	ft_textures(t_var *var)
@@ -59,7 +50,6 @@ void	ft_textures(t_var *var)
 		&width, &height);
 	var->txt->texture_we = mlx_xpm_file_to_image(var->mlx->ptr, var->data->we, \
 		&width, &height);
-	
 }
 
 int	ft_get_pxl_color(t_var *var, double x, double y)
@@ -77,27 +67,17 @@ int	ft_get_pxl_color(t_var *var, double x, double y)
 	return (*(int *)dst);
 }
 
-double	degree_to_radians(double degree)
+static void	ft_get_wall_orient2(t_var *var, double x, double y)
 {
-	return (degree * (double)M_PI / 180.0);
-}
-
-void	ft_get_wall_orient(t_var *var, double x, double y)
-{
-	var->map->is_w_or_e = 0;
-	if (((int)x % var->map->modul_w == 0) && (int)y % (var->map->modul_h) != var->map->modul_h - 1 && (int)y % var->map->modul_h != 0)
-	{
-		var->map->is_w_or_e = 1;
-		var->txt->tex_addr = mlx_get_data_addr(var->txt->texture_ea, \
-			&var->txt->bpp_txt, &var->txt->sz_ln, &var->txt->endian_txt);
-	}	
-	else if ((int)y % (var->map->modul_h) == var->map->modul_h - 1 && (var->plr->p_angle > 140.0 || var->plr->p_angle < 60.0) && ((int)x % var->map->modul_w != var->map->modul_w - 1))
-		var->txt->tex_addr = mlx_get_data_addr(var->txt->texture_no, \
-			&var->txt->bpp_txt, &var->txt->sz_ln, &var->txt->endian_txt);
-	if ((int)y % var->map->modul_h == 0 &&((int)x % var->map->modul_w != var->map->modul_w - 1)  && (var->plr->p_angle < 140.0 || var->plr->p_angle > 60.0) && ((int)x % var->map->modul_w != 0))
+	if ((int)y % var->map->modul_h == 0 && ((int)x % var->map->modul_w \
+		!= var->map->modul_w - 1) && (var->plr->p_angle < 140.0 || \
+		var->plr->p_angle > 60.0) \
+		&& ((int)x % var->map->modul_w != 0))
 		var->txt->tex_addr = mlx_get_data_addr(var->txt->texture_so, \
 			&var->txt->bpp_txt, &var->txt->sz_ln, &var->txt->endian_txt);
-	else if (((int)x % var->map->modul_w == var->map->modul_w - 1) && (int)y % var->map->modul_h != 0 && (int)y % (var->map->modul_h) != var->map->modul_h - 1)
+	else if (((int)x % var->map->modul_w == var->map->modul_w - 1) && (int)y \
+		% var->map->modul_h != 0 && (int)y % (var->map->modul_h) \
+		!= var->map->modul_h - 1)
 	{
 		var->map->is_w_or_e = 2;
 		var->txt->tex_addr = mlx_get_data_addr(var->txt->texture_we, \
@@ -105,45 +85,20 @@ void	ft_get_wall_orient(t_var *var, double x, double y)
 	}
 }
 
-void	ft_cast_rayz(t_var *var)
+void	ft_get_wall_orient(t_var *var, double x, double y)
 {
-	double	ray_pos;
-	double	ray_angle;
-	double	distance;
-	double	x;
-	double	y;
-	double	dx;
-	double	dy;
-	int		x_ing;
-
-	ray_pos = 0.0;
-	x_ing = 0;
-	ft_get_dist(var);
-	while (ray_pos < 1.0)
+	var->map->is_w_or_e = 0;
+	if (((int)x % var->map->modul_w == 0) && (int)y % (var->map->modul_h) \
+	!= var->map->modul_h - 1 && (int)y % var->map->modul_h != 0)
 	{
-		if (x_ing >= SCREEN_WIDTH)
-			x_ing = 0;
-		ray_angle = (double)FOV * ray_pos - (double)FOV / 2 + var->plr->p_angle;
-		var->plr->radians = ray_angle * (double)M_PI / 180.0;
-		dx = cos(var->plr->radians);
-		dy = sin(var->plr->radians);
-		x = var->plr->pos_x;
-		y = var->plr->pos_y;
-		distance = 0;
-		while (distance < 10000)
-		{
-			if (ft_is_wall(var, x, y))
-			{
-				ft_get_wall_orient(var, x, y);
-				break ;
-			}
-			x += dx;
-			y += dy;
-			distance += 1;
-		}
-		distance *= cos((ray_angle - var->plr->p_angle) * M_PI / 180.0);
-		ft_draw_wall(var, distance, x_ing, x, y);
-		ray_pos += 0.00125;
-		x_ing++;
-	}
+		var->map->is_w_or_e = 1;
+		var->txt->tex_addr = mlx_get_data_addr(var->txt->texture_ea, \
+			&var->txt->bpp_txt, &var->txt->sz_ln, &var->txt->endian_txt);
+	}	
+	else if ((int)y % (var->map->modul_h) == var->map->modul_h - 1 && \
+		(var->plr->p_angle > 140.0 || var->plr->p_angle < 60.0) && ((int)x % \
+		var->map->modul_w != var->map->modul_w - 1))
+		var->txt->tex_addr = mlx_get_data_addr(var->txt->texture_no, \
+			&var->txt->bpp_txt, &var->txt->sz_ln, &var->txt->endian_txt);
+	ft_get_wall_orient2(var, x, y);
 }

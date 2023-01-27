@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_struct.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 11:18:44 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/22 18:35:02 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/27 22:11:59 by dimbrea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 14:27:58 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/27 18:59:10 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/27 22:52:06 by dimbrea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,12 +124,6 @@ typedef struct s_map
 	int		modul_h;
 	int		minimap;
 	int		is_w_or_e;
-	
-	// void	*mini_img;
-	// char	*mini_addr;
-	// int		mini_bpp;
-	// int		mini_szl;
-	// int		mini_end;
 }t_map;
 
 typedef struct s_txt
@@ -145,6 +139,23 @@ typedef struct s_txt
 	void	*texture_so;
 	void	*texture_ea;
 	void	*texture_we;
+	double	ray_pos;
+	double	ray_angle;
+	double	ray_distance;
+	double	ray_x;
+	double	ray_y;
+	double	ray_dx;
+	double	ray_dy;
+	int		ray_x_ing;
+
+	double	dist_pos;
+	double	dist_angle;
+	double	dist_distance;
+	double	dist_x;
+	double	dist_y;
+	double	dist_dx;
+	double	dist_dy;
+	int		dist_x_ing;
 }t_txt;
 
 typedef struct s_var
@@ -158,6 +169,11 @@ typedef struct s_var
 	t_txt		*txt;
 	char		*line;
 	int			fd1;
+	int			wall_td;
+	int			wall_ty;
+	int			wall_c;
+	double		wall_ph;
+	int			wall_txt_y;
 }t_var;
 
 void	ft_get_wall_orient(t_var *var, double x, double y);
@@ -222,7 +238,6 @@ void	ft_put_player(t_var *var);
 void	ft_ray(t_var *var, char nswe);
 // void	draw_ln(t_var *var);// not needded
 void	ft_cast_rayz(t_var *var);
-void	ft_draw_wall(t_var *var, int distance, int x_ing, int coo_x, int y);
 // void	ft_draw_wall(t_var *var, int distance, int x_ing, int coo_x)
 void	ft_textures(t_var *var);
 void	img_pix_put2(t_var *var, int x, int y, int color);
@@ -232,5 +247,7 @@ void	ft_map_size(t_var *var);
 void	ft_starting_angle(t_var *var, char nswe);
 double	degree_to_radians(double degree);
 int		ft_get_pxl_color(t_var *var, double x, double y);
+void	ft_get_dist(t_var *var);
+void	ft_draw_wall(t_var *var, int distance, int x_ing, int coo_x);
 
 #endif
