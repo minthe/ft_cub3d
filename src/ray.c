@@ -72,9 +72,9 @@ int	ft_get_pxl_color(t_var *var, double x, double y)
 	yy = y;
 	xx %= TXT_W;
 	yy %= TXT_W;
-	// if (xx == 0)
+	// if (xx <= 0)
 	// 	xx = 1;
-	// printf("%d xx %d yy, \n", xx, yy);
+	// printf("%d xx %d yy %d modul_y, \n", xx, yy, var->map->modul_h);
 	dst = var->txt->tex_addr + (yy * var->txt->sz_ln \
 		+ xx * (var->txt->bpp_txt / 8));
 	return (*(int *)dst);
@@ -164,7 +164,7 @@ void	ft_cast_rayz(t_var *var)
 			distance += 1;
 		}
 		distance *= cos((ray_angle - var->plr->p_angle) * M_PI / 180.0);
-		ft_draw_wall(var, distance, x_ing, x);
+		ft_draw_wall(var, distance, x_ing, x, y);
 		ray_pos += 0.00125;// decrease for more rays
 		x_ing++;
 	}
