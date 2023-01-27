@@ -34,6 +34,7 @@
 // 	{
 // 		if (ft_is_wall(var, x, y))
 // 		{
+// 			// printf("%f x , %f y\n", x, y);
 // 			ft_get_wall_orient(var,dx, dy, x, y);
 // 			break ;
 // 		}
@@ -71,6 +72,9 @@ int	ft_get_pxl_color(t_var *var, double x, double y)
 	yy = y;
 	xx %= TXT_W;
 	yy %= TXT_W;
+	// if (xx <= 0)
+	// 	xx = 1;
+	// printf("%d xx %d yy %d modul_y, \n", xx, yy, var->map->modul_h);
 	dst = var->txt->tex_addr + (yy * var->txt->sz_ln \
 		+ xx * (var->txt->bpp_txt / 8));
 	return (*(int *)dst);
@@ -93,38 +97,33 @@ void	ft_get_wall_orient(t_var *var, double dx, double dy, double x, double y)
 	// printf("%d, %d\n", var->map->modul_w, var->map->modul_h);
 	// if (dx > 0.0 && dx < 1.0 && dy > -1.0 && dy < 0.0)
 	// {
-		if (((int)ceil(y) % (var->map->modul_h) == 0 || (int)y % (var->map->modul_h - 1) == 0) && var->plr->p_angle > 180.0)
+	var->map->is_w_or_e = 0;
+		if (((int)ceil(y) % (var->map->modul_h) == 0 || (int)y % (var->map->modul_h - 1) == 0) && (var->plr->p_angle > 140.0 || var->plr->p_angle < 60.0))
 		{
-			printf("NORTH\n");
+			// printf("NORTH\n");
 			var->txt->tex_addr = mlx_get_data_addr(var->txt->texture_no, \
 				&var->txt->bpp_txt, &var->txt->sz_ln, &var->txt->endian_txt);
 		}
-		if (((int)x % var->map->modul_w == 0) || (dx == 1.0 && dy == 0.0))
+		else if (((int)x % var->map->modul_w == 0) || (dx == 1.0 && dy == 0.0))
 		{
-			printf("EAST\n");
+			// printf("EAST\n");
+			var->map->is_w_or_e = 1;
 			var->txt->tex_addr = mlx_get_data_addr(var->txt->texture_ea, \
 				&var->txt->bpp_txt, &var->txt->sz_ln, &var->txt->endian_txt);
 		}
-		if (((int)y % var->map->modul_h == 0) || ((dx == 0.0 && dy == 1.0) && var->plr->p_angle < 180.0))
+		else if (((int)y % var->map->modul_h == 0) || ((dx == 0.0 && dy == 1.0) && var->plr->p_angle < 180.0))
 		{
-			printf("SOUTH\n");
+			// printf("SOUTH\n");
 			var->txt->tex_addr = mlx_get_data_addr(var->txt->texture_so, \
 				&var->txt->bpp_txt, &var->txt->sz_ln, &var->txt->endian_txt);
 		}
-		if (((int)ceil(x) % var->map->modul_w == 0 || (int)x % (var->map->modul_w - 1) == 0)|| (dx == -1.0 && dy == 0.0))
+		else if (((int)ceil(x) % var->map->modul_w == 0 || (int)x % (var->map->modul_w - 1) == 0)|| (dx == -1.0 && dy == 0.0))
 		{
-			printf("WEST\n");
+			// printf("WEST\n");
+			var->map->is_w_or_e = 2;
 			var->txt->tex_addr = mlx_get_data_addr(var->txt->texture_we, \
 				&var->txt->bpp_txt, &var->txt->sz_ln, &var->txt->endian_txt);
 		}
-		// else
-		// 	printf("NORTH\n");
-		// printf("THIS IS NW 4\n");
-		// printf("%f dx %f dy\n", dx, dy);
-	// }
-	// else
-		// printf("%f dx %f dy\n", dx, dy);
-	// var->txt->tex_addr = mlx_get_data_addr(var->txt->texture, &var->txt->bpp_txt, &var->txt->sz_ln, &var->txt->endian_txt);
 }
 
 void	ft_cast_rayz(t_var *var)
@@ -152,6 +151,7 @@ void	ft_cast_rayz(t_var *var)
 		x = var->plr->pos_x;
 		y = var->plr->pos_y;
 		distance = 0;
+		// ft_get_dist(var);
 		while (distance < 10000)
 		{
 			if (ft_is_wall(var, x, y))
@@ -164,8 +164,7 @@ void	ft_cast_rayz(t_var *var)
 			distance += 1;
 		}
 		distance *= cos((ray_angle - var->plr->p_angle) * M_PI / 180.0);
-		ft_draw_wall(var, distance, x_ing, x);
-		// mlx_destroy_image(var->mlx->ptr, var->txt->img_ptr);
+		ft_draw_wall(var, distance, x_ing, x, y);
 		ray_pos += 0.00125;// decrease for more rays
 		x_ing++;
 	}
