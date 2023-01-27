@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 10:54:47 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/27 11:01:44 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/27 13:04:40 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,24 @@ int	check_double_identifier(t_var *var)
 	if (ft_strncmp(var->line, "C", 1) == 0 && var->data->c_set != 0)
 		error_msg_exit("C duplicate");
 	return (1);
+}
+
+int	unknown_key(char *line)
+{
+	int	check;
+
+	check = 1;
+	if (ft_strncmp(line, "NO", 2) == 0)
+		check = 0;
+	else if (ft_strncmp(line, "SO", 2) == 0)
+		check = 0;
+	else if (ft_strncmp(line, "WE", 2) == 0)
+		check = 0;
+	else if (ft_strncmp(line, "EA", 2) == 0)
+		check = 0;
+	else if (ft_strncmp(line, "F", 1) == 0)
+		check = 0;
+	else if (ft_strncmp(line, "C", 1) == 0)
+		check = 0;
+	return (check);
 }

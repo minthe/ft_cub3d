@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 12:45:08 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/27 11:56:46 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/27 12:25:52 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,13 @@ int	hasdigits(const char *str, char c)
 int	check_cub(t_data *cub)
 {
 	if (cub->no && cub->so && cub->we && cub->ea \
-	&& !cub->f_set && !cub->c_set && !cub->map)
+	&& cub->f_set == 0 && cub->c_set == 0 && !cub->map)
 		return (1);
 	if (cub->no && cub->so && cub->we && cub->ea \
-		&& cub->f_set && cub->c_set && !cub->map)
+		&& cub->f_set != 0 && cub->c_set != 0 && !cub->map)
 		return (2);
 	if (cub->no && cub->so && cub->we && cub->ea \
-		&& cub->f_set && cub->c_set && cub->map)
+		&& cub->f_set != 0 && cub->c_set != 0 && cub->map)
 		return (3);
 	return (0);
 }

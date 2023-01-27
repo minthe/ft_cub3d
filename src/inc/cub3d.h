@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 14:27:58 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/27 11:55:11 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/27 14:46:03 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ typedef struct s_img
 	int		color;
 	int		begin_x;
 	int		begin_y;
-	
 }t_img;
 
 typedef struct s_linked_list {
@@ -124,12 +123,6 @@ typedef struct s_map
 	int		modul_w;
 	int		modul_h;
 	int		minimap;
-	
-	// void	*mini_img;
-	// char	*mini_addr;
-	// int		mini_bpp;
-	// int		mini_szl;
-	// int		mini_end;
 }t_map;
 
 typedef struct s_txt
@@ -145,7 +138,6 @@ typedef struct s_txt
 	void	*texture_so;
 	void	*texture_ea;
 	void	*texture_we;
-	
 }t_txt;
 
 typedef struct s_var
@@ -172,6 +164,7 @@ void	cpy_color_to_struct(t_var *var, int i, int *trgb, char c);
 int		atoi_cub(const char *str, int sign, int ret, char c);
 int		hasdigits(const char *str, char c);
 int		check_double_identifier(t_var *var);
+int		unknown_key(char *line);
 
 // SRC/LIST-UTILS
 void	initialize_list(t_linked_list *list);
@@ -229,6 +222,6 @@ int		keypress(int key, t_var *var);
 void	ft_map_size(t_var *var);
 void	ft_starting_angle(t_var *var, char nswe);
 double	degree_to_radians(double degree);
-int	ft_get_pxl_color(t_var *var, double x, double y);
+int		ft_get_pxl_color(t_var *var, double x, double y);
 
 #endif
