@@ -6,7 +6,7 @@
 /*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 14:27:58 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/27 12:08:00 by dimbrea          ###   ########.fr       */
+/*   Updated: 2023/01/27 16:35:24 by dimbrea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,7 +162,7 @@ typedef struct s_var
 	int			fd1;
 }t_var;
 
-void	ft_get_wall_orient(t_var *var, double dx, double dy, double x, double y);
+void	ft_get_wall_orient(t_var *var, double x, double y);
 // SRC
 int		import_cub(t_var *var, char *argv, char *type);
 void	import_map(t_var *var);

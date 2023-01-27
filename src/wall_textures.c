@@ -6,7 +6,7 @@
 /*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 16:54:25 by dimbrea           #+#    #+#             */
-/*   Updated: 2023/01/27 12:20:30 by dimbrea          ###   ########.fr       */
+/*   Updated: 2023/01/27 15:02:15 by dimbrea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,7 @@ int	ft_texturing(t_var *var, int x, int y)
 	y_percent = y_start;
 	if (var->map->is_w_or_e == 1 || var->map->is_w_or_e == 2)
 	{
-		// printf("%d y\n", y);
 		y_diff = y_start %var->map->modul_h;
-		// printf("%d y moduled \n", y_diff);
 		y_percent = ((double)y_diff / (double)var->map->modul_h * (double)TXT_W);
 	}
 	return (ft_get_pxl_color(var, percent, y_percent));
