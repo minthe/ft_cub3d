@@ -85,45 +85,37 @@ double	degree_to_radians(double degree)
 	return (degree * (double)M_PI / 180.0);
 }
 
-void	ft_get_wall_orient(t_var *var, double dx, double dy, double x, double y)
+void    ft_get_wall_orient(t_var *var, double dx, double dy, double x, double y)
 {
-	// int	h;
-	// int	w;
-	// (void)var;
-	(void)dx;
-	(void)dy;
-	// printf("%d x%%modul %d y%%modul  %f X, %f Y\n", (int)x % var->map->modul_w , (int)y % var->map->modul_h, x ,y);
-	// printf("%f dx, %f dy\n", dx, dy);
-	// printf("%d, %d\n", var->map->modul_w, var->map->modul_h);
-	// if (dx > 0.0 && dx < 1.0 && dy > -1.0 && dy < 0.0)
-	// {
-	var->map->is_w_or_e = 0;
-		if (((int)ceil(y) % (var->map->modul_h) == 0 || (int)y % (var->map->modul_h - 1) == 0) && (var->plr->p_angle > 140.0 || var->plr->p_angle < 60.0))
-		{
-			// printf("NORTH\n");
-			var->txt->tex_addr = mlx_get_data_addr(var->txt->texture_no, \
-				&var->txt->bpp_txt, &var->txt->sz_ln, &var->txt->endian_txt);
-		}
-		else if (((int)x % var->map->modul_w == 0) || (dx == 1.0 && dy == 0.0))
-		{
-			// printf("EAST\n");
-			var->map->is_w_or_e = 1;
-			var->txt->tex_addr = mlx_get_data_addr(var->txt->texture_ea, \
-				&var->txt->bpp_txt, &var->txt->sz_ln, &var->txt->endian_txt);
-		}
-		else if (((int)y % var->map->modul_h == 0) || ((dx == 0.0 && dy == 1.0) && var->plr->p_angle < 180.0))
-		{
-			// printf("SOUTH\n");
-			var->txt->tex_addr = mlx_get_data_addr(var->txt->texture_so, \
-				&var->txt->bpp_txt, &var->txt->sz_ln, &var->txt->endian_txt);
-		}
-		else if (((int)ceil(x) % var->map->modul_w == 0 || (int)x % (var->map->modul_w - 1) == 0)|| (dx == -1.0 && dy == 0.0))
-		{
-			// printf("WEST\n");
-			var->map->is_w_or_e = 2;
-			var->txt->tex_addr = mlx_get_data_addr(var->txt->texture_we, \
-				&var->txt->bpp_txt, &var->txt->sz_ln, &var->txt->endian_txt);
-		}
+    (void) dx;
+    (void) dy;
+    var->map->is_w_or_e = 0;
+    if (((int)x % var->map->modul_w == 0))
+    {
+        // printf("EAST\n");
+        var->map->is_w_or_e = 1;
+        var->txt->tex_addr = mlx_get_data_addr(var->txt->texture_ea, \
+            &var->txt->bpp_txt, &var->txt->sz_ln, &var->txt->endian_txt);
+    }
+    else if (((int)x % var->map->modul_w == var->map->modul_w - 1))
+    {
+        // printf("WEST\n");
+        var->map->is_w_or_e = 2;
+        var->txt->tex_addr = mlx_get_data_addr(var->txt->texture_we, \
+            &var->txt->bpp_txt, &var->txt->sz_ln, &var->txt->endian_txt);
+    }
+    else if ((int)y % var->map->modul_h == 0 && (var->plr->p_angle < 140.0 || var->plr->p_angle > 60.0))
+    {
+        // printf("SOUTH\n");
+        var->txt->tex_addr = mlx_get_data_addr(var->txt->texture_so, \
+            &var->txt->bpp_txt, &var->txt->sz_ln, &var->txt->endian_txt);
+    }
+    else if ((int)y % (var->map->modul_h) == var->map->modul_h - 1 && (var->plr->p_angle > 140.0 || var->plr->p_angle < 60.0))
+    {
+        // printf("NORTH\n");
+        var->txt->tex_addr = mlx_get_data_addr(var->txt->texture_no, \
+            &var->txt->bpp_txt, &var->txt->sz_ln, &var->txt->endian_txt);
+    }
 }
 
 void	ft_cast_rayz(t_var *var)

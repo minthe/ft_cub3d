@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wall_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
+/*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 16:54:25 by dimbrea           #+#    #+#             */
-/*   Updated: 2023/01/27 12:20:30 by dimbrea          ###   ########.fr       */
+/*   Updated: 2023/01/27 15:03:05 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	ft_draw_wall(t_var *var, int distance, int x_ing, int coo_x, int y)
 		else if (to_draw >= txt_y && to_draw <= (int)(p_wall_height + txt_y))
 		{
 			texture_y = y;
-			if ((var->map->is_w_or_e == 0))
+			if (var->map->is_w_or_e == 0)
 				texture_y = (double)(to_draw - txt_y) / (p_wall_height) \
 						* (double)TXT_W;
 			if (var->map->is_w_or_e == 1 || var->map->is_w_or_e == 2)
