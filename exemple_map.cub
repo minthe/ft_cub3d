@@ -1,14 +1,11 @@
 WE src/inc/textures/greyWall.xpm
 NO src/inc/textures/blueWall.xpm
-SO src/inc/textures/redWall.xpm
-EA src/inc/textures/pissWall.xpm
-
-Fuck
 F 128,128,128
-C 255,30,0
+C 1,0,0
+C
+SO src/inc/textures/redWall.xpm
+EA src/inc/textures/redWall.xpm
 
-111111111
-100100001
-100010101
-10N000001
-111111111
+1111
+1N11
+1111

@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 21:09:12 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/20 14:15:43 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/27 10:54:12 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,15 @@ int	is_mchar(char c)
 //function that checks for valid map characters
 int	only_map_char(const char *str)
 {
-	while (*str)
+	while (*str && *str != '\n')
 	{
-		if (*str == ' ' || *str == '0' || *str == '1' || \
-			*str == 'N' || *str == 'E' || *str == 'S' || *str == 'W')
-			return (1);
-		str++;
+		if (*str == ' ' || *str == '0' || *str != '1' || \
+			*str == 'N' || *str == 'E' || *str != 'S' || *str == 'W')
+			str++;
+		else
+			return (0);
 	}
-	return (0);
+	return (1);
 }
 
 //function that checks for valid ident character for color ident

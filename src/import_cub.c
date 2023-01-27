@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   import_cub.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
+/*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 09:49:29 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/24 15:08:08 by dimbrea          ###   ########.fr       */
+/*   Updated: 2023/01/27 11:07:22 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,16 +74,13 @@ static void	copy_element(t_var *var, int i)
 		write_to_struct(var, ++i, 'E', "we");
 	else if (var->line[i] == 'E' && var->line[i + 1] && var->line[i + 1] == 'A')
 		write_to_struct(var, ++i, 'A', "ea");
-	else if (var->line[i] == 'F' && var->line[i + 1] && \
-		is_cf_char(var->line[i + 1]))
+	else if (ft_strncmp(var->line, "F", 1) == 0 && var->data->f_set == 0)
 		cpy_color_to_struct(var, ++i, &var->data->f, &var->data->f_set);
-	else if (var->line[i] == 'C' && var->line[i + 1] && \
-		is_cf_char(var->line[i + 1]))
+	else if (ft_strncmp(var->line, "C", 1) == 0 && var->data->c_set == 0)
 		cpy_color_to_struct(var, ++i, &var->data->c, &var->data->c_set);
-	else if ((check_cub(var->data) == 0) && !is_ident_char(var->line[i]) && \
-		!is_map_char(var->line[i]))
+	else if ((check_cub(var->data) == 0) && !only_map_char(var->line))
 		error_msg_exit("invalid line");
-	else if ((check_cub(var->data) == 0) && !is_ident_char(var->line[i]))
+	else if ((check_cub(var->data) == 0) && only_map_char(var->line))
 		error_msg_exit("map error: not last element");
 }
 
@@ -125,6 +122,7 @@ int	import_cub(t_var *var, char *argv, char *type)
 	var->line = get_next_line(var->fd1);
 	while (var->line && (check_cub(var->data) != 2))
 	{
+		check_double_identifier(var);
 		if (var->line && !ft_is_whitespace(var->line))
 			copy_element(var, ft_skip_whitespace(var->line));
 		free(var->line);

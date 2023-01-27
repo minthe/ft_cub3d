@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+         #
+#    By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/01 14:46:38 by vfuhlenb          #+#    #+#              #
-#    Updated: 2023/01/24 16:55:40 by dimbrea          ###   ########.fr        #
+#    Updated: 2023/01/27 10:57:21 by vfuhlenb         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,7 @@ SRCS = src/main.c \
 		src/inc/get_next_line/get_next_line.c\
 		src/inc/get_next_line/get_next_line_utils.c\
 		src/import_cub.c\
+		src/import_cub2.c\
 		src/import_map.c\
 		src/init_struct.c\
 		src/check_cub.c\
