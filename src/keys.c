@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keys.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
+/*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 17:09:03 by dimbrea           #+#    #+#             */
-/*   Updated: 2023/01/27 22:59:50 by dimbrea          ###   ########.fr       */
+/*   Updated: 2023/01/27 23:42:42 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,11 @@ void	img_pix_put(t_var *var, int x, int y, int color)
 int	x_window(t_var *var)
 {
 	write(1, "Exited the game\n", 16);
+	mlx_destroy_image(var->txt->img_ptr, var->txt->texture_no);
+	mlx_destroy_image(var->txt->img_ptr, var->txt->texture_so);
+	mlx_destroy_image(var->txt->img_ptr, var->txt->texture_ea);
+	mlx_destroy_image(var->txt->img_ptr, var->txt->texture_we);
+	mlx_destroy_image(var->txt->img_ptr, var->img->structure);
 	mlx_destroy_image(var->mlx->ptr, var->img->structure);
 	mlx_destroy_window(var->mlx->ptr, var->mlx->window);
 	var->mlx->window = NULL;

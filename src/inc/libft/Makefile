@@ -44,7 +44,7 @@ HEADER_FILES	=	libft.h
 NAME			=	libft.a
 CC				=	gcc
 RM				=	rm -f
-CFLAGS			=	-Wall -Werror -Wextra -g -fsanitize=address
+CFLAGS			=	-Wall -Werror -Wextra -g
 
 all:			$(NAME)
 
