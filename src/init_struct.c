@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_struct.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 11:18:44 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/28 12:53:11 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/28 14:47:34 by dimbrea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ static void	init_cub(t_data *data)
 // inits the data struct
 int	init_struct(t_var *var)
 {
-	var->data = malloc(sizeof(t_data));
 	var->fd1 = 0;
 	var->line = NULL;
 	init_cub(var->data);

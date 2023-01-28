@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_msg_exit.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 14:19:39 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/28 14:20:46 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/28 14:25:02 by dimbrea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	error_exit(t_var *var)
 {
-	printf("Test\n");
 	cleanup(var);
 	ft_free_struct(var);
 	free(var);
