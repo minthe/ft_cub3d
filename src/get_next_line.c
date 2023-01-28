@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 19:08:43 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2022/12/12 17:58:05 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/28 17:06:44 by dimbrea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,19 +57,18 @@ int	read_file(int fd, char **buffer, char **buffer_static, char **line)
 char	*get_next_line(t_var *var)
 {
 	char		*line;
-	static char	*buffer_static[OPEN_MAX];
 
 	if (var->fd1 < 0 || BUFFER_SIZE <= 0 || var->fd1 > OPEN_MAX)
 		return (NULL);
-	var->data->buffer = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
+	var->data->buffer = ft_calloc((BUFFER_SIZE + 1), sizeof(char));
 	if (!var->data->buffer || read(var->fd1, var->data->buffer, 0) < 0)
 	{
 		free(var->data->buffer);
 		return (NULL);
 	}
-	if (!buffer_static[var->fd1])
-		buffer_static[var->fd1] = ft_strdup_gnl("");
-	if (read_file(var->fd1, &var->data->buffer, &buffer_static[var->fd1], \
+	if (!var->buffer_static)
+		var->buffer_static = ft_strdup_gnl("");
+	if (read_file(var->fd1, &var->data->buffer, &var->buffer_static, \
 	&line) == 0 && *line == '\0')
 	{
 		free(line);

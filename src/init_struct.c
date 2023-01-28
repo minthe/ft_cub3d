@@ -6,7 +6,7 @@
 /*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 11:18:44 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/28 14:47:34 by dimbrea          ###   ########.fr       */
+/*   Updated: 2023/01/28 17:07:14 by dimbrea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ int	init_struct(t_var *var)
 {
 	var->fd1 = 0;
 	var->line = NULL;
+	var->buffer_static = NULL;
 	init_cub(var->data);
 	return (1);
 }

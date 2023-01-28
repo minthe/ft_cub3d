@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 19:08:50 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2022/12/12 17:57:32 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/28 16:50:34 by dimbrea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

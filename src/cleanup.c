@@ -6,7 +6,7 @@
 /*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 13:54:39 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/28 14:34:38 by dimbrea          ###   ########.fr       */
+/*   Updated: 2023/01/28 17:05:42 by dimbrea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,10 @@ void	cleanup(t_var *var)
 	close(var->fd1);
 	if (var->data->map_lst)
 		free (var->data->map_lst);
-	if (var->data->buffer)
-		free (var->data->buffer);
+	// if (var->data->buffer)
+	// 	free (var->data->buffer);
+	if (var->buffer_static)
+		free(var->buffer_static);
 	if (var->data->map)
 		ft_free_doublepoint(var->data->map);
 	free(var->data);
