@@ -6,7 +6,7 @@
 /*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 14:27:58 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/28 12:48:48 by dimbrea          ###   ########.fr       */
+/*   Updated: 2023/01/28 13:33:20 by dimbrea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # define R_ARROW 65363
 # define L_ARROW 65361
 # define ESC 65307
-# define TXT_W 	64
+# define TXT_W	64
 # define FOV 60
 
 # include <stdio.h>
@@ -54,8 +54,6 @@ typedef struct s_img
 	int		size_line;
 	int		endian;
 	int		color;
-	int		begin_x;
-	int		begin_y;
 }t_img;
 
 typedef struct s_linked_list {
@@ -93,22 +91,11 @@ typedef struct s_mlx
 typedef struct s_player
 {
 	char	orient;
-	double	p_height;
 	double	p_angle;
 	double	radians;
-	double	begin_x;
-	double	begin_y;
 	double	ray_pos;
-	double	end_x;
-	double	end_y;
-	double	c_angle;
-	double	c_x;
-	double	c_y;	
-	double	camera_len;
 	int		pos_x;
 	int		pos_y;
-	double	mid_ray;
-	double	real_wall_height;
 	int		mini_x;
 	int		mini_y;
 }t_player;
@@ -144,7 +131,6 @@ typedef struct s_txt
 	double	ray_dx;
 	double	ray_dy;
 	int		ray_x_ing;
-
 	double	dist_pos;
 	double	dist_angle;
 	double	dist_distance;
@@ -202,7 +188,7 @@ void	ft_d(t_var *var);
 void	ft_m(t_var *var);
 void	ft_lr_arrows(t_var *var, int arrow);
 // UTILS
-void	error_msg_exit(t_var *var, char *str);
+void	error_msg_exit(char *str);
 int		ft_open_file(int *fd, char *path, int opt);
 int		init_struct(t_var *var);
 int		ft_check_fileext(char *path, char *ext);
@@ -227,17 +213,13 @@ int		max_col(t_linked_list *list);
 //main.c
 void	ft_set_walls(t_var *var);
 void	img_pix_put(t_var *var, int x, int y, int color);
-// void	render_background(t_var *var);
 void	ft_player(t_var *var);
 int		render(t_var *var);
 int		ft_is_wall(t_var *var, int x, int y);
 void	ft_put_player(t_var *var);
 void	ft_ray(t_var *var, char nswe);
-// void	draw_ln(t_var *var);// not needded
 void	ft_cast_rayz(t_var *var);
-// void	ft_draw_wall(t_var *var, int distance, int x_ing, int coo_x)
 void	ft_textures(t_var *var);
-void	img_pix_put2(t_var *var, int x, int y, int color);
 //exec.c
 int		keypress(int key, t_var *var);
 void	ft_map_size(t_var *var);

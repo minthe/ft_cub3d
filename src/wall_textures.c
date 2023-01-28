@@ -6,7 +6,7 @@
 /*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 16:54:25 by dimbrea           #+#    #+#             */
-/*   Updated: 2023/01/27 22:51:44 by dimbrea          ###   ########.fr       */
+/*   Updated: 2023/01/28 13:42:51 by dimbrea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ void	ft_draw_wall(t_var *var, int distance, int x_ing, int coo_x)
 	var->wall_ph = 32.0 / distance * (SCREEN_WIDTH / 2) / tan((double)FOV) / 2;
 	var->wall_txt_y = (SCREEN_HEIGHT / 2) - (var->wall_ph / 2);
 	var->wall_td = 0;
-	var->plr->real_wall_height = var->wall_txt_y;
 	while (var->wall_td < SCREEN_HEIGHT)
 	{
 		if (var->wall_td < var->wall_txt_y)

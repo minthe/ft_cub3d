@@ -6,7 +6,7 @@
 /*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 12:18:21 by dimbrea           #+#    #+#             */
-/*   Updated: 2023/01/26 15:30:09 by dimbrea          ###   ########.fr       */
+/*   Updated: 2023/01/28 13:28:59 by dimbrea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,5 +102,4 @@ void	ft_starting_angle(t_var *var, char nswe)
 		var->plr->p_angle = 180;
 	if (nswe == 'E')
 		var->plr->p_angle = 0;
-	var->plr->c_angle = var->plr->p_angle;
 }

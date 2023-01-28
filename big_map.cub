@@ -1,7 +1,7 @@
-WE src/inc/textures/blueWall.xpm
 NO src/inc/textures/greyWall.xpm
-SO src/inc/textures/redWall.xpm
 EA src/inc/textures/pissWall.xpm
+WE src/inc/textures/blueWall.xpm
+SO src/inc/textures/redWall.xpm
 
 F 128,128,128
 C 50,50,255
