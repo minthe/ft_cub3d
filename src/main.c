@@ -6,7 +6,7 @@
 /*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 19:03:45 by dimbrea           #+#    #+#             */
-/*   Updated: 2023/01/24 14:50:29 by dimbrea          ###   ########.fr       */
+/*   Updated: 2023/01/28 12:44:01 by dimbrea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,15 @@ void	ft_init_struct(t_var *var)
 	var->txt = malloc(sizeof(t_txt));
 }
 
+void	ft_free_struct(t_var *var)
+{
+	free(var->mlx);
+	free(var->map);
+	free(var->img);
+	free(var->plr);
+	free(var->txt);
+}
+
 void	ft_mlx_loops(t_var *var)
 {
 	mlx_hook(var->mlx->window, 17, 0L, x_window, var);
@@ -34,24 +43,27 @@ int	main(int argc, char **argv)
 {
 	t_var	*var;
 
-	var = malloc(sizeof(t_var));
-	ft_init_struct(var);
-	if (argc == 2 && init_struct(var) && import_cub(var, argv[1], ".cub"))
+	if (argc == 2)
 	{
-		ft_map_size(var);
-		ft_put_player(var);
-		var->mlx->ptr = mlx_init();
-		var->mlx->window = mlx_new_window(var->mlx->ptr, \
-					SCREEN_WIDTH, SCREEN_HEIGHT, "cub3d");
-		var->img->structure = mlx_new_image(var->mlx->ptr, \
-					SCREEN_WIDTH, SCREEN_HEIGHT);
-		var->img->addr = mlx_get_data_addr(var->img->structure, \
-					&var->img->bpp, &var->img->size_line, &var->img->endian);
-		ft_ray(var, var->plr->orient);
-		ft_mlx_loops(var);
+		var = malloc(sizeof(t_var));
+		ft_init_struct(var);
+		if (init_struct(var) && import_cub(var, argv[1], ".cub"))
+		{
+			ft_map_size(var);
+			ft_put_player(var);
+			var->mlx->ptr = mlx_init();
+			var->mlx->window = mlx_new_window(var->mlx->ptr, \
+						SCREEN_WIDTH, SCREEN_HEIGHT, "cub3d");
+			var->img->structure = mlx_new_image(var->mlx->ptr, \
+						SCREEN_WIDTH, SCREEN_HEIGHT);
+			var->img->addr = mlx_get_data_addr(var->img->structure, \
+				&var->img->bpp, &var->img->size_line, &var->img->endian);
+			ft_ray(var, var->plr->orient);
+			ft_mlx_loops(var);
+		}
+		cleanup(var);
 	}
 	else
-		error_msg_exit("Error only map needed as argument");
-	cleanup(var);
+		error_msg_exit("Only one argument allowed (map)");
 	return (0);
 }

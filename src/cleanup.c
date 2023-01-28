@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cleanup.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 13:54:39 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/22 18:35:18 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/28 12:44:13 by dimbrea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,5 @@ void	cleanup(t_var *var)
 		free (var->data->map_lst);
 	if (var->data->map)
 		ft_free_doublepoint(var->data->map);
+	free(var->data);
 }

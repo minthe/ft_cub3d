@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   atoi_cub.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/22 09:20:50 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/27 11:57:51 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/28 12:50:29 by dimbrea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

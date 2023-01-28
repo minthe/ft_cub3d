@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 10:13:11 by dimbrea           #+#    #+#             */
-/*   Updated: 2023/01/27 23:40:20 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/28 12:20:12 by dimbrea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ void	ft_textures(t_var *var)
 	int	width;
 	int	height;
 
-	var->txt->img_ptr = mlx_new_image(var->mlx->ptr, TXT_W, TXT_W);
 	var->txt->texture_no = mlx_xpm_file_to_image(var->mlx->ptr, var->data->no, \
 		&width, &height);
 	var->txt->texture_so = mlx_xpm_file_to_image(var->mlx->ptr, var->data->so, \

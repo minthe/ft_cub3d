@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keys.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 17:09:03 by dimbrea           #+#    #+#             */
-/*   Updated: 2023/01/27 23:42:42 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/28 12:44:34 by dimbrea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,18 @@ void	img_pix_put(t_var *var, int x, int y, int color)
 int	x_window(t_var *var)
 {
 	write(1, "Exited the game\n", 16);
-	mlx_destroy_image(var->txt->img_ptr, var->txt->texture_no);
-	mlx_destroy_image(var->txt->img_ptr, var->txt->texture_so);
-	mlx_destroy_image(var->txt->img_ptr, var->txt->texture_ea);
-	mlx_destroy_image(var->txt->img_ptr, var->txt->texture_we);
-	mlx_destroy_image(var->txt->img_ptr, var->img->structure);
+	mlx_destroy_image(var->mlx->ptr, var->txt->texture_no);
+	mlx_destroy_image(var->mlx->ptr, var->txt->texture_so);
+	mlx_destroy_image(var->mlx->ptr, var->txt->texture_ea);
+	mlx_destroy_image(var->mlx->ptr, var->txt->texture_we);
 	mlx_destroy_image(var->mlx->ptr, var->img->structure);
 	mlx_destroy_window(var->mlx->ptr, var->mlx->window);
+	mlx_destroy_display(var->mlx->ptr);
+	free(var->mlx->ptr);
 	var->mlx->window = NULL;
+	ft_free_struct(var);
+	cleanup(var);
+	free(var);
 	exit(EXIT_SUCCESS);
 	return (0);
 }

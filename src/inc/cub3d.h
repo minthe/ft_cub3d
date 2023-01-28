@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 14:27:58 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/27 23:34:43 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/28 12:48:48 by dimbrea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,6 @@ typedef struct s_map
 typedef struct s_txt
 {
 	char	*tex_addr;
-	void	*img_ptr;
 	int		txt_width;
 	int		txt_height;
 	int		bpp_txt;
@@ -203,7 +202,7 @@ void	ft_d(t_var *var);
 void	ft_m(t_var *var);
 void	ft_lr_arrows(t_var *var, int arrow);
 // UTILS
-void	error_msg_exit(char *str);
+void	error_msg_exit(t_var *var, char *str);
 int		ft_open_file(int *fd, char *path, int opt);
 int		init_struct(t_var *var);
 int		ft_check_fileext(char *path, char *ext);
@@ -247,5 +246,6 @@ double	degree_to_radians(double degree);
 int		ft_get_pxl_color(t_var *var, double x, double y);
 void	ft_get_dist(t_var *var);
 void	ft_draw_wall(t_var *var, int distance, int x_ing, int coo_x);
+void	ft_free_struct(t_var *var);
 
 #endif
