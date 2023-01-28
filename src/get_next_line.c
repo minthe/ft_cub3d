@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "inc/cub3d.h"
 
 char	*get_line(char **line, char **buffer_static)
 {
@@ -54,23 +54,23 @@ int	read_file(int fd, char **buffer, char **buffer_static, char **line)
 	return (i);
 }
 
-char	*get_next_line(int fd)
+char	*get_next_line(t_var *var)
 {
 	char		*line;
-	char		*buffer;
 	static char	*buffer_static[OPEN_MAX];
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || fd > OPEN_MAX)
+	if (var->fd1 < 0 || BUFFER_SIZE <= 0 || var->fd1 > OPEN_MAX)
 		return (NULL);
-	buffer = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
-	if (!buffer || read(fd, buffer, 0) < 0)
+	var->data->buffer = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
+	if (!var->data->buffer || read(var->fd1, var->data->buffer, 0) < 0)
 	{
-		free(buffer);
+		free(var->data->buffer);
 		return (NULL);
 	}
-	if (!buffer_static[fd])
-		buffer_static[fd] = ft_strdup_gnl("");
-	if (read_file(fd, &buffer, &buffer_static[fd], &line) == 0 && *line == '\0')
+	if (!buffer_static[var->fd1])
+		buffer_static[var->fd1] = ft_strdup_gnl("");
+	if (read_file(var->fd1, &var->data->buffer, &buffer_static[var->fd1], \
+	&line) == 0 && *line == '\0')
 	{
 		free(line);
 		return (NULL);

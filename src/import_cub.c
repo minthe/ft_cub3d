@@ -88,7 +88,7 @@ static void	import_cub2(t_var *var)
 		while (var->line && ft_is_whitespace(var->line))
 		{
 			free(var->line);
-			var->line = get_next_line(var->fd1);
+			var->line = get_next_line(var);
 		}
 	}
 	while (var->line && !ft_is_whitespace(var->line))
@@ -96,12 +96,12 @@ static void	import_cub2(t_var *var)
 		if (var->line)
 			copy_map_line(var);
 		free(var->line);
-		var->line = get_next_line(var->fd1);
+		var->line = get_next_line(var);
 	}
 	while (var->line)
 	{
 		free(var->line);
-		var->line = get_next_line(var->fd1);
+		var->line = get_next_line(var);
 		if (var->line && !ft_is_whitespace(var->line))
 			error_msg_exit(var, "map error: empty lines");
 		if (var->line && !ft_is_whitespace(var->line) && \
@@ -117,14 +117,14 @@ int	import_cub(t_var *var, char *argv, char *type)
 	if (!ft_open_file(&var->fd1, argv, O_RDONLY) \
 		|| !ft_check_fileext(argv, type))
 		error_exit(var);
-	var->line = get_next_line(var->fd1);
+	var->line = get_next_line(var);
 	while (var->line && (check_cub(var->data) != 2))
 	{
 		check_double_identifier(var);
 		if (var->line && !ft_is_whitespace(var->line))
 			copy_element(var, ft_skip_whitespace(var->line));
 		free(var->line);
-		var->line = get_next_line(var->fd1);
+		var->line = get_next_line(var);
 	}
 	import_cub2(var);
 	if (check_cub(var->data) == 2)

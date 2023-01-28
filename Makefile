@@ -29,8 +29,6 @@ IDIR			= .
 IFLAGS			= -I${IDIR} -I${LIBFT_DIR} -I${MINILIBX_DIR} -I${X11_INC}
 
 SRCS = src/main.c \
-		src/inc/get_next_line/get_next_line.c\
-		src/inc/get_next_line/get_next_line_utils.c\
 		src/import_cub.c\
 		src/import_cub2.c\
 		src/import_map.c\
@@ -42,6 +40,8 @@ SRCS = src/main.c \
 		src/list_utils.c\
 		src/import_color.c\
 		src/atoi_cub.c\
+		src/get_next_line.c\
+		src/get_next_line_utils.c\
 		src/utils/map_utils.c\
 		src/utils/error_msg_exit.c\
 		src/utils/ft_open_file.c\

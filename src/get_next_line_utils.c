@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "inc/cub3d.h"
 
 size_t	ft_strlen_gnl(const char *s)
 {

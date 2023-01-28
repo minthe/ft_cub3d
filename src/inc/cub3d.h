@@ -26,16 +26,24 @@
 # define TXT_W 64
 # define FOV 60
 
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1
+# endif
+
+# ifndef OPEN_MAX
+#  define OPEN_MAX 10240
+# endif
+
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
 # include <sys/types.h>
 # include <sys/stat.h>
+# include <limits.h>
 # include <math.h>
 # include "mlx/mlx.h"
 # include "libft/libft.h"
-# include "get_next_line/get_next_line.h"
 
 typedef struct s_node
 {
@@ -79,6 +87,7 @@ typedef struct s_data
 	int				map_col;
 	int				err;
 	char			color_c;
+	char			*buffer;
 }t_data;
 
 typedef struct s_mlx
@@ -212,6 +221,16 @@ void	set_player(t_var *var, char c);
 void	check_map_char(t_var *var, char c);
 void	check_map(t_var *var);
 int		max_col(t_linked_list *list);
+
+// GetNextLine
+char	*get_next_line(t_var *var);
+int		read_file(int fd, char **buffer, char **buffer_static, char **line);
+char	*get_line(char **line, char **buffer_static);
+size_t	ft_strlen_gnl(const char *s);
+char	*ft_strdup_gnl(const char *s1);
+char	*ft_strchr_gnl(const char *s, int c);
+char	*ft_strjoin_gnl(char const *s1, char const *s2);
+char	*ft_substr_gnl(char const *s, unsigned int start, size_t len);
 
 //main.c
 void	ft_set_walls(t_var *var);

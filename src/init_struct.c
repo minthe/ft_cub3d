@@ -29,6 +29,7 @@ static void	init_cub(t_data *data)
 	data->map_lst = ft_calloc(1, sizeof(t_linked_list));
 	initialize_list(data->map_lst);
 	data->err = 0;
+	data->buffer = NULL;
 }
 
 // inits the data struct

@@ -27,8 +27,11 @@ void	cleanup(t_var *var)
 		free (var->line);
 	if (var->data->map_lst)
 		delete_list(var->data->map_lst);
+	close(var->fd1);
 	if (var->data->map_lst)
 		free (var->data->map_lst);
+	if (var->data->buffer)
+		free (var->data->buffer);
 	if (var->data->map)
 		ft_free_doublepoint(var->data->map);
 	free(var->data);
