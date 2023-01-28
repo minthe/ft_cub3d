@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 13:54:39 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/28 12:56:16 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/28 14:09:54 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,5 @@ void	cleanup(t_var *var)
 		free (var->data->map_lst);
 	if (var->data->map)
 		ft_free_doublepoint(var->data->map);
-	if (var->data)
-		free(var->data);
+	free(var->data);
 }

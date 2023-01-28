@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 09:49:29 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/28 12:41:26 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/28 14:11:13 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ static void	check_access(t_var *var, char *str, char *element)
 		perror(str);
 		close(fd_tex);
 		cleanup(var);
+		ft_free_struct(var);
+		free(var);
 		exit (EXIT_FAILURE);
 	}
 	close(fd_tex);
