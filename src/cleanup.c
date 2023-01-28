@@ -30,8 +30,6 @@ void	cleanup(t_var *var)
 	close(var->fd1);
 	if (var->data->map_lst)
 		free (var->data->map_lst);
-	// if (var->data->buffer)
-	// 	free (var->data->buffer);
 	if (var->buffer_static)
 		free(var->buffer_static);
 	if (var->data->map)

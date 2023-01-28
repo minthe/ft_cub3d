@@ -40,4 +40,3 @@ void	error_msg(char *str)
 	write(2, "\n", 1);
 	exit (EXIT_FAILURE);
 }
-
