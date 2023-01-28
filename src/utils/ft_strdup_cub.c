@@ -23,7 +23,6 @@ char	*ft_strdup_map(t_var *var, size_t i, char *str)
 		{
 			if (var->line[i] == '\n')
 				break ;
-			check_map_char(var, var->line[i]);
 			str[i] = var->line[i];
 			i++;
 		}

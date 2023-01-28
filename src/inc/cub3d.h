@@ -219,7 +219,7 @@ int		is_map_char(char c);
 int		is_mchar(char c);
 int		only_map_char(const char *str);
 void	set_player(t_var *var, char c);
-void	check_map_char(t_var *var, char c);
+void	check_map_player(t_var *var);
 void	check_map(t_var *var);
 int		max_col(t_linked_list *list);
 

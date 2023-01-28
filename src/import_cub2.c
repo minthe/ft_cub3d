@@ -55,6 +55,7 @@ void	copy_map_line(t_var *var)
 	{
 		if (!ft_is_whitespace(var->line) && !only_map_char(var->line))
 			error_msg_exit(var, "map error: invalid map character");
+		check_map_player(var);
 		add_tail(var->data->map_lst, ft_strdup_map(var, 0, NULL));
 	}
 }

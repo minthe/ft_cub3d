@@ -28,12 +28,21 @@ void	set_player(t_var *var, char c)
 		var->data->p_set = 4;
 }
 
-// checks map char
-void	check_map_char(t_var *var, char c)
+// checks map player
+void	check_map_player(t_var *var)
 {
-	if (!is_map_char(c))
-		error_msg_exit(var, "map error: invalid map character");
-	set_player(var, c);
+	size_t	i;
+
+	i = 0;
+	while (i < ft_strlen_gnl(var->line))
+	{
+		if (var->line[i] == '\n')
+			break ;
+		if (!is_map_char(var->line[i]))
+			error_msg_exit(var, "map error: invalid map character");
+		set_player(var, var->line[i]);
+		i++;
+	}
 }
 
 // gives back an int with the value of the longest str in **map
