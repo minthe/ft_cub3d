@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_check_fileext.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 09:01:15 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/15 16:47:23 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/28 14:33:37 by dimbrea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

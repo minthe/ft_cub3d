@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
+/*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 19:03:45 by dimbrea           #+#    #+#             */
-/*   Updated: 2023/01/28 13:19:34 by dimbrea          ###   ########.fr       */
+/*   Updated: 2023/01/28 14:52:46 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 void	ft_init_struct(t_var *var)
 {
-	var->data = malloc(sizeof(t_data));
 	var->mlx = malloc(sizeof(t_mlx));
 	var->map = malloc(sizeof(t_map));
 	var->img = malloc(sizeof(t_img));
 	var->plr = malloc(sizeof(t_player));
 	var->txt = malloc(sizeof(t_txt));
+	var->data = malloc(sizeof(t_data));
 }
 
 void	ft_free_struct(t_var *var)
@@ -64,6 +64,6 @@ int	main(int argc, char **argv)
 		cleanup(var);
 	}
 	else
-		error_msg_exit("Only one argument allowed (map)");
+		error_msg("Only one argument allowed (map)");
 	return (0);
 }

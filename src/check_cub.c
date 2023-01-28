@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   check_cub.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
+/*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 12:45:08 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/27 22:00:48 by dimbrea          ###   ########.fr       */
+/*   Updated: 2023/01/28 12:33:51 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "inc/cub3d.h"
 
 // checks if string has digits
-int	hasdigits(const char *str, char c)
+int	hasdigits(t_var *var, const char *str, char c)
 {
 	int	check;
 
@@ -27,9 +27,9 @@ int	hasdigits(const char *str, char c)
 	if (check == 0)
 	{
 		if (c == 'C')
-			error_msg_exit("C: invalid color characters");
+			error_msg_exit(var, "C: invalid color characters");
 		else
-			error_msg_exit("F: invalid color characters");
+			error_msg_exit(var, "F: invalid color characters");
 	}
 	return (check);
 }
