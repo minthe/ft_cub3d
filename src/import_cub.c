@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 09:49:29 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/28 14:11:13 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/28 14:18:27 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ int	import_cub(t_var *var, char *argv, char *type)
 {
 	if (!ft_open_file(&var->fd1, argv, O_RDONLY) \
 		|| !ft_check_fileext(argv, type))
-		exit (EXIT_FAILURE);
+		error_exit(var);
 	var->line = get_next_line(var->fd1);
 	while (var->line && (check_cub(var->data) != 2))
 	{

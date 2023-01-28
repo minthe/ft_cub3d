@@ -6,7 +6,7 @@
 /*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 14:27:58 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/28 12:33:43 by vfuhlenb         ###   ########.fr       */
+/*   Updated: 2023/01/28 14:18:47 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -205,6 +205,7 @@ void	ft_lr_arrows(t_var *var, int arrow);
 // UTILS
 void	error_msg_exit(t_var *var, char *str);
 void	error_msg(char *str);
+void	error_exit(t_var *var);
 int		ft_open_file(int *fd, char *path, int opt);
 int		init_struct(t_var *var);
 int		ft_check_fileext(char *path, char *ext);
