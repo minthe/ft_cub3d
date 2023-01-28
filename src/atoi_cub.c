@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   atoi_cub.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
+/*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/22 09:20:50 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/28 12:50:29 by dimbrea          ###   ########.fr       */
+/*   Updated: 2023/01/28 12:33:28 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ static int	limiter(int i)
 }
 
 // takes a string and converts it into an integer
-int	atoi_cub(const char *str, int sign, int ret, char c)
+int	atoi_cub(const char *str, int sign, int ret, t_var *var)
 {
-	hasdigits(str, c);
+	hasdigits(var, str, var->data->color_c);
 	while (ft_isspace(*str))
 		str++;
 	if (*str == '-' || *str == '+')
@@ -48,10 +48,10 @@ int	atoi_cub(const char *str, int sign, int ret, char c)
 			ret = (ret * 10) + (*str - '0');
 		else if (!ft_isdigit(*str) && !ft_isspace(*str))
 		{
-			if (c == 'C')
-				error_msg_exit("C: invalid color characters");
+			if (var->data->color_c == 'C')
+				error_msg_exit(var, "C: invalid color characters");
 			else
-				error_msg_exit("F: invalid color characters");
+				error_msg_exit(var, "F: invalid color characters");
 		}
 		str++;
 	}

@@ -3,26 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   error_msg_exit.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
+/*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 14:19:39 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/28 12:48:04 by dimbrea          ###   ########.fr       */
+/*   Updated: 2023/01/28 12:59:40 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "inc/cub3d.h"
-
-static size_t	ft_strlen(const char *s)
-{
-	size_t	counter;
-
-	counter = 0;
-	while (s[counter])
-	{
-		counter ++;
-	}
-	return (counter);
-}
+#include "../inc/cub3d.h"
 
 // outputs str as error message and exits
 void	error_msg_exit(t_var *var, char *str)
@@ -31,5 +19,16 @@ void	error_msg_exit(t_var *var, char *str)
 	write(2, str, ft_strlen(str));
 	write(2, "\n", 1);
 	cleanup(var);
+	ft_free_struct(var);
+	free(var);
+	exit (EXIT_FAILURE);
+}
+
+// outputs str as error message and exits
+void	error_msg(char *str)
+{
+	write(2, "Error\n", 6);
+	write(2, str, ft_strlen(str));
+	write(2, "\n", 1);
 	exit (EXIT_FAILURE);
 }

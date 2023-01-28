@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   import_color.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
+/*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 16:04:17 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/27 21:53:55 by dimbrea          ###   ########.fr       */
+/*   Updated: 2023/01/28 12:28:21 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,27 +46,27 @@ static void	del_newline(char *line)
 	}
 }
 
-static void	cpy_color_2(char **color_temp, char c, int *trgb)
+static void	cpy_color_2(t_var *var, char **color_temp, char c, int *trgb)
 {
 	if (count_values(color_temp) == 3)
 	{
-		*trgb = create_trgb(255, atoi_cub(color_temp[0], 1, 0, c), \
-		atoi_cub(color_temp[1], 1, 0, c), \
-		atoi_cub(color_temp[2], 1, 0, c));
+		*trgb = create_trgb(255, atoi_cub(color_temp[0], 1, 0, var), \
+		atoi_cub(color_temp[1], 1, 0, var), \
+		atoi_cub(color_temp[2], 1, 0, var));
 	}
 	else if (count_values(color_temp) < 3)
 	{
 		if (c == 'C')
-			error_msg_exit("C: less than 3 color values");
+			error_msg_exit(var, "C: less than 3 color values");
 		else
-			error_msg_exit("F: less than 3 color values");
+			error_msg_exit(var, "F: less than 3 color values");
 	}
 	else if (count_values(color_temp) > 3)
 	{
 		if (c == 'C')
-			error_msg_exit("C: more than 3 color values");
+			error_msg_exit(var, "C: more than 3 color values");
 		else
-			error_msg_exit("F: more than 3 color values");
+			error_msg_exit(var, "F: more than 3 color values");
 	}
 }
 
@@ -75,14 +75,15 @@ void	cpy_color_to_struct(t_var *var, int i, int *trgb, char c)
 {
 	char	**color_temp;
 
+	var->data->color_c = c;
 	del_newline(var->line);
 	if (ft_is_whitespace_char(var->line[i]))
 		i += ft_skip_whitespace(&var->line[i]);
 	color_temp = ft_split(&var->line[i], ',');
-	cpy_color_2(color_temp, c, trgb);
+	cpy_color_2(var, color_temp, var->data->color_c, trgb);
 	if (color_temp)
 		ft_free_doublepoint(color_temp);
-	if (c == 'C')
+	if (var->data->color_c == 'C')
 		var->data->c_set = 1;
 	else
 		var->data->f_set = 1;

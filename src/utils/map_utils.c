@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
+/*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 16:00:39 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/27 22:00:01 by dimbrea          ###   ########.fr       */
+/*   Updated: 2023/01/28 12:29:43 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 void	set_player(t_var *var, char c)
 {
 	if (var->data->p_set != 0 && (c == 'N' || c == 'E' || c == 'S' || c == 'W'))
-		error_msg_exit("map error: mupliple player detected");
+		error_msg_exit(var, "map error: mupliple player detected");
 	else if (c == 'N')
 		var->data->p_set = 1;
 	else if (c == 'E')
@@ -32,7 +32,7 @@ void	set_player(t_var *var, char c)
 void	check_map_char(t_var *var, char c)
 {
 	if (!is_map_char(c))
-		error_msg_exit("map error: invalid map character");
+		error_msg_exit(var, "map error: invalid map character");
 	set_player(var, c);
 }
 

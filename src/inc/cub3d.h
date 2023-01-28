@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dimbrea <dimbrea@student.42wolfsburg.de>   +#+  +:+       +#+        */
+/*   By: vfuhlenb <vfuhlenb@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 14:27:58 by vfuhlenb          #+#    #+#             */
-/*   Updated: 2023/01/28 12:48:48 by dimbrea          ###   ########.fr       */
+/*   Updated: 2023/01/28 12:33:43 by vfuhlenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ typedef struct s_data
 	int				map_lines;
 	int				map_col;
 	int				err;
+	char			color_c;
 }t_data;
 
 typedef struct s_mlx
@@ -178,11 +179,11 @@ void	ft_get_wall_orient(t_var *var, double x, double y);
 int		import_cub(t_var *var, char *argv, char *type);
 void	import_map(t_var *var);
 int		check_cub(t_data *data);
-void	check_elements(t_data *data);
+void	check_elements(t_var *var);
 void	cleanup(t_var *var);
 void	cpy_color_to_struct(t_var *var, int i, int *trgb, char c);
-int		atoi_cub(const char *str, int sign, int ret, char c);
-int		hasdigits(const char *str, char c);
+int		atoi_cub(const char *str, int sign, int ret, t_var *var);
+int		hasdigits(t_var *var, const char *str, char c);
 int		check_double_identifier(t_var *var);
 int		unknown_key(char *line);
 void	copy_map_line(t_var *var);
@@ -203,6 +204,7 @@ void	ft_m(t_var *var);
 void	ft_lr_arrows(t_var *var, int arrow);
 // UTILS
 void	error_msg_exit(t_var *var, char *str);
+void	error_msg(char *str);
 int		ft_open_file(int *fd, char *path, int opt);
 int		init_struct(t_var *var);
 int		ft_check_fileext(char *path, char *ext);
@@ -221,7 +223,7 @@ int		is_mchar(char c);
 int		only_map_char(const char *str);
 void	set_player(t_var *var, char c);
 void	check_map_char(t_var *var, char c);
-void	check_map(t_data *data);
+void	check_map(t_var *var);
 int		max_col(t_linked_list *list);
 
 //main.c
